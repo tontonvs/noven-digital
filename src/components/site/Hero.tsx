@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import heroImage from "@/assets/hero.jpg";
 import { cn } from "@/lib/utils";
 
 export function Hero({
@@ -21,14 +20,9 @@ export function Hero({
 }) {
   return (
     <div className="relative px-2 pb-28 pt-6 sm:px-4 sm:pb-32">
-      {/* Framed photo — the organic blob "best shot" card */}
-      <div className="relative mx-auto aspect-[4/5] max-w-3xl overflow-hidden blob-hero shadow-[var(--shadow-float)] sm:aspect-[16/11]">
-        <img
-          src={heroImage}
-          alt="Accra skyline at dusk"
-          className="absolute inset-0 size-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30" />
+      {/* Frame — the organic blob "best shot" card, no photo yet */}
+      <div className="relative mx-auto aspect-[4/5] max-w-3xl overflow-hidden blob-hero bg-primary shadow-[var(--shadow-float)] sm:aspect-[16/11]">
+        <div className="absolute inset-0 aura opacity-60" />
 
         {/* CTA pills inside the frame, top corners */}
         <div className="absolute inset-x-5 top-5 flex items-start justify-between gap-3 sm:inset-x-8 sm:top-8">
@@ -42,7 +36,7 @@ export function Hero({
 
         {/* Title, bottom-left inside the frame */}
         <div className="absolute inset-x-6 bottom-24 sm:inset-x-10 sm:bottom-28 sm:max-w-md">
-          <h1 className="text-glow font-display text-4xl font-bold leading-[0.95] text-white sm:text-5xl">
+          <h1 className="text-glow font-display text-4xl font-bold leading-[0.95] text-primary-foreground sm:text-5xl">
             {title}
           </h1>
         </div>

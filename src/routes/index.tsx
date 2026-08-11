@@ -25,6 +25,9 @@ function Index() {
   return (
     <div className="relative min-h-screen">
       <div className="pointer-events-none fixed inset-2 z-50 rounded-[2rem] border-[3.7px] border-white/92 sm:inset-3" />
+      <div className="pointer-events-none fixed left-1/2 top-2 z-50 h-5 w-28 -translate-x-1/2 rounded-b-2xl border-x-[3.7px] border-b-[3.7px] border-white/92 bg-background sm:top-3 sm:h-6 sm:w-36">
+        <span className="absolute left-1/2 top-1/2 size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/25" />
+      </div>
       <div className="fixed inset-0 -z-10 bg-background aura" />
 
       <main className="mx-auto max-w-5xl px-4 pb-24 pt-24 md:pl-24">
