@@ -18,10 +18,10 @@ export function GlassCard({
   float = false,
 }: {
   children: ReactNode;
-  className?: string;
-  shape?: Shape;
-  strong?: boolean;
-  float?: boolean;
+  className?: string | undefined;
+  shape?: Shape | undefined;
+  strong?: boolean | undefined;
+  float?: boolean | undefined;
 }) {
   return (
     <div
