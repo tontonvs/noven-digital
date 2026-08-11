@@ -60,6 +60,19 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const [activeModal, setActiveModal] = useState<"location" | "expertise" | "payment" | null>(null);
+  const [size, setSize] = useState({ w: 1280, h: 800 });
+
+  useEffect(() => {
+    const update = () => setSize({ w: window.innerWidth, h: window.innerHeight });
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const NW = Math.max(280, Math.min(size.w * 0.44, 520));
+  const framePath = useMemo(() => buildFramePath(size.w, size.h, NW), [size.w, size.h, NW]);
+
+
 
   return (
     <div className="relative min-h-screen overflow-hidden font-sans text-slate-900">
