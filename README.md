@@ -1,14 +1,16 @@
-# Welcome to your Lovable project
+# Noven
+
+Build "to be studios" — a modern, futuristic agency landing site for a Ghana-based fullstack dev studio. Blank/skeleton scaffold with 5 pages: Home, Services, Work, About, Contact — nav links to each. Design: subtle glassmorphism, translucent white frosted-glass panels, organic asymmetric rounded shapes (avoid plain squares/circles), full-bleed photographic hero background, floating vertical icon nav on the left, bold modern headline typography, floating stat/info cards, social-media-feel layout. Leave content placeholder for now — focus on structure, page routing, and the visual theme.
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/e53fe430-6bb0-4612-a60f-ff5666da17a2).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +22,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
