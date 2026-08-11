@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="relative min-h-screen">
-      <div className="pointer-events-none fixed inset-2 z-50 rounded-[2rem] border-[3px] border-white sm:inset-3" />
+      <div className="pointer-events-none fixed inset-2 z-50 rounded-[2rem] border-[3.7px] border-white/30 sm:inset-3" />
       <div className="fixed inset-0 -z-10 bg-background aura" />
 
       <main className="mx-auto max-w-5xl px-4 pb-24 pt-24 md:pl-24">
