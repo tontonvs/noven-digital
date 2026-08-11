@@ -5,16 +5,16 @@ import { GlassCard } from "@/components/site/GlassCard";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "to be studios — Fullstack Dev Studio in Ghana" },
+      { title: "noven — Fullstack Dev Studio in Ghana" },
       {
         name: "description",
         content:
-          "to be studios is a Ghana-based fullstack development studio building modern web products, platforms and digital experiences.",
+          "noven is a Ghana-based fullstack development studio building offline-first mobile apps, modern websites and digital products.",
       },
-      { property: "og:title", content: "to be studios — Fullstack Dev Studio in Ghana" },
+      { property: "og:title", content: "noven — Fullstack Dev Studio in Ghana" },
       {
         property: "og:description",
-        content: "Modern web products, platforms and digital experiences, built in Accra.",
+        content: "Offline-first apps and modern web products, built in Accra.",
       },
     ],
   }),
@@ -22,9 +22,9 @@ export const Route = createFileRoute("/")({
 });
 
 const stats = [
-  { value: "00+", label: "Projects shipped" },
-  { value: "00", label: "Clients worldwide" },
-  { value: "00y", label: "Years building" },
+  { value: "3", label: "Products shipped" },
+  { value: "100%", label: "Custom-built" },
+  { value: "GH", label: "Based in Accra" },
 ];
 
 function Index() {
@@ -32,7 +32,7 @@ function Index() {
     <PageShell
       eyebrow="Accra, Ghana"
       title="We build the software you were meant to be."
-      intro="Placeholder intro copy. A fullstack studio crafting products end to end — strategy, design, engineering."
+      intro="noven is a fullstack studio crafting products end to end — offline-first mobile apps, marketing sites and platforms, built with React, TypeScript and Supabase."
     >
       <div className="mt-10 flex flex-wrap gap-3">
         <button className="blob-pill bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5">
@@ -59,14 +59,18 @@ function Index() {
 
       <div className="mt-6 grid gap-5 md:grid-cols-[1.4fr_1fr]">
         <GlassCard shape="c" strong className="min-h-56">
-          <h2 className="text-2xl font-bold">Featured placeholder</h2>
+          <h2 className="text-2xl font-bold">Grace Connect</h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Content for this panel is coming soon.
+            An offline-first community app for churches to chat, share and stay connected —
+            built with React, TypeScript, Capacitor and Supabase.
           </p>
         </GlassCard>
         <GlassCard shape="b" className="min-h-56">
-          <h2 className="text-xl font-bold">Latest note</h2>
-          <p className="mt-3 text-sm text-muted-foreground">Placeholder feed item.</p>
+          <h2 className="text-xl font-bold">How we build</h2>
+          <p className="mt-3 text-sm text-muted-foreground">
+            We pair with AI coding agents to move fast without cutting corners — every diff
+            reviewed, every decision ours.
+          </p>
         </GlassCard>
       </div>
     </PageShell>

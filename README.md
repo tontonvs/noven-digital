@@ -1,6 +1,6 @@
 # Noven
 
-Build "to be studios" — a modern, futuristic agency landing site for a Ghana-based fullstack dev studio. Blank/skeleton scaffold with 5 pages: Home, Services, Work, About, Contact — nav links to each. Design: subtle glassmorphism, translucent white frosted-glass panels, organic asymmetric rounded shapes (avoid plain squares/circles), full-bleed photographic hero background, floating vertical icon nav on the left, bold modern headline typography, floating stat/info cards, social-media-feel layout. Leave content placeholder for now — focus on structure, page routing, and the visual theme.
+noven — a modern, futuristic agency landing site for a Ghana-based fullstack dev studio. 5 pages: Home, Services, Work, About, Contact. Design: subtle glassmorphism, translucent white frosted-glass panels, organic asymmetric rounded shapes, full-bleed photographic hero background, floating vertical icon nav, bold modern headline typography, floating stat/info cards, social-media-feel layout.
 
 This project was built with [Lovable](https://lovable.dev).
 
