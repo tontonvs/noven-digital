@@ -69,7 +69,7 @@ function Index() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const NW = Math.max(280, Math.min(size.w * 0.44, 520));
+  const NW = Math.max(300, Math.min(size.w * 0.56, 660));
   const framePath = useMemo(() => buildFramePath(size.w, size.h, NW), [size.w, size.h, NW]);
 
 
@@ -107,7 +107,7 @@ function Index() {
 
         {/* Notch Content Area (sits inside the carved notch) */}
         <div
-          className="pointer-events-auto flex items-center justify-center gap-1 sm:gap-3"
+          className="pointer-events-auto flex items-center justify-center gap-1 overflow-hidden px-2 sm:gap-2"
           style={{ width: NW, height: NH }}
         >
           {/* Location Trigger */}
