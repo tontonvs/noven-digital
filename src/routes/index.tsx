@@ -28,117 +28,99 @@ function Index() {
       {/* Frosty Blurry Coat over Gradient Background */}
       <div className="pointer-events-none fixed inset-0 z-10 backdrop-blur-[16px] backdrop-saturate-150" />
 
-      {/* Screen Frame: Square outside (touching window edges), rounded inside */}
+      {/* Screen Frame + Notch: one continuous bezel shape */}
       <svg className="pointer-events-none fixed inset-0 z-50 h-full w-full">
         <defs>
           <mask id="bezel-mask">
             <rect width="100%" height="100%" fill="white" />
-            <rect
-              x="7.4"
-              y="7.4"
-              style={{ width: "calc(100% - 14.8px)", height: "calc(100% - 14.8px)" }}
-              rx="40"
-              fill="black"
-            />
+            <path d={framePath} fill="black" />
           </mask>
         </defs>
-        <rect width="100%" height="100%" fill="rgba(255,255,255,0.92)" mask="url(#bezel-mask)" />
+        <rect width="100%" height="100%" fill={BEZEL} mask="url(#bezel-mask)" />
       </svg>
 
-      {/* Top Header Navigation Bar with Flanking Pills & Center Notch */}
-      <div className="fixed top-[7.4px] inset-x-0 z-50 flex items-center justify-between px-6 py-2 sm:px-12 pointer-events-none">
+      {/* Top Header: flanking pills + notch content, same bezel styling */}
+      <div
+        className="pointer-events-none fixed inset-x-0 z-50 flex items-center justify-between px-5 sm:px-10"
+        style={{ top: B, height: NH }}
+      >
         {/* Left Flanking Pill Button */}
         <button
           onClick={() => setActiveModal("expertise")}
-          className="pointer-events-auto group flex items-center gap-2 rounded-full border border-white/60 bg-white/70 px-5 py-2 text-xs sm:text-sm font-medium text-slate-800 shadow-md backdrop-blur-md transition-all hover:bg-white hover:shadow-lg active:scale-95"
+          style={{ background: BEZEL }}
+          className="pointer-events-auto group flex h-12 items-center gap-2 rounded-full px-6 text-sm font-semibold text-slate-800 shadow-md backdrop-blur-md transition-all hover:shadow-lg active:scale-95 sm:h-[3.25rem] sm:px-8 sm:text-base"
         >
           <span className="inline-block transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↖</span>
           <span>Services</span>
         </button>
 
-        {/* Center Notch Body with Dynamic Dropdowns */}
-        <div className="pointer-events-auto relative flex items-center justify-center">
-          {/* Left Outward Curve Connection */}
-          <div
-            className="h-6 w-6 -mr-[1px]"
-            style={{
-              background:
-                "radial-gradient(circle at 0% 100%, transparent 24px, rgba(255, 255, 255, 0.92) 24.5px)",
-            }}
-          />
+        {/* Notch Content Area (sits inside the carved notch) */}
+        <div
+          className="pointer-events-auto flex items-center justify-center gap-1 sm:gap-3"
+          style={{ width: NW, height: NH }}
+        >
+          {/* Location Trigger */}
+          <button
+            onClick={() => setActiveModal("location")}
+            className="flex items-center gap-1.5 rounded-2xl px-3 py-2 text-xs font-medium text-slate-700 transition-colors hover:bg-black/5 sm:px-4 sm:text-sm"
+          >
+            <svg className="h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span className="hidden sm:inline font-normal text-slate-400">Location</span>
+            <span className="font-semibold text-slate-800">Accra</span>
+            <svg className="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
 
-          {/* Notch Content Area */}
-          <div className="flex h-[2.8rem] items-center gap-1 sm:gap-3 rounded-b-2xl bg-white/92 px-3 sm:px-5 shadow-md backdrop-blur-lg">
-            {/* Location Trigger */}
-            <button
-              onClick={() => setActiveModal("location")}
-              className="flex items-center gap-1.5 rounded-xl px-2.5 py-1 text-xs sm:text-sm font-medium text-slate-700 transition-colors hover:bg-black/5"
-            >
-              <svg className="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span className="hidden sm:inline text-slate-400 font-normal">Location</span>
-              <span className="font-semibold text-slate-800">Accra</span>
-              <svg className="h-3 w-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+          <div className="h-5 w-px bg-slate-300/60" />
 
-            <div className="h-4 w-[1px] bg-slate-300/60" />
+          {/* Expertise Trigger */}
+          <button
+            onClick={() => setActiveModal("expertise")}
+            className="flex items-center gap-1.5 rounded-2xl px-3 py-2 text-xs font-medium text-slate-700 transition-colors hover:bg-black/5 sm:px-4 sm:text-sm"
+          >
+            <svg className="h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+            <span className="hidden sm:inline font-normal text-slate-400">Expertise</span>
+            <span className="font-semibold text-slate-800">Fullstack</span>
+            <svg className="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
 
-            {/* Expertise Trigger */}
-            <button
-              onClick={() => setActiveModal("expertise")}
-              className="flex items-center gap-1.5 rounded-xl px-2.5 py-1 text-xs sm:text-sm font-medium text-slate-700 transition-colors hover:bg-black/5"
-            >
-              <svg className="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-              <span className="hidden sm:inline text-slate-400 font-normal">Expertise</span>
-              <span className="font-semibold text-slate-800">Fullstack</span>
-              <svg className="h-3 w-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+          <div className="hidden h-5 w-px bg-slate-300/60 sm:block" />
 
-            <div className="h-4 w-[1px] bg-slate-300/60" />
-
-            {/* Payment Trigger */}
-            <button
-              onClick={() => setActiveModal("payment")}
-              className="flex items-center gap-1.5 rounded-xl px-2.5 py-1 text-xs sm:text-sm font-medium text-slate-700 transition-colors hover:bg-black/5"
-            >
-              <svg className="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span className="hidden sm:inline text-slate-400 font-normal">Payment</span>
-              <span className="font-semibold text-slate-800">Flexible</span>
-              <svg className="h-3 w-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Right Outward Curve Connection */}
-          <div
-            className="h-6 w-6 -ml-[1px]"
-            style={{
-              background:
-                "radial-gradient(circle at 100% 100%, transparent 24px, rgba(255, 255, 255, 0.92) 24.5px)",
-            }}
-          />
+          {/* Payment Trigger */}
+          <button
+            onClick={() => setActiveModal("payment")}
+            className="hidden items-center gap-1.5 rounded-2xl px-3 py-2 text-xs font-medium text-slate-700 transition-colors hover:bg-black/5 sm:flex sm:px-4 sm:text-sm"
+          >
+            <svg className="h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="hidden sm:inline font-normal text-slate-400">Payment</span>
+            <span className="font-semibold text-slate-800">Flexible</span>
+            <svg className="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
         </div>
 
         {/* Right Flanking Pill Button */}
         <button
           onClick={() => setActiveModal("location")}
-          className="pointer-events-auto group flex items-center gap-2 rounded-full border border-white/60 bg-white/70 px-5 py-2 text-xs sm:text-sm font-medium text-slate-800 shadow-md backdrop-blur-md transition-all hover:bg-white hover:shadow-lg active:scale-95"
+          style={{ background: BEZEL }}
+          className="pointer-events-auto group flex h-12 items-center gap-2 rounded-full px-6 text-sm font-semibold text-slate-800 shadow-md backdrop-blur-md transition-all hover:shadow-lg active:scale-95 sm:h-[3.25rem] sm:px-8 sm:text-base"
         >
           <span>Contact</span>
           <span className="inline-block transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
         </button>
       </div>
+
 
       {/* Glassmorphic Animated Modals */}
       {activeModal && (
