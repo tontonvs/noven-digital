@@ -13,7 +13,7 @@ export function IconRail() {
   return (
     <nav
       aria-label="Primary"
-      className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-2 glass-panel blob-pill p-2 md:flex"
+      className="fixed left-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-2 rounded-[2rem] bg-white/92 p-2.5 shadow-md backdrop-blur-md md:flex"
     >
       {items.map(({ to, label, Icon }) => (
         <Link
@@ -22,13 +22,13 @@ export function IconRail() {
           aria-label={label}
           activeOptions={{ exact: to === "/" }}
           activeProps={{
-            className: "bg-primary/25 text-primary",
+            className: "bg-slate-900 text-white",
           }}
-          inactiveProps={{ className: "text-muted-foreground" }}
-          className="group relative grid size-11 place-items-center rounded-[1.25rem_0.6rem_1.25rem_0.6rem] transition-colors hover:bg-glass-strong hover:text-foreground"
+          inactiveProps={{ className: "text-slate-500 hover:bg-black/5 hover:text-slate-900" }}
+          className="group relative grid size-12 place-items-center rounded-3xl transition-colors"
         >
-          <Icon size={19} />
-          <span className="pointer-events-none absolute left-14 whitespace-nowrap rounded-[0.9rem_0.4rem_0.9rem_0.4rem] glass-panel px-3 py-1 text-xs opacity-0 transition-opacity group-hover:opacity-100">
+          <Icon size={21} />
+          <span className="pointer-events-none absolute left-16 whitespace-nowrap rounded-full bg-white/92 px-3.5 py-1.5 text-xs font-medium text-slate-800 opacity-0 shadow-md backdrop-blur-md transition-opacity group-hover:opacity-100">
             {label}
           </span>
         </Link>
@@ -36,3 +36,4 @@ export function IconRail() {
     </nav>
   );
 }
+
