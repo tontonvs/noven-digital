@@ -1,6 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Hero } from "@/components/site/Hero";
-import { GlassCard } from "@/components/site/GlassCard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,48 +22,20 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="relative min-h-screen">
+      {/* Bezel */}
       <div className="pointer-events-none fixed inset-2 z-50 rounded-[2rem] border-[3.7px] border-white/92 sm:inset-3" />
-      <div className="pointer-events-none fixed left-1/2 top-2 z-50 h-5 w-28 -translate-x-1/2 rounded-b-2xl border-x-[3.7px] border-b-[3.7px] border-white/92 bg-background sm:top-3 sm:h-6 sm:w-36">
-        <span className="absolute left-1/2 top-1/2 size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/25" />
-      </div>
-      <div className="fixed inset-0 -z-10 bg-background aura" />
 
-      <main className="mx-auto max-w-5xl px-4 pb-24 pt-24 md:pl-24">
-        <Hero
-          title={
-            <>
-              We build the
-              <br />
-              software you were
-              <br />
-              meant to be.
-            </>
-          }
-          primaryCta="Start a project"
-          secondaryCta="See our work"
-          statValue="3"
-          statLabel="Products shipped"
-          noteTitle="A fullstack studio"
-          noteBody="Product design, engineering and mobile builds — end to end, from Accra."
-        />
+      {/* Notch — plain, 45% larger, same white/92% as the bezel */}
+      <div className="pointer-events-none fixed left-1/2 top-2 z-50 h-[1.8rem] w-[10.15rem] -translate-x-1/2 rounded-b-2xl border-x-[3.7px] border-b-[3.7px] border-white/92 bg-white/92 sm:top-3 sm:h-[2.2rem] sm:w-[13.05rem]" />
 
-        <div className="mt-6 grid gap-5 md:grid-cols-[1.4fr_1fr]">
-          <GlassCard shape="c" strong className="min-h-56">
-            <h2 className="text-2xl font-bold">Grace Connect</h2>
-            <p className="mt-3 text-sm text-muted-foreground">
-              An offline-first community app for churches to chat, share and stay connected —
-              built with React, TypeScript, Capacitor and Supabase.
-            </p>
-          </GlassCard>
-          <GlassCard shape="b" className="min-h-56">
-            <h2 className="text-xl font-bold">How we build</h2>
-            <p className="mt-3 text-sm text-muted-foreground">
-              We pair with AI coding agents to move fast without cutting corners — every diff
-              reviewed, every decision ours.
-            </p>
-          </GlassCard>
-        </div>
-      </main>
+      {/* Background — layered blues into a sunset-orange gradient */}
+      <div
+        className="fixed inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(150deg, #060b1f 0%, #0e1e4d 18%, #16307d 36%, #1e49ac 52%, #3d78d8 68%, #7fb0e8 80%, #f6a35c 92%, #f3823d 100%)",
+        }}
+      />
     </div>
   );
 }
