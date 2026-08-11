@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageShell } from "@/components/site/PageShell";
+import { Hero } from "@/components/site/Hero";
 import { GlassCard } from "@/components/site/GlassCard";
 
 export const Route = createFileRoute("/")({
@@ -21,58 +21,48 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const stats = [
-  { value: "3", label: "Products shipped" },
-  { value: "100%", label: "Custom-built" },
-  { value: "GH", label: "Based in Accra" },
-];
-
 function Index() {
   return (
-    <PageShell
-      eyebrow="Accra, Ghana"
-      title="We build the software you were meant to be."
-      intro="noven is a fullstack studio crafting products end to end — offline-first mobile apps, marketing sites and platforms, built with React, TypeScript and Supabase."
-    >
-      <div className="mt-10 flex flex-wrap gap-3">
-        <button className="blob-pill bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5">
-          Start a project
-        </button>
-        <button className="glass-panel blob-pill px-7 py-3 text-sm font-semibold transition-transform hover:-translate-y-0.5">
-          See our work
-        </button>
-      </div>
+    <div className="relative min-h-screen">
+      <div className="pointer-events-none fixed inset-0 z-50 border-[1.5px] border-white" />
+      <div className="fixed inset-0 -z-10 bg-background aura" />
 
-      <div className="mt-16 grid gap-5 sm:grid-cols-3">
-        {stats.map((s, i) => (
-          <GlassCard
-            key={s.label}
-            shape={(["a", "b", "c"] as const)[i]}
-            float={i === 1}
-            className="min-h-36"
-          >
-            <p className="font-display text-4xl font-bold text-primary">{s.value}</p>
-            <p className="mt-2 text-sm text-muted-foreground">{s.label}</p>
+      <main className="mx-auto max-w-5xl px-4 pb-24 pt-24 md:pl-24">
+        <Hero
+          title={
+            <>
+              We build the
+              <br />
+              software you were
+              <br />
+              meant to be.
+            </>
+          }
+          primaryCta="Start a project"
+          secondaryCta="See our work"
+          statValue="3"
+          statLabel="Products shipped"
+          noteTitle="A fullstack studio"
+          noteBody="Product design, engineering and mobile builds — end to end, from Accra."
+        />
+
+        <div className="mt-6 grid gap-5 md:grid-cols-[1.4fr_1fr]">
+          <GlassCard shape="c" strong className="min-h-56">
+            <h2 className="text-2xl font-bold">Grace Connect</h2>
+            <p className="mt-3 text-sm text-muted-foreground">
+              An offline-first community app for churches to chat, share and stay connected —
+              built with React, TypeScript, Capacitor and Supabase.
+            </p>
           </GlassCard>
-        ))}
-      </div>
-
-      <div className="mt-6 grid gap-5 md:grid-cols-[1.4fr_1fr]">
-        <GlassCard shape="c" strong className="min-h-56">
-          <h2 className="text-2xl font-bold">Grace Connect</h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            An offline-first community app for churches to chat, share and stay connected —
-            built with React, TypeScript, Capacitor and Supabase.
-          </p>
-        </GlassCard>
-        <GlassCard shape="b" className="min-h-56">
-          <h2 className="text-xl font-bold">How we build</h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            We pair with AI coding agents to move fast without cutting corners — every diff
-            reviewed, every decision ours.
-          </p>
-        </GlassCard>
-      </div>
-    </PageShell>
+          <GlassCard shape="b" className="min-h-56">
+            <h2 className="text-xl font-bold">How we build</h2>
+            <p className="mt-3 text-sm text-muted-foreground">
+              We pair with AI coding agents to move fast without cutting corners — every diff
+              reviewed, every decision ours.
+            </p>
+          </GlassCard>
+        </div>
+      </main>
+    </div>
   );
 }
