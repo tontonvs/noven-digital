@@ -46,12 +46,12 @@ function Index() {
   const [liked, setLiked] = useState(false);
 
   return (
-    <main className="relative flex min-h-screen flex-col px-6 pb-6 pt-28 md:pl-28 md:pr-10">
+    <main className="relative flex h-screen flex-col px-6 pb-6 pt-24 md:pl-28 md:pr-10">
       {/* Centered hero title */}
-      <div className="pop-in mx-auto max-w-5xl text-center">
+      <div className="pop-in mx-auto max-w-5xl shrink-0 text-center">
         <h1 className="font-display font-bold leading-[0.95] text-white [text-shadow:0_10px_40px_rgba(0,0,0,0.35)]">
-          <span className="block text-[clamp(2.5rem,7vw,80px)]">Discovering innovative</span>
-          <span className="block text-[clamp(2.3rem,6.6vw,75px)]">solutions &lt;/&gt;</span>
+          <span className="block text-[clamp(2rem,6vw,80px)]">Discovering innovative</span>
+          <span className="block text-[clamp(1.9rem,5.6vw,75px)]">solutions &lt;/&gt;</span>
         </h1>
       </div>
 
@@ -65,9 +65,9 @@ function Index() {
         <br /> modern technical expertise every day.
       </p>
 
-      <div className="mt-auto grid items-end gap-6 pt-10 lg:grid-cols-2">
+      <div className="mt-auto grid min-h-0 items-end gap-6 pt-6 lg:grid-cols-2">
         {/* Very-rounded white card, connected to the bottom bezel */}
-        <section className="pop-in -mb-6 max-w-md rounded-[3.25rem] rounded-br-[6rem] rounded-bl-[3.25rem] bg-white/[0.94] p-7 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+        <section className="pop-in -mb-6 max-w-md rounded-[3.25rem] rounded-br-[6rem] rounded-bl-[3.25rem] bg-white/[0.94] p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)] backdrop-blur-xl">
           <h2 className="text-left font-sans text-[20px] font-semibold text-[#0b1220]">
             Find The Perfect Answer
           </h2>
@@ -80,7 +80,7 @@ function Index() {
 
           <div className="mt-5 flex items-end justify-between gap-4">
             <div className="text-left">
-              <p className="font-sans text-[55px] font-bold leading-none text-[#0b1220]">5+</p>
+              <p className="font-sans text-[clamp(2.2rem,4vw,55px)] font-bold leading-none text-[#0b1220]">5+</p>
               <p className="mt-1 text-[13px] text-[#4b5565]">large projects</p>
             </div>
 
@@ -113,7 +113,7 @@ function Index() {
         </section>
 
         {/* Bottom-right frosted "We also offer" card */}
-        <section className="pop-in relative mb-4 ml-auto w-full max-w-lg rounded-[3rem] glass-frost p-7 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)]">
+        <section className="pop-in relative mb-4 ml-auto w-full max-w-lg rounded-[3rem] glass-frost p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)]">
           {/* Circular cutout placeholder for an external logo */}
           <div className="absolute -top-7 right-8 grid size-16 place-items-center rounded-full border-4 border-white/40 bg-white/70 text-[9px] font-medium text-slate-500 backdrop-blur-xl">
             {/* Replace with your logo <img /> */}
@@ -127,7 +127,7 @@ function Index() {
             offers
           </button>
 
-          <p className="mt-4 text-left text-[14px] leading-[1.6] text-[#4b5565]">
+          <p className="mt-3 max-h-[8.5rem] overflow-y-auto pr-1 text-left text-[14px] leading-[1.6] text-[#4b5565]">
             We also offer offline-first mobile apps building. We modernize business infrastructure
             from the ground up by engineering custom in-organization software, deploying scalable
             cloud services, and structuring high-availability database management systems. To
