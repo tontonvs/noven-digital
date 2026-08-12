@@ -49,7 +49,7 @@ function Index() {
   const [liked, setLiked] = useState(false);
 
   return (
-    <main className="relative flex h-screen flex-col px-6 pb-6 pt-24 md:pl-28 md:pr-10">
+    <main className="relative flex h-screen flex-col px-6 pb-2 pt-24 md:pl-28 md:pr-10 sm:pb-3">
       {/* Centered hero title */}
       <div className="pop-in mx-auto max-w-5xl shrink-0 text-center">
         <h1 className="font-display font-bold leading-[0.95] text-white [text-shadow:0_10px_40px_rgba(0,0,0,0.35)]">
@@ -69,8 +69,38 @@ function Index() {
       </p>
 
       <div className="mt-auto grid min-h-0 flex-1 items-end gap-6 pt-6 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)]">
-        {/* Very-rounded card, connected to the bottom bezel — now theme-aware */}
-        <section className="pop-in flex max-h-full -mb-6 w-full max-w-md flex-col overflow-hidden rounded-[3.25rem] rounded-br-[6rem] rounded-bl-[3.25rem] bg-card p-6 shadow-[var(--shadow-float)] backdrop-blur-xl">
+        {/* Card — grown out of the bezel: matching corner radius, flush, with shoulder flares */}
+        <section
+          className="pop-in relative flex max-h-full -mb-2 w-full max-w-md flex-col overflow-hidden bg-card p-6 shadow-[var(--shadow-float)] backdrop-blur-xl sm:-mb-3"
+          style={{
+            borderTopLeftRadius: "2.75rem",
+            borderTopRightRadius: "2.75rem",
+            borderBottomRightRadius: 32,
+            borderBottomLeftRadius: 32,
+          }}
+        >
+          {/* Shoulder flares — blend the card's bottom corners into the bare bezel line */}
+          <div
+            className="pointer-events-none absolute -bottom-3.5 left-0 bg-card"
+            style={{
+              width: 14,
+              height: 14,
+              maskImage: "radial-gradient(circle at top right, transparent 13px, black 14px)",
+              WebkitMaskImage:
+                "radial-gradient(circle at top right, transparent 13px, black 14px)",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute -bottom-3.5 right-0 bg-card"
+            style={{
+              width: 14,
+              height: 14,
+              maskImage: "radial-gradient(circle at top left, transparent 13px, black 14px)",
+              WebkitMaskImage:
+                "radial-gradient(circle at top left, transparent 13px, black 14px)",
+            }}
+          />
+
           <h2 className="text-left font-sans text-[20px] font-semibold text-card-foreground">
             Find The Perfect Answer
           </h2>
