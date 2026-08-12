@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 
-const B = 12; // bezel thickness
-const R = 44; // outer/inner corner radius
-const NH = 66; // notch height
-const NW = 300; // notch width
-const NR = 32; // notch bottom corner radius (very curvy)
-const SR = 46; // shoulder curve joining notch to bezel
+const B = 6; // bezel thickness (reduced)
+const R = 32; // outer/inner corner radius (reduced to match thinner bezel)
+const NH = 20; // notch height — ~70% smaller than before
+const NW = 90; // notch width — ~70% smaller than before
+const NR = 8; // notch bottom corner radius
+const SR = 13; // shoulder curve joining notch to bezel
 
 function buildFramePath(w: number, h: number, nw: number) {
   const cx = w / 2;
@@ -48,12 +48,12 @@ export function AppFrame() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const nw = Math.max(210, Math.min(size.w * 0.34, NW));
+  const nw = Math.max(60, Math.min(size.w * 0.14, NW));
   const framePath = useMemo(() => buildFramePath(size.w, size.h, nw), [size.w, size.h, nw]);
 
   return (
     <>
-      {/* Continuous bezel + notch */}
+      {/* Continuous bezel + notch — empty cutout, camera-housing style */}
       <svg className="pointer-events-none fixed inset-0 z-50 h-full w-full">
         <defs>
           <mask id="bezel-mask">
@@ -64,34 +64,16 @@ export function AppFrame() {
         <rect width="100%" height="100%" fill="var(--bezel)" mask="url(#bezel-mask)" />
       </svg>
 
-      {/* Notch wordmark + flanking pills */}
+      {/* Wordmark, moved to the top-left corner — plain text, no pill */}
       <div
-        className="pointer-events-none fixed inset-x-0 z-50 flex items-center justify-between px-6 sm:px-12"
-        style={{ top: B, height: NH }}
+        className="pointer-events-none fixed inset-x-0 z-50 flex items-center px-6 sm:px-12"
+        style={{ top: B, height: NH + 12 }}
       >
         <Link
-          to="/services"
-          style={{ background: "var(--bezel)" }}
-          className="drop-in bouncy pointer-events-auto flex h-12 items-center rounded-full px-7 font-ui text-sm font-semibold ink shadow-md backdrop-blur-md hover:-translate-y-0.5 hover:scale-105 active:scale-95 sm:h-[3.25rem] sm:px-9 sm:text-base"
-        >
-          Services
-        </Link>
-
-        <Link
           to="/"
-          className="drop-in pointer-events-auto grid place-items-center"
-          style={{ width: nw, height: NH }}
-          aria-label="noven home"
+          className="bouncy pointer-events-auto font-notch text-lg ink hover:scale-105 sm:text-xl"
         >
-          <span className="bouncy font-notch text-lg ink hover:scale-105 sm:text-xl">noven</span>
-        </Link>
-
-        <Link
-          to="/contact"
-          style={{ background: "var(--bezel)" }}
-          className="drop-in bouncy pointer-events-auto flex h-12 items-center rounded-full px-7 font-ui text-sm font-semibold ink shadow-md backdrop-blur-md hover:-translate-y-0.5 hover:scale-105 active:scale-95 sm:h-[3.25rem] sm:px-9 sm:text-base"
-        >
-          Contact
+          noven
         </Link>
       </div>
     </>

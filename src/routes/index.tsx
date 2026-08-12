@@ -66,12 +66,12 @@ function Index() {
       </p>
 
       <div className="mt-auto grid min-h-0 flex-1 items-end gap-6 pt-6 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)]">
-        {/* Very-rounded white card, connected to the bottom bezel */}
-        <section className="pop-in flex max-h-full -mb-6 w-full max-w-md flex-col overflow-hidden rounded-[3.25rem] rounded-br-[6rem] rounded-bl-[3.25rem] bg-white/[0.94] p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)] backdrop-blur-xl">
-          <h2 className="text-left font-sans text-[20px] font-semibold text-[#0b1220]">
+        {/* Very-rounded card, connected to the bottom bezel — now theme-aware */}
+        <section className="pop-in flex max-h-full -mb-6 w-full max-w-md flex-col overflow-hidden rounded-[3.25rem] rounded-br-[6rem] rounded-bl-[3.25rem] bg-card p-6 shadow-[var(--shadow-float)] backdrop-blur-xl">
+          <h2 className="text-left font-sans text-[20px] font-semibold text-card-foreground">
             Find The Perfect Answer
           </h2>
-          <p className="mt-2.5 text-left text-[14px] leading-[1.7] text-[#4b5565]">
+          <p className="mt-2.5 text-left text-[14px] leading-[1.7] text-muted-foreground">
             Eliminate digital roadblocks.
             <br /> Our expert craftsmanship delivers
             <br /> fast, effective solutions so you can
@@ -80,8 +80,10 @@ function Index() {
 
           <div className="mt-5 flex items-end justify-between gap-4">
             <div className="text-left">
-              <p className="font-sans text-[clamp(2.2rem,4vw,55px)] font-bold leading-none text-[#0b1220]">5+</p>
-              <p className="mt-1 text-[13px] text-[#4b5565]">large projects</p>
+              <p className="font-sans text-[clamp(2.2rem,4vw,55px)] font-bold leading-none text-card-foreground">
+                5+
+              </p>
+              <p className="mt-1 text-[13px] text-muted-foreground">large projects</p>
             </div>
 
             {/* Overlapping project avatars (placeholders) */}
@@ -94,7 +96,7 @@ function Index() {
                   rel="noreferrer"
                   title={p.name}
                   style={{ marginLeft: i === 0 ? 0 : -14, zIndex: 10 - i }}
-                  className="bouncy grid size-12 place-items-center overflow-hidden rounded-full border-2 border-white bg-slate-200 text-[9px] font-medium text-slate-500 hover:-translate-y-1 hover:scale-110"
+                  className="bouncy grid size-12 place-items-center overflow-hidden rounded-full border-2 border-card bg-muted text-[9px] font-medium text-muted-foreground hover:-translate-y-1 hover:scale-110"
                 >
                   {/* Replace with <img src="..." alt={p.name} className="size-full object-cover" /> */}
                   LOGO
@@ -104,7 +106,7 @@ function Index() {
                 to="/work"
                 aria-label="See our work"
                 style={{ marginLeft: -14 }}
-                className="bouncy z-20 grid size-12 place-items-center rounded-full border-2 border-white bg-[#0b1220] text-white hover:-translate-y-1 hover:scale-110"
+                className="bouncy z-20 grid size-12 place-items-center rounded-full border-2 border-card bg-foreground text-background hover:-translate-y-1 hover:scale-110"
               >
                 <ArrowUpRight size={18} />
               </Link>
@@ -113,21 +115,21 @@ function Index() {
         </section>
 
         {/* Bottom-right frosted "We also offer" card */}
-        <section className="pop-in relative mb-4 ml-auto flex max-h-full w-full max-w-lg flex-col overflow-hidden rounded-[3rem] glass-frost p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)]">
+        <section className="pop-in relative mb-4 ml-auto flex max-h-full w-full max-w-lg flex-col overflow-hidden rounded-[3rem] glass-frost p-6 shadow-[var(--shadow-float)]">
           {/* Circular cutout placeholder for an external logo */}
-          <div className="absolute -top-7 right-8 grid size-16 place-items-center rounded-full border-4 border-white/40 bg-white/70 text-[9px] font-medium text-slate-500 backdrop-blur-xl">
+          <div className="absolute -top-7 right-8 grid size-16 place-items-center rounded-full border-4 border-card/40 bg-card/70 text-[9px] font-medium text-muted-foreground backdrop-blur-xl">
             {/* Replace with your logo <img /> */}
             LOGO
           </div>
 
-          <h2 className="text-left font-sans text-[20px] font-semibold text-[#0b1220]">
+          <h2 className="text-left font-sans text-[20px] font-semibold text-foreground">
             We Also Offer
           </h2>
-          <button className="bouncy mt-2 self-start rounded-full bg-white/40 px-3 py-1 text-[12px] font-medium text-[#4b5565] hover:scale-105">
+          <button className="bouncy mt-2 self-start rounded-full bg-card/40 px-3 py-1 text-[12px] font-medium text-muted-foreground hover:scale-105">
             offers
           </button>
 
-          <p className="mt-3 min-h-0 flex-1 overflow-y-auto pr-1 text-left text-[14px] leading-[1.6] text-[#4b5565]">
+          <p className="mt-3 min-h-0 flex-1 overflow-y-auto pr-1 text-left text-[14px] leading-[1.6] text-muted-foreground">
             We also offer offline-first mobile apps building. We modernize business infrastructure
             from the ground up by engineering custom in-organization software, deploying scalable
             cloud services, and structuring high-availability database management systems. To
@@ -139,10 +141,10 @@ function Index() {
           <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
             {offers.map(({ Icon, label }) => (
               <li key={label} className="flex items-center gap-2.5">
-                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-white/60 text-[#0b1220]">
+                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-card/60 text-foreground">
                   <Icon size={16} />
                 </span>
-                <span className="text-[13px] text-[#4b5565]">{label}</span>
+                <span className="text-[13px] text-muted-foreground">{label}</span>
               </li>
             ))}
           </ul>
@@ -151,19 +153,19 @@ function Index() {
             <button
               onClick={() => setLiked((v) => !v)}
               aria-pressed={liked}
-              className="bouncy grid place-items-center rounded-2xl bg-white/60 px-3 py-2 hover:scale-105 active:scale-90"
+              className="bouncy grid place-items-center rounded-2xl bg-card/60 px-3 py-2 hover:scale-105 active:scale-90"
             >
               <Heart
                 size={18}
-                className={liked ? "fill-[#0b1220] text-[#0b1220]" : "text-[#0b1220]"}
+                className={liked ? "fill-foreground text-foreground" : "text-foreground"}
               />
-              <span className="mt-0.5 text-[11px] font-medium text-[#4b5565]">
+              <span className="mt-0.5 text-[11px] font-medium text-muted-foreground">
                 {liked ? "14.1k" : "14k"}
               </span>
             </button>
-            <button className="bouncy grid place-items-center rounded-2xl bg-white/60 px-3 py-2 text-[#0b1220] hover:scale-105 active:scale-90">
+            <button className="bouncy grid place-items-center rounded-2xl bg-card/60 px-3 py-2 text-foreground hover:scale-105 active:scale-90">
               <Share2 size={18} />
-              <span className="mt-0.5 text-[11px] font-medium text-[#4b5565]">share</span>
+              <span className="mt-0.5 text-[11px] font-medium text-muted-foreground">share</span>
             </button>
           </div>
         </section>

@@ -15,6 +15,7 @@ import { AppFrame } from "@/components/site/AppFrame";
 import { IconRail } from "@/components/site/IconRail";
 import { BottomDock } from "@/components/site/BottomDock";
 import { ThemeProvider } from "@/components/site/theme";
+import bgImage from "@/assets/hero.jpg";
 
 
 function NotFoundComponent() {
@@ -131,13 +132,13 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <div
-          className="fixed inset-0 -z-20"
-          style={{
-            background:
-              "linear-gradient(150deg, #060b1f 0%, #0e1e4d 18%, #16307d 36%, #1e49ac 52%, #3d78d8 68%, #7fb0e8 80%, #f6a35c 92%, #f3823d 100%)",
-          }}
-        />
+        <div className="fixed inset-0 -z-20 overflow-hidden">
+          <img
+            src={bgImage}
+            alt=""
+            className="size-full scale-105 object-cover blur-[3px]"
+          />
+        </div>
         <div className="pointer-events-none fixed inset-0 -z-10 bg-slate-950/0 backdrop-blur-[14px] backdrop-saturate-150 dark:bg-slate-950/45" />
         <AppFrame />
         <IconRail />

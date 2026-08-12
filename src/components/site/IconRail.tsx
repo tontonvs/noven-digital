@@ -13,7 +13,7 @@ const itemBase =
 
 function Tip({ label }: { label: string }) {
   return (
-    <span className="pointer-events-none absolute left-16 whitespace-nowrap rounded-full bg-white/92 px-3.5 py-1.5 text-xs font-medium text-slate-800 opacity-0 shadow-md backdrop-blur-md transition-opacity group-hover:opacity-100">
+    <span className="pointer-events-none absolute left-16 whitespace-nowrap rounded-full bg-card/92 px-3.5 py-1.5 text-xs font-medium text-card-foreground opacity-0 shadow-md backdrop-blur-md transition-opacity group-hover:opacity-100">
       {label}
     </span>
   );
@@ -32,7 +32,7 @@ export function IconRail() {
           to={to}
           aria-label={label}
           activeOptions={{ exact: to === "/" }}
-          activeProps={{ className: "bg-white text-slate-900 shadow-lg" }}
+          activeProps={{ className: "bg-card text-card-foreground shadow-lg" }}
           inactiveProps={{ className: "glass-soft text-white/90 hover:bg-white/30" }}
           className={itemBase}
         >
@@ -46,19 +46,22 @@ export function IconRail() {
       ))}
 
       {/* Capsule with the 2 remaining icons */}
-      <div className="mt-2 flex flex-col items-center gap-1 rounded-full bg-white/92 p-2 shadow-md backdrop-blur-md">
+      <div className="mt-2 flex flex-col items-center gap-1 rounded-full bg-card/92 p-2 shadow-md backdrop-blur-md">
         <button
           aria-label="Profile picture"
-          className="bouncy grid size-11 place-items-center overflow-hidden rounded-full bg-slate-200 text-[8px] font-medium text-slate-500 hover:scale-110"
+          className="bouncy grid size-11 place-items-center overflow-hidden rounded-full bg-neutral-800 text-[8px] font-medium text-white/60 hover:scale-110"
         >
-          {/* Replace with <img src="/your-photo.jpg" alt="Profile" className="size-full object-cover" /> */}
+          {/* TODO: once the filename is confirmed —
+              import profilePhoto from "@/assets/<filename>";
+              <img src={profilePhoto} alt="Tonton Mensah" className="size-full object-cover grayscale" />
+              `grayscale` is the Tailwind filter utility — applied in code, not baked into the image file. */}
           PHOTO
         </button>
         <Link
           to="/contact"
           aria-label="Contact"
-          activeProps={{ className: "bg-slate-900 text-white" }}
-          inactiveProps={{ className: "text-slate-600 hover:bg-black/5" }}
+          activeProps={{ className: "bg-foreground text-background" }}
+          inactiveProps={{ className: "text-muted-foreground hover:bg-foreground/5" }}
           className="bouncy grid size-11 place-items-center rounded-full"
         >
           <Send size={19} />

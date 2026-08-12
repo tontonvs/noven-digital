@@ -42,6 +42,41 @@
 
 :root {
   --radius: 1.5rem;
+  --background: oklch(0.97 0.008 250);
+  --foreground: oklch(0.2 0.03 250);
+  --card: oklch(0.995 0.004 250);
+  --card-foreground: oklch(0.2 0.03 250);
+  --popover: oklch(0.995 0.004 250);
+  --popover-foreground: oklch(0.2 0.03 250);
+  --primary: oklch(0.52 0.15 190);
+  --primary-foreground: oklch(0.98 0.005 250);
+  --secondary: oklch(0.93 0.012 250);
+  --secondary-foreground: oklch(0.2 0.03 250);
+  --muted: oklch(0.92 0.012 250);
+  --muted-foreground: oklch(0.44 0.02 250);
+  --accent: oklch(0.66 0.16 65);
+  --accent-foreground: oklch(0.16 0.03 250);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.2 0.03 250 / 10%);
+  --input: oklch(0.2 0.03 250 / 14%);
+  --ring: oklch(0.52 0.15 190 / 50%);
+
+  --glass: oklch(1 0 0 / 55%);
+  --glass-strong: oklch(1 0 0 / 78%);
+  --glass-border: oklch(1 0 0 / 65%);
+
+  --gradient-aura: radial-gradient(
+      60% 80% at 15% 10%,
+      oklch(0.52 0.15 190 / 16%),
+      transparent 70%
+    ),
+    radial-gradient(50% 60% at 90% 80%, oklch(0.66 0.16 65 / 16%), transparent 70%);
+  --shadow-float: 0 24px 60px -20px oklch(0.2 0.03 250 / 22%);
+  --shadow-glow: 0 0 60px -10px oklch(0.52 0.15 190 / 35%);
+}
+
+.dark {
   --background: oklch(0.16 0.03 250);
   --foreground: oklch(0.97 0.01 250);
   --card: oklch(0.22 0.035 250);
@@ -234,4 +269,15 @@
 
 @utility drop-in {
   animation: drop-in 0.7s var(--bounce) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
