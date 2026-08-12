@@ -65,9 +65,9 @@ function Index() {
         <br /> modern technical expertise every day.
       </p>
 
-      <div className="mt-auto grid min-h-0 items-end gap-6 pt-6 lg:grid-cols-2">
+      <div className="mt-auto grid min-h-0 flex-1 items-end gap-6 pt-6 lg:grid-cols-2">
         {/* Very-rounded white card, connected to the bottom bezel */}
-        <section className="pop-in -mb-6 max-w-md rounded-[3.25rem] rounded-br-[6rem] rounded-bl-[3.25rem] bg-white/[0.94] p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+        <section className="pop-in flex max-h-full -mb-6 w-full max-w-md flex-col overflow-hidden rounded-[3.25rem] rounded-br-[6rem] rounded-bl-[3.25rem] bg-white/[0.94] p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)] backdrop-blur-xl">
           <h2 className="text-left font-sans text-[20px] font-semibold text-[#0b1220]">
             Find The Perfect Answer
           </h2>
@@ -113,7 +113,7 @@ function Index() {
         </section>
 
         {/* Bottom-right frosted "We also offer" card */}
-        <section className="pop-in relative mb-4 ml-auto w-full max-w-lg rounded-[3rem] glass-frost p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)]">
+        <section className="pop-in relative mb-4 ml-auto flex max-h-full w-full max-w-lg flex-col overflow-hidden rounded-[3rem] glass-frost p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)]">
           {/* Circular cutout placeholder for an external logo */}
           <div className="absolute -top-7 right-8 grid size-16 place-items-center rounded-full border-4 border-white/40 bg-white/70 text-[9px] font-medium text-slate-500 backdrop-blur-xl">
             {/* Replace with your logo <img /> */}
@@ -127,7 +127,7 @@ function Index() {
             offers
           </button>
 
-          <p className="mt-3 max-h-[8.5rem] overflow-y-auto pr-1 text-left text-[14px] leading-[1.6] text-[#4b5565]">
+          <p className="mt-3 min-h-0 flex-1 overflow-y-auto pr-1 text-left text-[14px] leading-[1.6] text-[#4b5565]">
             We also offer offline-first mobile apps building. We modernize business infrastructure
             from the ground up by engineering custom in-organization software, deploying scalable
             cloud services, and structuring high-availability database management systems. To
