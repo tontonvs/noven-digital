@@ -15,7 +15,7 @@ import { AppFrame } from "@/components/site/AppFrame";
 import { IconRail } from "@/components/site/IconRail";
 import { BottomDock } from "@/components/site/BottomDock";
 import { ThemeProvider } from "@/components/site/theme";
-import bgImage from "@/assets/hero.jpg";
+import bgImage from "@/assets/background.jpg";
 
 
 function NotFoundComponent() {

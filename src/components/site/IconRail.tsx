@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Home, Layers, FolderOpen, Sparkles, Send } from "lucide-react";
+import profilePhoto from "@/assets/profile.jpg";
 
 const floating = [
   { to: "/", label: "Home", Icon: Home },
@@ -49,13 +50,13 @@ export function IconRail() {
       <div className="mt-2 flex flex-col items-center gap-1 rounded-full bg-card/92 p-2 shadow-md backdrop-blur-md">
         <button
           aria-label="Profile picture"
-          className="bouncy grid size-11 place-items-center overflow-hidden rounded-full bg-neutral-800 text-[8px] font-medium text-white/60 hover:scale-110"
+          className="bouncy grid size-11 place-items-center overflow-hidden rounded-full bg-neutral-800 hover:scale-110"
         >
-          {/* TODO: once the filename is confirmed —
-              import profilePhoto from "@/assets/<filename>";
-              <img src={profilePhoto} alt="Tonton Mensah" className="size-full object-cover grayscale" />
-              `grayscale` is the Tailwind filter utility — applied in code, not baked into the image file. */}
-          PHOTO
+          <img
+            src={profilePhoto}
+            alt="Tonton Mensah"
+            className="size-full object-cover grayscale"
+          />
         </button>
         <Link
           to="/contact"

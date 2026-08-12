@@ -9,6 +9,9 @@ import {
   Share2,
   WifiOff,
 } from "lucide-react";
+import labiancaLogo from "@/assets/labianca_logo.jpg";
+import yoglaitLogo from "@/assets/yoglait_logo.jpg";
+import novenLogo from "@/assets/noven_logo.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,9 +33,9 @@ export const Route = createFileRoute("/")({
 });
 
 const projects = [
-  { name: "Labianca", url: "https://labianca-gh.lovable.app/" },
-  { name: "Grace Connect", url: "https://grace-connect-streams.lovable.app/" },
-  { name: "Yoglait", url: "https://yoglait.lovable.app/" },
+  { name: "Labianca", url: "https://labianca-gh.lovable.app/", logo: labiancaLogo },
+  { name: "Grace Connect", url: "https://grace-connect-streams.lovable.app/", logo: null },
+  { name: "Yoglait", url: "https://yoglait.lovable.app/", logo: yoglaitLogo },
 ];
 
 const offers = [
@@ -98,8 +101,11 @@ function Index() {
                   style={{ marginLeft: i === 0 ? 0 : -14, zIndex: 10 - i }}
                   className="bouncy grid size-12 place-items-center overflow-hidden rounded-full border-2 border-card bg-muted text-[9px] font-medium text-muted-foreground hover:-translate-y-1 hover:scale-110"
                 >
-                  {/* Replace with <img src="..." alt={p.name} className="size-full object-cover" /> */}
-                  LOGO
+                  {p.logo ? (
+                    <img src={p.logo} alt={p.name} className="size-full object-cover" />
+                  ) : (
+                    "LOGO"
+                  )}
                 </a>
               ))}
               <Link
@@ -116,10 +122,9 @@ function Index() {
 
         {/* Bottom-right frosted "We also offer" card */}
         <section className="pop-in relative mb-4 ml-auto flex max-h-full w-full max-w-lg flex-col overflow-hidden rounded-[3rem] glass-frost p-6 shadow-[var(--shadow-float)]">
-          {/* Circular cutout placeholder for an external logo */}
-          <div className="absolute -top-7 right-8 grid size-16 place-items-center rounded-full border-4 border-card/40 bg-card/70 text-[9px] font-medium text-muted-foreground backdrop-blur-xl">
-            {/* Replace with your logo <img /> */}
-            LOGO
+          {/* noven logo badge */}
+          <div className="absolute -top-7 right-8 grid size-16 place-items-center overflow-hidden rounded-full border-4 border-card/40 bg-card/70 backdrop-blur-xl">
+            <img src={novenLogo} alt="noven" className="size-full object-cover" />
           </div>
 
           <h2 className="text-left font-sans text-[20px] font-semibold text-foreground">
