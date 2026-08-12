@@ -65,7 +65,7 @@ function Index() {
         <br /> modern technical expertise every day.
       </p>
 
-      <div className="mt-auto grid min-h-0 flex-1 items-end gap-6 pt-6 lg:grid-cols-2">
+      <div className="mt-auto grid min-h-0 flex-1 items-end gap-6 pt-6 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)]">
         {/* Very-rounded white card, connected to the bottom bezel */}
         <section className="pop-in flex max-h-full -mb-6 w-full max-w-md flex-col overflow-hidden rounded-[3.25rem] rounded-br-[6rem] rounded-bl-[3.25rem] bg-white/[0.94] p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)] backdrop-blur-xl">
           <h2 className="text-left font-sans text-[20px] font-semibold text-[#0b1220]">
