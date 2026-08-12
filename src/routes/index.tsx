@@ -1,43 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
-
-const BEZEL = "rgba(255,255,255,0.92)";
-const B = 12; // bezel thickness
-const R = 44; // inner corner radius
-const NH = 62; // notch height
-const NR = 24; // notch bottom corner radius
-const SR = 28; // shoulder curve joining notch to bezel
-
-function buildFramePath(w: number, h: number, nw: number) {
-  const cx = w / 2;
-  const l = B;
-  const t = B;
-  const r = w - B;
-  const b = h - B;
-  const nl = cx - nw / 2;
-  const nr = cx + nw / 2;
-  return [
-    `M ${l + R} ${t}`,
-    `H ${nl - SR}`,
-    `A ${SR} ${SR} 0 0 1 ${nl} ${t + SR}`,
-    `V ${t + NH - NR}`,
-    `A ${NR} ${NR} 0 0 0 ${nl + NR} ${t + NH}`,
-    `H ${nr - NR}`,
-    `A ${NR} ${NR} 0 0 0 ${nr} ${t + NH - NR}`,
-    `V ${t + SR}`,
-    `A ${SR} ${SR} 0 0 1 ${nr + SR} ${t}`,
-    `H ${r - R}`,
-    `A ${R} ${R} 0 0 1 ${r} ${t + R}`,
-    `V ${b - R}`,
-    `A ${R} ${R} 0 0 1 ${r - R} ${b}`,
-    `H ${l + R}`,
-    `A ${R} ${R} 0 0 1 ${l} ${b - R}`,
-    `V ${t + R}`,
-    `A ${R} ${R} 0 0 1 ${l + R} ${t}`,
-    "Z",
-  ].join(" ");
-}
-
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import {
+  ArrowUpRight,
+  Bot,
+  Cloud,
+  Heart,
+  Palette,
+  Share2,
+  WifiOff,
+} from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -58,332 +29,145 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const projects = [
+  { name: "Labianca", url: "https://labianca-gh.lovable.app/" },
+  { name: "Grace Connect", url: "https://grace-connect-streams.lovable.app/" },
+  { name: "Yoglait", url: "https://yoglait.lovable.app/" },
+];
+
+const offers = [
+  { Icon: WifiOff, label: "Offline products" },
+  { Icon: Palette, label: "Custom in-organisation software" },
+  { Icon: Cloud, label: "Cloud management services" },
+  { Icon: Bot, label: "Agentic automation workflows" },
+];
+
 function Index() {
-  const [activeModal, setActiveModal] = useState<"location" | "expertise" | "payment" | null>(null);
-  const [size, setSize] = useState({ w: 1280, h: 800 });
-
-  useEffect(() => {
-    const update = () => setSize({ w: window.innerWidth, h: window.innerHeight });
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
-  const NW = Math.max(300, Math.min(size.w * 0.56, 660));
-  const framePath = useMemo(() => buildFramePath(size.w, size.h, NW), [size.w, size.h, NW]);
-
-
+  const [liked, setLiked] = useState(false);
 
   return (
-    <div className="relative min-h-screen overflow-hidden font-sans text-slate-100">
-      {/* Frosty Blurry Coat over Gradient Background */}
-      <div className="pointer-events-none fixed inset-0 z-10 backdrop-blur-[16px] backdrop-saturate-150" />
-
-      {/* Screen Frame + Notch: one continuous bezel shape */}
-      <svg className="pointer-events-none fixed inset-0 z-50 h-full w-full">
-        <defs>
-          <mask id="bezel-mask">
-            <rect width="100%" height="100%" fill="white" />
-            <path d={framePath} fill="black" />
-          </mask>
-        </defs>
-        <rect width="100%" height="100%" fill={BEZEL} mask="url(#bezel-mask)" />
-      </svg>
-
-<<<<<<< Updated upstream
-      {/* Top Header: flanking pills + notch content, same bezel styling */}
-      <div
-        className="pointer-events-none fixed inset-x-0 z-50 flex items-center justify-between px-5 sm:px-10"
-        style={{ top: B, height: NH }}
-      >
-        {/* Left Flanking Pill Button */}
-        <button
-          onClick={() => setActiveModal("expertise")}
-          style={{ background: BEZEL }}
-          className="pointer-events-auto group flex h-12 items-center gap-2 rounded-full px-6 text-sm font-semibold text-slate-800 shadow-md backdrop-blur-md transition-all hover:shadow-lg active:scale-95 sm:h-[3.25rem] sm:px-8 sm:text-base"
-=======
-      {/* Top Header Navigation Bar with Flanking Pills & Center Notch */}
-      <div className="fixed top-[7.4px] inset-x-0 z-50 flex items-center justify-between px-8 py-3 sm:px-14 pointer-events-none">
-        {/* Left Flanking Pill Button */}
-        <button
-          onClick={() => setActiveModal("expertise")}
-          className="pointer-events-auto flex items-center gap-2 rounded-full border border-white/20 bg-slate-950/70 px-6 py-2.5 text-xs sm:text-sm font-medium text-slate-100 shadow-xl backdrop-blur-xl transition-all hover:bg-slate-900/80 active:scale-95"
->>>>>>> Stashed changes
-        >
-          <svg className="h-3.5 w-3.5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
-          </svg>
-          <span>Services</span>
-        </button>
-
-<<<<<<< Updated upstream
-        {/* Notch Content Area (sits inside the carved notch) */}
-        <div
-          className="pointer-events-auto flex items-center justify-center gap-1 overflow-hidden px-2 sm:gap-2"
-          style={{ width: NW, height: NH }}
-        >
-          {/* Location Trigger */}
-          <button
-            onClick={() => setActiveModal("location")}
-            className="flex items-center gap-1.5 rounded-2xl px-3 py-2 text-xs font-medium text-slate-700 transition-colors hover:bg-black/5 sm:px-4 sm:text-sm"
-          >
-            <svg className="h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <span className="hidden sm:inline font-normal text-slate-400">Location</span>
-            <span className="font-semibold text-slate-800">Accra</span>
-            <svg className="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          <div className="h-5 w-px bg-slate-300/60" />
-
-          {/* Expertise Trigger */}
-          <button
-            onClick={() => setActiveModal("expertise")}
-            className="flex items-center gap-1.5 rounded-2xl px-3 py-2 text-xs font-medium text-slate-700 transition-colors hover:bg-black/5 sm:px-4 sm:text-sm"
-          >
-            <svg className="h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-            </svg>
-            <span className="hidden sm:inline font-normal text-slate-400">Expertise</span>
-            <span className="font-semibold text-slate-800">Fullstack</span>
-            <svg className="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          <div className="hidden h-5 w-px bg-slate-300/60 sm:block" />
-
-          {/* Payment Trigger */}
-          <button
-            onClick={() => setActiveModal("payment")}
-            className="hidden items-center gap-1.5 rounded-2xl px-3 py-2 text-xs font-medium text-slate-700 transition-colors hover:bg-black/5 sm:flex sm:px-4 sm:text-sm"
-          >
-            <svg className="h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span className="hidden sm:inline font-normal text-slate-400">Payment</span>
-            <span className="font-semibold text-slate-800">Flexible</span>
-            <svg className="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-=======
-        {/* Center Notch Body with Expanded Breathing Room & Dark Glassy Tint */}
-        <div className="pointer-events-auto relative flex items-center justify-center">
-          {/* Left Outward Curve Connection */}
-          <div
-            className="h-8 w-8 -mr-[1px]"
-            style={{
-              background:
-                "radial-gradient(circle at 0% 100%, transparent 32px, rgba(2, 6, 23, 0.70) 32.5px)",
-            }}
-          />
-
-          {/* Expanded Notch Body */}
-          <div className="flex h-[3.6rem] sm:h-[4.2rem] items-center gap-2 sm:gap-6 rounded-b-3xl border-b border-x border-white/20 bg-slate-950/70 px-6 sm:px-10 shadow-2xl backdrop-blur-xl">
-            {/* Location Trigger */}
-            <button
-              onClick={() => setActiveModal("location")}
-              className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-200 transition-colors hover:bg-white/10"
-            >
-              <svg className="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span className="hidden sm:inline text-slate-400 font-normal">Location</span>
-              <span className="font-semibold text-slate-100">Accra</span>
-              <svg className="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            <div className="h-5 w-[1px] bg-white/20" />
-
-            {/* Expertise Trigger */}
-            <button
-              onClick={() => setActiveModal("expertise")}
-              className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-200 transition-colors hover:bg-white/10"
-            >
-              <svg className="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-              <span className="hidden sm:inline text-slate-400 font-normal">Expertise</span>
-              <span className="font-semibold text-slate-100">Fullstack</span>
-              <svg className="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            <div className="h-5 w-[1px] bg-white/20" />
-
-            {/* Payment Trigger */}
-            <button
-              onClick={() => setActiveModal("payment")}
-              className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-200 transition-colors hover:bg-white/10"
-            >
-              <svg className="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span className="hidden sm:inline text-slate-400 font-normal">Payment</span>
-              <span className="font-semibold text-slate-100">Flexible</span>
-              <svg className="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Right Outward Curve Connection */}
-          <div
-            className="h-8 w-8 -ml-[1px]"
-            style={{
-              background:
-                "radial-gradient(circle at 100% 100%, transparent 32px, rgba(2, 6, 23, 0.70) 32.5px)",
-            }}
-          />
->>>>>>> Stashed changes
-        </div>
-
-        {/* Right Flanking Pill Button */}
-        <button
-          onClick={() => setActiveModal("location")}
-<<<<<<< Updated upstream
-          style={{ background: BEZEL }}
-          className="pointer-events-auto group flex h-12 items-center gap-2 rounded-full px-6 text-sm font-semibold text-slate-800 shadow-md backdrop-blur-md transition-all hover:shadow-lg active:scale-95 sm:h-[3.25rem] sm:px-8 sm:text-base"
-=======
-          className="pointer-events-auto flex items-center gap-2 rounded-full border border-white/20 bg-slate-950/70 px-6 py-2.5 text-xs sm:text-sm font-medium text-slate-100 shadow-xl backdrop-blur-xl transition-all hover:bg-slate-900/80 active:scale-95"
->>>>>>> Stashed changes
-        >
-          <span>Contact</span>
-          <svg className="h-3.5 w-3.5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </button>
+    <main className="relative flex h-screen flex-col px-6 pb-6 pt-24 md:pl-28 md:pr-10">
+      {/* Centered hero title */}
+      <div className="pop-in mx-auto max-w-5xl shrink-0 text-center">
+        <h1 className="font-display font-bold leading-[0.95] text-white [text-shadow:0_10px_40px_rgba(0,0,0,0.35)]">
+          <span className="block text-[clamp(2rem,6vw,80px)]">Discovering innovative</span>
+          <span className="block text-[clamp(1.9rem,5.6vw,75px)]">solutions &lt;/&gt;</span>
+        </h1>
       </div>
 
-<<<<<<< Updated upstream
+      {/* Left supporting copy */}
+      <p className="pop-in mt-6 max-w-md text-left text-[14px] font-normal leading-[1.7] text-white/90">
+        At noven we build
+        <br /> innovative digital solutions
+        <br /> designed to tackle your toughest
+        <br /> web development problems
+        <br /> with creative engineering and
+        <br /> modern technical expertise every day.
+      </p>
 
-      {/* Glassmorphic Animated Modals */}
-=======
-      {/* Glassmorphic Dark Tint Popups */}
->>>>>>> Stashed changes
-      {activeModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          {/* Backdrop Overlay */}
-          <div
-            className="absolute inset-0 bg-slate-950/50 backdrop-blur-md transition-opacity animate-in fade-in duration-200"
-            onClick={() => setActiveModal(null)}
-          />
+      <div className="mt-auto grid min-h-0 flex-1 items-end gap-6 pt-6 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)]">
+        {/* Very-rounded white card, connected to the bottom bezel */}
+        <section className="pop-in flex max-h-full -mb-6 w-full max-w-md flex-col overflow-hidden rounded-[3.25rem] rounded-br-[6rem] rounded-bl-[3.25rem] bg-white/[0.94] p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+          <h2 className="text-left font-sans text-[20px] font-semibold text-[#0b1220]">
+            Find The Perfect Answer
+          </h2>
+          <p className="mt-2.5 text-left text-[14px] leading-[1.7] text-[#4b5565]">
+            Eliminate digital roadblocks.
+            <br /> Our expert craftsmanship delivers
+            <br /> fast, effective solutions so you can
+            <br /> focus on what matters most.
+          </p>
 
-          {/* Modal Card */}
-          <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-white/20 bg-slate-950/80 p-6 sm:p-8 shadow-2xl backdrop-blur-2xl animate-in zoom-in-95 duration-200 text-slate-100">
-            {/* Close Button */}
-            <button
-              onClick={() => setActiveModal(null)}
-              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-slate-300 transition-all hover:bg-white/20 hover:text-white"
-            >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+          <div className="mt-5 flex items-end justify-between gap-4">
+            <div className="text-left">
+              <p className="font-sans text-[clamp(2.2rem,4vw,55px)] font-bold leading-none text-[#0b1220]">5+</p>
+              <p className="mt-1 text-[13px] text-[#4b5565]">large projects</p>
+            </div>
 
-            {/* Location Content */}
-            {activeModal === "location" && (
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-slate-100">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-100">Location</h3>
-                </div>
-                <p className="text-sm leading-relaxed text-slate-300">
-                  Based in Accra, Ghana. We build offline-first mobile apps, modern websites, and custom digital products for startups and enterprises across Africa and worldwide.
-                </p>
-                <div className="pt-2">
-                  <a
-                    href="mailto:mensahkbiz@gmail.com"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-xs font-semibold text-slate-100 shadow-lg transition-transform hover:bg-white/20 hover:scale-105 active:scale-95"
-                  >
-                    <span>Let's work together</span>
-                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            )}
-
-            {/* Expertise Content */}
-            {activeModal === "expertise" && (
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-slate-100">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-100">Expertise</h3>
-                </div>
-                <p className="text-sm leading-relaxed text-slate-300">
-                  Fullstack & Mobile Development. We specialize in robust modern architecture, offline-first systems, and agentic workflows to deliver high-quality products rapidly.
-                </p>
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {[
-                    "React & TypeScript",
-                    "Tailwind CSS",
-                    "TanStack Router",
-                    "Capacitor Mobile",
-                    "Supabase & Postgres",
-                    "Agentic AI Workflows",
-                  ].map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-medium text-slate-200 shadow-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Payment Content */}
-            {activeModal === "payment" && (
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-slate-100">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-100">Payment & Pricing</h3>
-                </div>
-                <p className="text-sm leading-relaxed text-slate-300">
-                  Pricing is flexible and negotiable depending on your project scope, complexity, and target timeline.
-                </p>
-                <div className="rounded-2xl border border-white/20 bg-white/10 p-3.5 text-xs text-slate-200 leading-relaxed">
-                  We prioritize accessibility and affordability to support and accelerate digitizing Africa.
-                </div>
-              </div>
-            )}
+            {/* Overlapping project avatars (placeholders) */}
+            <div className="flex items-center">
+              {projects.map((p, i) => (
+                <a
+                  key={p.name}
+                  href={p.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  title={p.name}
+                  style={{ marginLeft: i === 0 ? 0 : -14, zIndex: 10 - i }}
+                  className="bouncy grid size-12 place-items-center overflow-hidden rounded-full border-2 border-white bg-slate-200 text-[9px] font-medium text-slate-500 hover:-translate-y-1 hover:scale-110"
+                >
+                  {/* Replace with <img src="..." alt={p.name} className="size-full object-cover" /> */}
+                  LOGO
+                </a>
+              ))}
+              <Link
+                to="/work"
+                aria-label="See our work"
+                style={{ marginLeft: -14 }}
+                className="bouncy z-20 grid size-12 place-items-center rounded-full border-2 border-white bg-[#0b1220] text-white hover:-translate-y-1 hover:scale-110"
+              >
+                <ArrowUpRight size={18} />
+              </Link>
+            </div>
           </div>
-        </div>
-      )}
+        </section>
 
-      {/* Background — Layered blues into sunset-orange gradient */}
-      <div
-        className="fixed inset-0 -z-20"
-        style={{
-          background:
-            "linear-gradient(150deg, #060b1f 0%, #0e1e4d 18%, #16307d 36%, #1e49ac 52%, #3d78d8 68%, #7fb0e8 80%, #f6a35c 92%, #f3823d 100%)",
-        }}
-      />
-    </div>
+        {/* Bottom-right frosted "We also offer" card */}
+        <section className="pop-in relative mb-4 ml-auto flex max-h-full w-full max-w-lg flex-col overflow-hidden rounded-[3rem] glass-frost p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)]">
+          {/* Circular cutout placeholder for an external logo */}
+          <div className="absolute -top-7 right-8 grid size-16 place-items-center rounded-full border-4 border-white/40 bg-white/70 text-[9px] font-medium text-slate-500 backdrop-blur-xl">
+            {/* Replace with your logo <img /> */}
+            LOGO
+          </div>
+
+          <h2 className="text-left font-sans text-[20px] font-semibold text-[#0b1220]">
+            We Also Offer
+          </h2>
+          <button className="bouncy mt-2 self-start rounded-full bg-white/40 px-3 py-1 text-[12px] font-medium text-[#4b5565] hover:scale-105">
+            offers
+          </button>
+
+          <p className="mt-3 min-h-0 flex-1 overflow-y-auto pr-1 text-left text-[14px] leading-[1.6] text-[#4b5565]">
+            We also offer offline-first mobile apps building. We modernize business infrastructure
+            from the ground up by engineering custom in-organization software, deploying scalable
+            cloud services, and structuring high-availability database management systems. To
+            maximize operational efficiency, we are a go-to if you want to infuse your businesses
+            with advanced AI integrations, routine digital automations, and agentic workflows that
+            autonomously handle complex corporate tasks.
+          </p>
+
+          <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
+            {offers.map(({ Icon, label }) => (
+              <li key={label} className="flex items-center gap-2.5">
+                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-white/60 text-[#0b1220]">
+                  <Icon size={16} />
+                </span>
+                <span className="text-[13px] text-[#4b5565]">{label}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-5 flex items-center gap-3">
+            <button
+              onClick={() => setLiked((v) => !v)}
+              aria-pressed={liked}
+              className="bouncy grid place-items-center rounded-2xl bg-white/60 px-3 py-2 hover:scale-105 active:scale-90"
+            >
+              <Heart
+                size={18}
+                className={liked ? "fill-[#0b1220] text-[#0b1220]" : "text-[#0b1220]"}
+              />
+              <span className="mt-0.5 text-[11px] font-medium text-[#4b5565]">
+                {liked ? "14.1k" : "14k"}
+              </span>
+            </button>
+            <button className="bouncy grid place-items-center rounded-2xl bg-white/60 px-3 py-2 text-[#0b1220] hover:scale-105 active:scale-90">
+              <Share2 size={18} />
+              <span className="mt-0.5 text-[11px] font-medium text-[#4b5565]">share</span>
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
