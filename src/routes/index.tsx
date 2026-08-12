@@ -46,7 +46,7 @@ function Index() {
   const [liked, setLiked] = useState(false);
 
   return (
-    <main className="relative min-h-screen overflow-hidden pb-16 pl-6 pr-6 pt-32 md:pl-28">
+    <main className="relative flex min-h-screen flex-col px-6 pb-6 pt-28 md:pl-28 md:pr-10">
       {/* Centered hero title */}
       <div className="pop-in mx-auto max-w-5xl text-center">
         <h1 className="font-display font-bold leading-[0.95] text-white [text-shadow:0_10px_40px_rgba(0,0,0,0.35)]">
@@ -56,7 +56,7 @@ function Index() {
       </div>
 
       {/* Left supporting copy */}
-      <p className="pop-in mt-8 max-w-md text-left text-[14px] font-normal leading-[1.7] text-white/90">
+      <p className="pop-in mt-6 max-w-md text-left text-[14px] font-normal leading-[1.7] text-white/90">
         At noven we build
         <br /> innovative digital solutions
         <br /> designed to tackle your toughest
@@ -65,20 +65,20 @@ function Index() {
         <br /> modern technical expertise every day.
       </p>
 
-      <div className="mt-10 grid items-end gap-8 lg:grid-cols-2">
+      <div className="mt-auto grid items-end gap-6 pt-10 lg:grid-cols-2">
         {/* Very-rounded white card, connected to the bottom bezel */}
-        <section className="pop-in -mb-16 max-w-md rounded-[3.25rem] rounded-br-[6rem] bg-white/[0.94] p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+        <section className="pop-in -mb-6 max-w-md rounded-[3.25rem] rounded-br-[6rem] rounded-bl-[3.25rem] bg-white/[0.94] p-7 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)] backdrop-blur-xl">
           <h2 className="text-left font-sans text-[20px] font-semibold text-[#0b1220]">
             Find The Perfect Answer
           </h2>
-          <p className="mt-3 text-left text-[14px] leading-[1.7] text-[#4b5565]">
+          <p className="mt-2.5 text-left text-[14px] leading-[1.7] text-[#4b5565]">
             Eliminate digital roadblocks.
             <br /> Our expert craftsmanship delivers
             <br /> fast, effective solutions so you can
             <br /> focus on what matters most.
           </p>
 
-          <div className="mt-6 flex items-end justify-between gap-4">
+          <div className="mt-5 flex items-end justify-between gap-4">
             <div className="text-left">
               <p className="font-sans text-[55px] font-bold leading-none text-[#0b1220]">5+</p>
               <p className="mt-1 text-[13px] text-[#4b5565]">large projects</p>
@@ -113,7 +113,7 @@ function Index() {
         </section>
 
         {/* Bottom-right frosted "We also offer" card */}
-        <section className="pop-in relative ml-auto max-w-lg rounded-[3rem] glass-frost p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)]">
+        <section className="pop-in relative mb-4 ml-auto w-full max-w-lg rounded-[3rem] glass-frost p-7 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)]">
           {/* Circular cutout placeholder for an external logo */}
           <div className="absolute -top-7 right-8 grid size-16 place-items-center rounded-full border-4 border-white/40 bg-white/70 text-[9px] font-medium text-slate-500 backdrop-blur-xl">
             {/* Replace with your logo <img /> */}
@@ -127,7 +127,7 @@ function Index() {
             offers
           </button>
 
-          <p className="mt-4 text-left text-[14px] leading-[1.7] text-[#4b5565]">
+          <p className="mt-4 text-left text-[14px] leading-[1.6] text-[#4b5565]">
             We also offer offline-first mobile apps building. We modernize business infrastructure
             from the ground up by engineering custom in-organization software, deploying scalable
             cloud services, and structuring high-availability database management systems. To
@@ -136,7 +136,7 @@ function Index() {
             autonomously handle complex corporate tasks.
           </p>
 
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+          <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
             {offers.map(({ Icon, label }) => (
               <li key={label} className="flex items-center gap-2.5">
                 <span className="grid size-9 shrink-0 place-items-center rounded-full bg-white/60 text-[#0b1220]">
@@ -147,7 +147,7 @@ function Index() {
             ))}
           </ul>
 
-          <div className="mt-6 flex items-center gap-3">
+          <div className="mt-5 flex items-center gap-3">
             <button
               onClick={() => setLiked((v) => !v)}
               aria-pressed={liked}
