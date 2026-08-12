@@ -13,15 +13,14 @@ export function PageShell({
 }) {
   return (
     <div className="relative min-h-screen">
-      <div className="fixed inset-0 -z-10 bg-background aura" />
 
-      <main className="mx-auto max-w-6xl px-5 pb-24 pt-32 md:pl-24">
-        <p className="text-xs uppercase tracking-[0.35em] text-primary">{eyebrow}</p>
-        <h1 className="mt-4 max-w-3xl text-5xl font-bold leading-[0.95] text-foreground sm:text-6xl md:text-7xl">
+      <main className="mx-auto max-w-6xl px-5 pb-24 pt-32 md:pl-28">
+        <p className="pop-in text-xs uppercase tracking-[0.35em] text-white/70">{eyebrow}</p>
+        <h1 className="pop-in mt-4 max-w-3xl font-display text-5xl font-bold leading-[0.95] text-white sm:text-6xl md:text-7xl">
           {title}
         </h1>
         {intro ? (
-          <p className="mt-6 max-w-xl text-base text-muted-foreground">{intro}</p>
+          <p className="pop-in mt-6 max-w-xl text-[14px] leading-[1.7] text-white/90">{intro}</p>
         ) : null}
         {children}
       </main>

@@ -11,8 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { TopNav } from "@/components/site/TopNav";
+import { AppFrame } from "@/components/site/AppFrame";
 import { IconRail } from "@/components/site/IconRail";
+import { BottomDock } from "@/components/site/BottomDock";
+import { ThemeProvider } from "@/components/site/theme";
 
 
 function NotFoundComponent() {
@@ -93,7 +95,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Zen+Dots&family=Space+Grotesk:wght@500;700&display=swap",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@600,700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
@@ -124,10 +130,21 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TopNav />
-      <IconRail />
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <ThemeProvider>
+        <div
+          className="fixed inset-0 -z-20"
+          style={{
+            background:
+              "linear-gradient(150deg, #060b1f 0%, #0e1e4d 18%, #16307d 36%, #1e49ac 52%, #3d78d8 68%, #7fb0e8 80%, #f6a35c 92%, #f3823d 100%)",
+          }}
+        />
+        <div className="pointer-events-none fixed inset-0 -z-10 bg-slate-950/0 backdrop-blur-[14px] backdrop-saturate-150 dark:bg-slate-950/45" />
+        <AppFrame />
+        <IconRail />
+        <BottomDock />
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
