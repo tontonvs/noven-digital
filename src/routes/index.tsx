@@ -123,7 +123,7 @@ function Index() {
           <h2 className="text-left font-sans text-[20px] font-semibold text-[#0b1220]">
             We Also Offer
           </h2>
-          <button className="bouncy mt-2 rounded-full bg-white/40 px-3 py-1 text-[12px] font-medium text-[#4b5565] hover:scale-105">
+          <button className="bouncy mt-2 self-start rounded-full bg-white/40 px-3 py-1 text-[12px] font-medium text-[#4b5565] hover:scale-105">
             offers
           </button>
 
