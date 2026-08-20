@@ -75,29 +75,18 @@ function Index() {
           style={{
             borderTopLeftRadius: "2.75rem",
             borderTopRightRadius: "2.75rem",
-            borderBottomRightRadius: 32,
+            borderBottomRightRadius: 0, // flat — the bump below completes this corner, facing right
             borderBottomLeftRadius: 32,
           }}
         >
-          {/* Shoulder flares — blend the card's bottom corners into the bare bezel line */}
+          {/* Convex seam bump, bottom-right — this card's curve faces right, not toward the dock on its left */}
           <div
-            className="pointer-events-none absolute -bottom-3.5 left-0 bg-card"
+            className="pointer-events-none absolute bottom-0"
             style={{
-              width: 14,
-              height: 14,
-              maskImage: "radial-gradient(circle at top right, transparent 13px, black 14px)",
-              WebkitMaskImage:
-                "radial-gradient(circle at top right, transparent 13px, black 14px)",
-            }}
-          />
-          <div
-            className="pointer-events-none absolute -bottom-3.5 right-0 bg-card"
-            style={{
-              width: 14,
-              height: 14,
-              maskImage: "radial-gradient(circle at top left, transparent 13px, black 14px)",
-              WebkitMaskImage:
-                "radial-gradient(circle at top left, transparent 13px, black 14px)",
+              right: -32,
+              width: 32,
+              height: 32,
+              background: "radial-gradient(circle at top right, transparent 31px, var(--card) 32px)",
             }}
           />
 

@@ -4,7 +4,7 @@ import { useTheme } from "./theme";
 // Match AppFrame's constants so this visually grows out of the bezel corner
 const B = 6;
 const R = 32;
-const FLARE = 14;
+const SEAM = 32; // matches the reference's flat-corner + bump radius
 
 export function BottomDock() {
   const { mode, setMode } = useTheme();
@@ -16,7 +16,7 @@ export function BottomDock() {
         left: B,
         bottom: B,
         borderTopRightRadius: "1.25rem",
-        borderBottomRightRadius: "1.25rem",
+        borderBottomRightRadius: 0, // flat — the bump below completes this corner
         borderTopLeftRadius: "1.25rem",
         borderBottomLeftRadius: R,
       }}
@@ -27,10 +27,23 @@ export function BottomDock() {
       <div
         className="pointer-events-none absolute -top-3.5 left-0 bg-card/92"
         style={{
-          width: FLARE,
-          height: FLARE,
-          maskImage: `radial-gradient(circle at bottom right, transparent ${FLARE - 1}px, black ${FLARE}px)`,
-          WebkitMaskImage: `radial-gradient(circle at bottom right, transparent ${FLARE - 1}px, black ${FLARE}px)`,
+          width: 14,
+          height: 14,
+          maskImage: "radial-gradient(circle at bottom right, transparent 13px, black 14px)",
+          WebkitMaskImage:
+            "radial-gradient(circle at bottom right, transparent 13px, black 14px)",
+        }}
+      />
+
+      {/* Convex seam bump, bottom-right — flows out toward the card on its right */}
+      <div
+        className="pointer-events-none absolute bottom-0"
+        style={{
+          right: -SEAM,
+          width: SEAM,
+          height: SEAM,
+          background: `radial-gradient(circle at top right, transparent ${SEAM - 1}px, var(--card) ${SEAM}px)`,
+          opacity: 0.92,
         }}
       />
 
