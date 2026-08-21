@@ -10,7 +10,7 @@ const floating = [
 ] as const;
 
 const itemBase =
-  "group relative grid size-12 place-items-center rounded-full bouncy hover:-translate-y-0.5 hover:scale-110 active:scale-95";
+  "group relative grid size-10 place-items-center rounded-full bouncy hover:-translate-y-0.5 hover:scale-110 active:scale-95";
 
 function Tip({ label }: { label: string }) {
   return (
@@ -39,7 +39,7 @@ export function IconRail() {
         >
           {({ isActive }: { isActive: boolean }) => (
             <>
-              <Icon size={20} fill={isActive ? "currentColor" : "none"} strokeWidth={isActive ? 1.5 : 2} />
+              <Icon size={17} fill={isActive ? "currentColor" : "none"} strokeWidth={isActive ? 1.5 : 2} />
               <Tip label={label} />
             </>
           )}
@@ -47,10 +47,10 @@ export function IconRail() {
       ))}
 
       {/* Capsule with the 2 remaining icons */}
-      <div className="mt-2 flex flex-col items-center gap-1 rounded-full bg-card/92 p-2 shadow-md backdrop-blur-md">
+      <div className="mt-2 flex flex-col items-center gap-1 rounded-full bg-card/92 p-1.5 shadow-md backdrop-blur-md">
         <button
           aria-label="Profile picture"
-          className="bouncy grid size-11 place-items-center overflow-hidden rounded-full bg-neutral-800 hover:scale-110"
+          className="bouncy grid size-9 place-items-center overflow-hidden rounded-full bg-neutral-800 hover:scale-110"
         >
           <img
             src={profilePhoto}
@@ -63,9 +63,9 @@ export function IconRail() {
           aria-label="Contact"
           activeProps={{ className: "bg-foreground text-background" }}
           inactiveProps={{ className: "text-muted-foreground hover:bg-foreground/5" }}
-          className="bouncy grid size-11 place-items-center rounded-full"
+          className="bouncy grid size-9 place-items-center rounded-full"
         >
-          <Send size={19} />
+          <Send size={16} />
         </Link>
       </div>
     </nav>

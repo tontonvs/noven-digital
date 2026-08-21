@@ -1,6 +1,39 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { ArrowUpRight, Bot, Cloud, Palette, WifiOff } from "lucide-react";
 import novenLogo from "@/assets/noven_logo.jpg";
+
+function useAverageColor(src: string) {
+  const [color, setColor] = useState("rgba(255,255,255,0.5)");
+  useEffect(() => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      try {
+        const size = 16;
+        const canvas = document.createElement("canvas");
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+        ctx.drawImage(img, 0, 0, size, size);
+        const { data } = ctx.getImageData(0, 0, size, size);
+        let r = 0, g = 0, b = 0;
+        const count = data.length / 4;
+        for (let i = 0; i < data.length; i += 4) {
+          r += data[i] ?? 0;
+          g += data[i + 1] ?? 0;
+          b += data[i + 2] ?? 0;
+        }
+        setColor(`rgb(${Math.round(r / count)}, ${Math.round(g / count)}, ${Math.round(b / count)})`);
+      } catch {
+        // canvas may be tainted if the source isn't same-origin — keep the fallback color
+      }
+    };
+    img.src = src;
+  }, [src]);
+  return color;
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,6 +62,8 @@ const services = [
 ];
 
 function Index() {
+  const logoRingColor = useAverageColor(novenLogo);
+
   return (
     <main className="relative flex min-h-screen flex-col px-6 pb-10 pt-24 md:pl-28 md:pr-10">
       {/* Centered hero title */}
@@ -80,28 +115,29 @@ function Index() {
         </section>
 
         {/* Services card */}
-        <section className="pop-in relative flex min-w-0 w-full max-w-lg flex-col rounded-[3rem] glass-frost p-6 pb-10 shadow-[var(--shadow-float)] lg:ml-auto">
-          <h2 className="text-left font-sans text-[20px] font-semibold text-foreground">
-            Services
-          </h2>
+        <section className="pop-in relative flex min-w-0 w-full max-w-lg flex-col rounded-3xl glass-frost p-6 pb-10 shadow-[var(--shadow-float)] lg:ml-auto">
+          <h2 className="text-left font-sans text-[20px] font-semibold text-white">Services</h2>
 
           <ul className="mt-4 grid gap-3 sm:grid-cols-2">
             {services.map(({ Icon, label }) => (
               <li key={label} className="flex items-center gap-2.5">
-                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-card/60 text-foreground">
-                  <Icon size={16} />
-                </span>
-                <span className="text-[13px] text-muted-foreground">{label}</span>
+                <Icon size={18} className="shrink-0 text-white" />
+                <span className="text-[13px] text-white">{label}</span>
               </li>
             ))}
           </ul>
 
-          {/* noven logo — sits astride the bottom-left curvature, partly outside the card */}
+          {/* noven logo — sampled ring color, 20px fully transparent buffer, sits astride the corner */}
           <div
-            className="absolute grid place-items-center overflow-hidden rounded-full border border-transparent bg-card/70 backdrop-blur-xl"
-            style={{ width: "5.4rem", height: "5.4rem", bottom: "-1.6rem", left: "-1.6rem" }}
+            className="absolute rounded-full"
+            style={{ border: "20px solid transparent", bottom: "-2.85rem", left: "-2.85rem" }}
           >
-            <img src={novenLogo} alt="noven" className="size-full object-cover" />
+            <div
+              className="grid place-items-center overflow-hidden rounded-full backdrop-blur-xl"
+              style={{ width: "5.4rem", height: "5.4rem", border: `2px solid ${logoRingColor}` }}
+            >
+              <img src={novenLogo} alt="noven" className="size-full object-cover" />
+            </div>
           </div>
         </section>
       </div>

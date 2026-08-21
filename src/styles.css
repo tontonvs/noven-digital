@@ -225,7 +225,10 @@
 
 @utility glass-frost {
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-top: 1px solid rgba(255, 255, 255, 0.24);
+  border-left: 1px solid rgba(255, 255, 255, 0.24);
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
   backdrop-filter: blur(30px) saturate(150%);
 }
 
