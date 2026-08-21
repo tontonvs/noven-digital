@@ -30,7 +30,7 @@ const services = [
 
 function Index() {
   return (
-    <main className="relative flex h-screen flex-col px-6 pb-2 pt-24 md:pl-28 md:pr-10 sm:pb-3">
+    <main className="relative flex min-h-screen flex-col px-6 pb-10 pt-24 md:pl-28 md:pr-10">
       {/* Centered hero title */}
       <div className="pop-in mx-auto max-w-5xl shrink-0 text-center">
         <h1 className="font-notch font-bold leading-[0.95] text-white [text-shadow:0_10px_40px_rgba(0,0,0,0.35)]">
@@ -47,9 +47,9 @@ function Index() {
         what truly matters. — noven
       </p>
 
-      <div className="mt-auto grid min-h-0 flex-1 items-end gap-6 pt-6 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)]">
+      <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-start">
         {/* Affordability Rule — floating card, separated from the bezel/dock, gently rounded */}
-        <section className="pop-in relative mb-4 flex max-h-full w-full max-w-md flex-col rounded-3xl bg-card p-6 shadow-[var(--shadow-float)] backdrop-blur-xl">
+        <section className="pop-in relative flex min-w-0 w-full max-w-md flex-col rounded-3xl bg-card p-6 shadow-[var(--shadow-float)] backdrop-blur-xl">
           <h2 className="text-left font-sans text-[20px] font-semibold text-card-foreground">
             # Affordability Rule
           </h2>
@@ -59,8 +59,8 @@ function Index() {
             worry free of financial drawbacks.
           </p>
 
-          <div className="mt-5 flex items-end justify-between gap-4">
-            <div className="text-left">
+          <div className="mt-5 flex flex-wrap items-end justify-between gap-4">
+            <div className="min-w-0 text-left">
               <p className="font-sans text-[clamp(2.2rem,4vw,55px)] font-bold leading-none text-card-foreground">
                 ₵5,000
               </p>
@@ -80,7 +80,7 @@ function Index() {
         </section>
 
         {/* Services card */}
-        <section className="pop-in relative mb-4 ml-auto flex max-h-full w-full max-w-lg flex-col rounded-[3rem] glass-frost p-6 pb-10 shadow-[var(--shadow-float)]">
+        <section className="pop-in relative flex min-w-0 w-full max-w-lg flex-col rounded-[3rem] glass-frost p-6 pb-10 shadow-[var(--shadow-float)] lg:ml-auto">
           <h2 className="text-left font-sans text-[20px] font-semibold text-foreground">
             Services
           </h2>
