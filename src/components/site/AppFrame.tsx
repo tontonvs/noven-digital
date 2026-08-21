@@ -71,7 +71,7 @@ export function AppFrame() {
       >
         <Link
           to="/"
-          className="bouncy pointer-events-auto font-notch text-lg ink hover:scale-105 sm:text-xl"
+          className="bouncy pointer-events-auto font-notch text-[21px] ink hover:scale-105 sm:text-[23px]"
         >
           noven
         </Link>
