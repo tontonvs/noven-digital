@@ -173,8 +173,8 @@ function Index() {
             className="absolute"
             style={{
               border: "3px solid transparent",
-              borderRadius: 0,
-              bottom: `-${LOGO_OFFSET + 7}px`,
+              borderRadius: 10,
+              bottom: `-${LOGO_OFFSET + 27}px`,
               left: `-${LOGO_OFFSET}px`,
             }}
           >
