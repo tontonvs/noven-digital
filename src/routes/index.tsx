@@ -55,11 +55,34 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { Icon: WifiOff, label: "Offline-first mobile apps" },
-  { Icon: Palette, label: "Custom in-organisation software" },
-  { Icon: Cloud, label: "Cloud management services" },
-  { Icon: Bot, label: "Agentic automation workflows" },
+  {
+    Icon: WifiOff,
+    label: "Offline-first mobile apps",
+    detail:
+      "Reliable apps that keep working smoothly even when connectivity drops, so your customers never feel the gap.",
+  },
+  {
+    Icon: Palette,
+    label: "Custom in-organisation software",
+    detail: "Tools built around how your team actually operates, replacing manual processes with software that fits.",
+  },
+  {
+    Icon: Cloud,
+    label: "Cloud management services",
+    detail: "We set up and maintain your cloud infrastructure so it stays fast, secure and always available.",
+  },
+  {
+    Icon: Bot,
+    label: "Agentic automation workflows",
+    detail: "AI agents that handle repetitive tasks automatically, freeing your team to focus on real work.",
+  },
 ];
+
+// Logo badge geometry — kept as constants so the card's "bite" mask lines up exactly
+const LOGO_SIZE = 86.4; // 5.4rem
+const LOGO_BORDER = 20;
+const LOGO_OFFSET = 45.6; // 2.85rem — outer wrapper's bottom/left offset
+const biteCenter = -LOGO_OFFSET + (LOGO_SIZE + LOGO_BORDER * 2) / 2; // ≈ 17.6px
 
 function Index() {
   const logoRingColor = useAverageColor(novenLogo);
@@ -78,32 +101,17 @@ function Index() {
       <p className="pop-in mt-6 max-w-md text-left text-[14px] font-normal leading-[1.7] text-white/90">
         Building engineering solutions to tackle your digital problems in the most effective and
         innovative way possible — not only to connect you and your clients (users), but to ensure
-        ease and comfort of use through visually stunning design and interface, so you focus on
-        what truly matters. — noven
+        ease and comfort of use through visually stunning design and interface, so you can focus
+        on what truly matters. — noven
       </p>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-start">
         {/* Affordability Rule — floating card, separated from the bezel/dock, gently rounded */}
         <section className="pop-in relative flex min-w-0 w-full max-w-md flex-col rounded-3xl bg-card p-6 shadow-[var(--shadow-float)] backdrop-blur-xl">
-          <h2 className="text-left font-sans text-[20px] font-semibold text-card-foreground">
-            # Affordability Rule
-          </h2>
-          <p className="mt-2.5 text-left text-[14px] leading-[1.7] text-muted-foreground">
-            Putting our clients first is our foremost priority beside connecting all of Africa and
-            beyond, with us eliminate digital roadblocks with swiftness and expert craftmanship —
-            worry free of financial drawbacks.
-          </p>
-
-          <div className="mt-5 flex flex-wrap items-end justify-between gap-4">
-            <div className="min-w-0 text-left">
-              <p className="font-sans text-[clamp(2.2rem,4vw,55px)] font-bold leading-none text-card-foreground">
-                ₵5,000
-              </p>
-              <p className="mt-1 text-[13px] text-muted-foreground">
-                get your website or app up and running funds as low as ₵630-₵5,000
-              </p>
-            </div>
-
+          <div className="flex items-start justify-between gap-3">
+            <h2 className="text-left font-sans text-[20px] font-semibold text-card-foreground">
+              # Affordability Rule
+            </h2>
             <Link
               to="/work"
               aria-label="See our work"
@@ -112,29 +120,55 @@ function Index() {
               <ArrowUpRight size={18} />
             </Link>
           </div>
+
+          <p className="mt-2.5 text-left text-[14px] leading-[1.7] text-muted-foreground">
+            Putting our clients first is our foremost priority. Alongside connecting all of Africa
+            and beyond, we eliminate digital roadblocks with swiftness and expert craftsmanship,
+            worry-free of financial drawbacks.
+          </p>
+
+          <div className="mt-5 text-left">
+            <p className="font-sans text-[clamp(2.2rem,4vw,55px)] font-bold leading-none text-card-foreground">
+              &lt;₵5,000
+            </p>
+            <p className="mt-1 text-[13px] text-muted-foreground">
+              get your website or app up and running for funds as low as{" "}
+              <span className="font-bold text-foreground">₵630</span>–
+              <span className="font-bold text-foreground">₵5,000</span>
+            </p>
+          </div>
         </section>
 
         {/* Services card */}
-        <section className="pop-in relative flex min-w-0 w-full max-w-lg flex-col rounded-3xl glass-frost p-6 pb-10 shadow-[var(--shadow-float)] lg:ml-auto">
-          <h2 className="text-left font-sans text-[20px] font-semibold text-white">Services</h2>
+        <section
+          className="pop-in relative flex min-w-0 w-full max-w-lg flex-col rounded-3xl glass-frost p-6 pb-10 shadow-[var(--shadow-float)] lg:ml-auto"
+          style={{
+            maskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 61px, black 63px)`,
+            WebkitMaskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 61px, black 63px)`,
+          }}
+        >
+          <h2 className="text-left font-sans text-[28px] font-bold text-white">Services</h2>
 
-          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-            {services.map(({ Icon, label }) => (
-              <li key={label} className="flex items-center gap-2.5">
-                <Icon size={18} className="shrink-0 text-white" />
-                <span className="text-[13px] text-white">{label}</span>
+          <ul className="mt-4 grid gap-5 sm:grid-cols-2">
+            {services.map(({ Icon, label, detail }) => (
+              <li key={label} className="flex items-start gap-2.5">
+                <Icon size={18} className="mt-0.5 shrink-0 text-white/60" />
+                <div>
+                  <p className="text-[13px] font-medium text-white">{label}</p>
+                  <p className="mt-1 text-[20px] leading-[1.4] text-white/70">{detail}</p>
+                </div>
               </li>
             ))}
           </ul>
 
-          {/* noven logo — sampled ring color, 20px fully transparent buffer, sits astride the corner */}
+          {/* noven logo — sampled ring color, 20px fully transparent buffer, sits in the bite carved above */}
           <div
             className="absolute rounded-full"
-            style={{ border: "20px solid transparent", bottom: "-2.85rem", left: "-2.85rem" }}
+            style={{ border: `${LOGO_BORDER}px solid transparent`, bottom: `-${LOGO_OFFSET}px`, left: `-${LOGO_OFFSET}px` }}
           >
             <div
               className="grid place-items-center overflow-hidden rounded-full backdrop-blur-xl"
-              style={{ width: "5.4rem", height: "5.4rem", border: `2px solid ${logoRingColor}` }}
+              style={{ width: `${LOGO_SIZE}px`, height: `${LOGO_SIZE}px`, border: `2px solid ${logoRingColor}` }}
             >
               <img src={novenLogo} alt="noven" className="size-full object-cover" />
             </div>

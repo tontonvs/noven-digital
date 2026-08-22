@@ -10,7 +10,7 @@ const floating = [
 ] as const;
 
 const itemBase =
-  "group relative grid size-10 place-items-center rounded-full bouncy hover:-translate-y-0.5 hover:scale-110 active:scale-95";
+  "group relative grid size-9 place-items-center rounded-full bouncy hover:-translate-y-0.5 hover:scale-110 active:scale-95";
 
 function Tip({ label }: { label: string }) {
   return (
@@ -24,7 +24,7 @@ export function IconRail() {
   return (
     <nav
       aria-label="Primary"
-      className="fixed left-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-3 md:flex"
+      className="fixed left-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-1.5 md:flex"
     >
       {/* 4 floating glass buttons — no bar behind them */}
       {floating.map(({ to, label, Icon }) => (
@@ -39,7 +39,7 @@ export function IconRail() {
         >
           {({ isActive }: { isActive: boolean }) => (
             <>
-              <Icon size={17} fill={isActive ? "currentColor" : "none"} strokeWidth={isActive ? 1.5 : 2} />
+              <Icon size={15} fill={isActive ? "currentColor" : "none"} strokeWidth={isActive ? 1.5 : 2} />
               <Tip label={label} />
             </>
           )}
@@ -50,7 +50,7 @@ export function IconRail() {
       <div className="mt-2 flex flex-col items-center gap-1 rounded-full bg-card/92 p-1.5 shadow-md backdrop-blur-md">
         <button
           aria-label="Profile picture"
-          className="bouncy grid size-9 place-items-center overflow-hidden rounded-full bg-neutral-800 hover:scale-110"
+          className="bouncy grid size-8 place-items-center overflow-hidden rounded-full bg-neutral-800 hover:scale-110"
         >
           <img
             src={profilePhoto}
@@ -63,9 +63,9 @@ export function IconRail() {
           aria-label="Contact"
           activeProps={{ className: "bg-foreground text-background" }}
           inactiveProps={{ className: "text-muted-foreground hover:bg-foreground/5" }}
-          className="bouncy grid size-9 place-items-center rounded-full"
+          className="bouncy grid size-8 place-items-center rounded-full"
         >
-          <Send size={16} />
+          <Send size={14} />
         </Link>
       </div>
     </nav>
