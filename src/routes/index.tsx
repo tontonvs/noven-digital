@@ -139,29 +139,31 @@ function Index() {
           </div>
         </section>
 
-        {/* Services card */}
-        <section
-          className="pop-in relative flex min-w-0 w-full max-w-lg flex-col rounded-3xl glass-frost p-6 pb-10 shadow-[var(--shadow-float)] lg:ml-auto"
-          style={{
-            maskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 61px, black 63px)`,
-            WebkitMaskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 61px, black 63px)`,
-          }}
-        >
-          <h2 className="text-left font-sans text-[28px] font-bold text-white">Services</h2>
+        {/* Services card — wrapper is unmasked so the logo below isn't affected by the card's bite mask */}
+        <div className="relative w-full max-w-lg lg:ml-auto">
+          <section
+            className="pop-in relative flex min-w-0 w-full flex-col rounded-3xl glass-frost p-6 pb-10 shadow-[var(--shadow-float)]"
+            style={{
+              maskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 61px, black 63px)`,
+              WebkitMaskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 61px, black 63px)`,
+            }}
+          >
+            <h2 className="text-left font-sans text-[28px] font-bold text-white">Services</h2>
 
-          <ul className="mt-4 grid gap-5 sm:grid-cols-2">
-            {services.map(({ Icon, label, detail }) => (
-              <li key={label} className="flex items-start gap-2.5">
-                <Icon size={18} className="mt-0.5 shrink-0 text-white/60" />
-                <div>
-                  <p className="text-[13px] font-medium text-white">{label}</p>
-                  <p className="mt-1 text-[20px] leading-[1.4] text-white/70">{detail}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+            <ul className="mt-4 grid gap-5 sm:grid-cols-2">
+              {services.map(({ Icon, label, detail }) => (
+                <li key={label} className="flex items-start gap-2.5">
+                  <Icon size={18} className="mt-0.5 shrink-0 text-white/60" />
+                  <div>
+                    <p className="text-[16px] font-semibold text-white">{label}</p>
+                    <p className="mt-1 text-[11px] leading-[1.5] text-white/70">{detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-          {/* noven logo — sampled ring color, 20px fully transparent buffer, sits in the bite carved above */}
+          {/* noven logo — sits outside the masked card so it always renders, astride the bite carved above */}
           <div
             className="absolute rounded-full"
             style={{ border: `${LOGO_BORDER}px solid transparent`, bottom: `-${LOGO_OFFSET}px`, left: `-${LOGO_OFFSET}px` }}
@@ -173,7 +175,7 @@ function Index() {
               <img src={novenLogo} alt="noven" className="size-full object-cover" />
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </main>
   );
