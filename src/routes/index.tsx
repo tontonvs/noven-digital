@@ -80,13 +80,7 @@ const services = [
   },
 ];
 
-// Logo badge geometry — bite radius is set equal to biteCenter so the cutout circle is
-// tangent to both card edges at the corner (no sharp intersection points). LOGO_OFFSET is
-// deliberately smaller than the badge itself so the bite reads as clearly "caused by" the logo.
 const LOGO_SIZE = 86.4;
-const LOGO_BORDER = 20;
-const LOGO_OFFSET = 30; // outer wrapper's bottom/left offset
-const biteCenter = -LOGO_OFFSET + (LOGO_SIZE + LOGO_BORDER * 2) / 2; // ≈ 33px — also the bite radius
 
 function Index() {
   const logoRingColor = useAverageColor(novenLogo);
@@ -146,13 +140,15 @@ function Index() {
           </p>
         </section>
 
-        {/* Services card — wrapper is unmasked so the logo below isn't affected by the card's bite mask */}
+        {/* Services card */}
         <div className="relative w-full max-w-lg lg:ml-auto">
           <section
-            className="pop-in relative flex min-w-0 w-full flex-col rounded-3xl glass-frost p-6 pb-16 shadow-[var(--shadow-float)] transition-transform duration-300 [transform-style:preserve-3d] hover:[transform:perspective(800px)_rotateX(2deg)_rotateY(-3deg)]"
+            className="pop-in relative flex min-w-0 w-full flex-col glass-frost p-6 pb-16 shadow-[var(--shadow-float)] transition-transform duration-300 [transform-style:preserve-3d] hover:[transform:perspective(800px)_rotateX(2deg)_rotateY(-3deg)]"
             style={{
-              maskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent ${biteCenter - 2}px, black ${biteCenter}px)`,
-              WebkitMaskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent ${biteCenter - 2}px, black ${biteCenter}px)`,
+              borderTopLeftRadius: 24,
+              borderTopRightRadius: 24,
+              borderBottomRightRadius: 24,
+              borderBottomLeftRadius: 96, // large native radius — the "halo" around the logo, no mask needed
             }}
           >
             <h2 className="text-left font-sans text-[28px] font-bold text-white">Services</h2>
@@ -170,15 +166,15 @@ function Index() {
             </ul>
           </section>
 
-          {/* noven logo — sits outside the masked card so it always renders, astride the bite carved above */}
+          {/* noven logo — sits astride the halo corner above */}
           <div
             className="absolute grid place-items-center overflow-hidden rounded-full backdrop-blur-xl"
             style={{
               width: `${LOGO_SIZE}px`,
               height: `${LOGO_SIZE}px`,
               border: `2px solid ${logoRingColor}`,
-              bottom: `-${LOGO_OFFSET + 27}px`,
-              left: `-${LOGO_OFFSET}px`,
+              bottom: "-20px",
+              left: "-20px",
             }}
           >
             <img src={novenLogo} alt="noven" className="size-full object-cover" />
