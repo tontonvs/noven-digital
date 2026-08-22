@@ -79,10 +79,10 @@ const services = [
 ];
 
 // Logo badge geometry — kept as constants so the card's "bite" mask lines up exactly
-const LOGO_SIZE = 86.4; // 5.4rem
-const LOGO_BORDER = 20;
-const LOGO_OFFSET = 45.6; // 2.85rem — outer wrapper's bottom/left offset
-const biteCenter = -LOGO_OFFSET + (LOGO_SIZE + LOGO_BORDER * 2) / 2; // ≈ 17.6px
+const LOGO_SIZE = 70; // was 86.4 — smaller badge, smaller bite
+const LOGO_BORDER = 16;
+const LOGO_OFFSET = 36; // outer wrapper's bottom/left offset
+const biteCenter = -LOGO_OFFSET + (LOGO_SIZE + LOGO_BORDER * 2) / 2; // ≈ 15px
 
 function Index() {
   const logoRingColor = useAverageColor(novenLogo);
@@ -98,7 +98,7 @@ function Index() {
       </div>
 
       {/* Left supporting copy */}
-      <p className="pop-in mt-6 max-w-md text-left text-[14px] font-normal leading-[1.7] text-white/90">
+      <p className="pop-in mt-6 max-w-md text-left text-[14px] font-medium leading-[1.7] text-white/90">
         Building engineering solutions to tackle your digital problems in the most effective and
         innovative way possible — not only to connect you and your clients (users), but to ensure
         ease and comfort of use through visually stunning design and interface, so you can focus
@@ -129,7 +129,7 @@ function Index() {
 
           <div className="mt-5 text-left">
             <p className="font-sans text-[clamp(2.2rem,4vw,55px)] font-bold leading-none text-card-foreground">
-              &lt;₵5,000
+              <span className="glow-once">&lt;</span>₵5,000
             </p>
             <p className="mt-1 text-[13px] text-muted-foreground">
               get your website or app up and running for funds as low as{" "}
@@ -144,8 +144,8 @@ function Index() {
           <section
             className="pop-in relative flex min-w-0 w-full flex-col rounded-3xl glass-frost p-6 pb-10 shadow-[var(--shadow-float)]"
             style={{
-              maskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 61px, black 63px)`,
-              WebkitMaskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 61px, black 63px)`,
+              maskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 44px, black 54px)`,
+              WebkitMaskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 44px, black 54px)`,
             }}
           >
             <h2 className="text-left font-sans text-[28px] font-bold text-white">Services</h2>
@@ -156,7 +156,7 @@ function Index() {
                   <Icon size={18} className="mt-0.5 shrink-0 text-white/60" />
                   <div>
                     <p className="text-[16px] font-semibold text-white">{label}</p>
-                    <p className="mt-1 text-[11px] leading-[1.5] text-white/70">{detail}</p>
+                    <p className="mt-1 text-[11px] font-medium leading-[1.5] text-white/70">{detail}</p>
                   </div>
                 </li>
               ))}

@@ -42,7 +42,14 @@ export function AppFrame() {
   const [size, setSize] = useState({ w: 1280, h: 800 });
 
   useEffect(() => {
-    const update = () => setSize({ w: window.innerWidth, h: window.innerHeight });
+    // document.documentElement.clientWidth/Height excludes the scrollbar, matching what a
+    // `fixed w-full` element actually renders at. window.innerWidth includes the scrollbar,
+    // which was drawing the path a few px wider than the visible canvas — clipping the right edge.
+    const update = () =>
+      setSize({
+        w: document.documentElement.clientWidth,
+        h: document.documentElement.clientHeight,
+      });
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
@@ -64,7 +71,13 @@ export function AppFrame() {
         <rect width="100%" height="100%" fill="var(--bezel)" mask="url(#bezel-mask)" />
       </svg>
 
-      {/* Wordmark, moved to the top-left corner — plain text, no pill */}
+      {/* Frosty blur strip, exactly the notch's height — content scrolls under it blurred */}
+      <div
+        className="pointer-events-none fixed inset-x-0 top-0 z-40 backdrop-blur-md backdrop-saturate-150"
+        style={{ height: B + NH }}
+      />
+
+      {/* Wordmark, moved to the top-left corner — plain text, no pill, sits above the blur strip */}
       <div
         className="pointer-events-none fixed inset-x-0 z-50 flex items-center px-6 sm:px-12"
         style={{ top: B, height: NH + 12 }}
