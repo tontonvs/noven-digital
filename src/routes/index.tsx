@@ -170,14 +170,24 @@ function Index() {
 
           {/* noven logo — sits outside the masked card so it always renders, astride the bite carved above */}
           <div
-            className="absolute rounded-full"
-            style={{ border: `${LOGO_BORDER}px solid transparent`, bottom: `-${LOGO_OFFSET}px`, left: `-${LOGO_OFFSET}px` }}
+            className="absolute"
+            style={{
+              border: "3px solid transparent",
+              borderRadius: 0,
+              bottom: `-${LOGO_OFFSET + 7}px`,
+              left: `-${LOGO_OFFSET}px`,
+            }}
           >
             <div
-              className="grid place-items-center overflow-hidden rounded-full backdrop-blur-xl"
-              style={{ width: `${LOGO_SIZE}px`, height: `${LOGO_SIZE}px`, border: `2px solid ${logoRingColor}` }}
+              className="rounded-full"
+              style={{ border: `${LOGO_BORDER}px solid transparent` }}
             >
-              <img src={novenLogo} alt="noven" className="size-full object-cover" />
+              <div
+                className="grid place-items-center overflow-hidden rounded-full backdrop-blur-xl"
+                style={{ width: `${LOGO_SIZE}px`, height: `${LOGO_SIZE}px`, border: `2px solid ${logoRingColor}` }}
+              >
+                <img src={novenLogo} alt="noven" className="size-full object-cover" />
+              </div>
             </div>
           </div>
         </div>
