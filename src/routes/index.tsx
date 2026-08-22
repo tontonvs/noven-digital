@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Bot, Cloud, Palette, WifiOff } from "lucide-react";
-import novenLogo from "@/assets/noven_logo.jpg";
+import novenLogo from "@/assets/noven_logo.png";
 
 function useAverageColor(src: string) {
   const [color, setColor] = useState("rgba(255,255,255,0.5)");
@@ -18,14 +18,16 @@ function useAverageColor(src: string) {
         if (!ctx) return;
         ctx.drawImage(img, 0, 0, size, size);
         const { data } = ctx.getImageData(0, 0, size, size);
-        let r = 0, g = 0, b = 0;
-        const count = data.length / 4;
+        let r = 0, g = 0, b = 0, weight = 0;
         for (let i = 0; i < data.length; i += 4) {
-          r += data[i] ?? 0;
-          g += data[i + 1] ?? 0;
-          b += data[i + 2] ?? 0;
+          const a = (data[i + 3] ?? 0) / 255;
+          r += (data[i] ?? 0) * a;
+          g += (data[i + 1] ?? 0) * a;
+          b += (data[i + 2] ?? 0) * a;
+          weight += a;
         }
-        setColor(`rgb(${Math.round(r / count)}, ${Math.round(g / count)}, ${Math.round(b / count)})`);
+        if (weight === 0) return;
+        setColor(`rgb(${Math.round(r / weight)}, ${Math.round(g / weight)}, ${Math.round(b / weight)})`);
       } catch {
         // canvas may be tainted if the source isn't same-origin — keep the fallback color
       }
