@@ -178,10 +178,8 @@ function Index() {
             }}
           >
             <div
-              style={{
-                border: "3px solid transparent",
-                borderRadius: 10,
-              }}
+              className="rounded-full"
+              style={{ border: "3px solid transparent" }}
             >
               <div
                 className="grid place-items-center overflow-hidden rounded-full backdrop-blur-xl"
