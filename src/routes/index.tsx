@@ -170,17 +170,18 @@ function Index() {
 
           {/* noven logo — sits outside the masked card so it always renders, astride the bite carved above */}
           <div
-            className="absolute"
+            className="absolute rounded-full"
             style={{
-              border: "3px solid transparent",
-              borderRadius: 10,
+              border: `${LOGO_BORDER}px solid transparent`,
               bottom: `-${LOGO_OFFSET + 27}px`,
               left: `-${LOGO_OFFSET}px`,
             }}
           >
             <div
-              className="rounded-full"
-              style={{ border: `${LOGO_BORDER}px solid transparent` }}
+              style={{
+                border: "3px solid transparent",
+                borderRadius: 10,
+              }}
             >
               <div
                 className="grid place-items-center overflow-hidden rounded-full backdrop-blur-xl"
