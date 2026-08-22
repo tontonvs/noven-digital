@@ -78,12 +78,13 @@ const services = [
   },
 ];
 
-// Logo badge geometry — reverted to full size. Bite radius is set equal to biteCenter so the
-// cutout circle is tangent to both card edges at the corner (no sharp intersection points).
+// Logo badge geometry — bite radius is set equal to biteCenter so the cutout circle is
+// tangent to both card edges at the corner (no sharp intersection points). LOGO_OFFSET is
+// deliberately smaller than the badge itself so the bite reads as clearly "caused by" the logo.
 const LOGO_SIZE = 86.4;
 const LOGO_BORDER = 20;
-const LOGO_OFFSET = 45.6; // outer wrapper's bottom/left offset
-const biteCenter = -LOGO_OFFSET + (LOGO_SIZE + LOGO_BORDER * 2) / 2; // ≈ 17.6px — also the bite radius
+const LOGO_OFFSET = 30; // outer wrapper's bottom/left offset
+const biteCenter = -LOGO_OFFSET + (LOGO_SIZE + LOGO_BORDER * 2) / 2; // ≈ 33px — also the bite radius
 
 function Index() {
   const logoRingColor = useAverageColor(novenLogo);
@@ -108,7 +109,7 @@ function Index() {
 
       <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-start">
         {/* Affordability Rule — floating card, separated from the bezel/dock, gently rounded */}
-        <section className="pop-in relative flex min-w-0 w-full max-w-md flex-col rounded-3xl bg-card p-6 shadow-[var(--shadow-float)] backdrop-blur-xl">
+        <section className="pop-in relative flex min-w-0 w-full max-w-md flex-col rounded-3xl bg-card p-6 shadow-[var(--shadow-float)] backdrop-blur-xl transition-transform duration-300 [transform-style:preserve-3d] hover:[transform:perspective(800px)_rotateX(2deg)_rotateY(-3deg)]">
           <div className="flex items-start justify-between gap-3">
             <h2 className="text-left font-sans text-[20px] font-semibold text-card-foreground">
               # Affordability Rule
@@ -146,7 +147,7 @@ function Index() {
         {/* Services card — wrapper is unmasked so the logo below isn't affected by the card's bite mask */}
         <div className="relative w-full max-w-lg lg:ml-auto">
           <section
-            className="pop-in relative flex min-w-0 w-full flex-col rounded-3xl glass-frost p-6 pb-24 shadow-[var(--shadow-float)]"
+            className="pop-in relative flex min-w-0 w-full flex-col rounded-3xl glass-frost p-6 pb-16 shadow-[var(--shadow-float)] transition-transform duration-300 [transform-style:preserve-3d] hover:[transform:perspective(800px)_rotateX(2deg)_rotateY(-3deg)]"
             style={{
               maskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent ${biteCenter - 2}px, black ${biteCenter}px)`,
               WebkitMaskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent ${biteCenter - 2}px, black ${biteCenter}px)`,
@@ -154,7 +155,7 @@ function Index() {
           >
             <h2 className="text-left font-sans text-[28px] font-bold text-white">Services</h2>
 
-            <ul className="mt-4 grid gap-5 sm:grid-cols-2">
+            <ul className="mt-4 grid gap-4 sm:grid-cols-2">
               {services.map(({ Icon, label, detail }) => (
                 <li key={label} className="flex items-start gap-2.5">
                   <Icon size={18} className="mt-0.5 shrink-0 text-white/60" />
