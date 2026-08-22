@@ -78,11 +78,12 @@ const services = [
   },
 ];
 
-// Logo badge geometry — kept as constants so the card's "bite" mask lines up exactly
-const LOGO_SIZE = 70; // was 86.4 — smaller badge, smaller bite
-const LOGO_BORDER = 16;
-const LOGO_OFFSET = 36; // outer wrapper's bottom/left offset
-const biteCenter = -LOGO_OFFSET + (LOGO_SIZE + LOGO_BORDER * 2) / 2; // ≈ 15px
+// Logo badge geometry — reverted to full size. Bite radius is set equal to biteCenter so the
+// cutout circle is tangent to both card edges at the corner (no sharp intersection points).
+const LOGO_SIZE = 86.4;
+const LOGO_BORDER = 20;
+const LOGO_OFFSET = 45.6; // outer wrapper's bottom/left offset
+const biteCenter = -LOGO_OFFSET + (LOGO_SIZE + LOGO_BORDER * 2) / 2; // ≈ 17.6px — also the bite radius
 
 function Index() {
   const logoRingColor = useAverageColor(novenLogo);
@@ -131,21 +132,24 @@ function Index() {
             <p className="font-sans text-[clamp(2.2rem,4vw,55px)] font-bold leading-none text-card-foreground">
               <span className="glow-once">&lt;</span>₵5,000
             </p>
-            <p className="mt-1 text-[13px] text-muted-foreground">
-              get your website or app up and running for funds as low as{" "}
+          </div>
+
+          <p className="mt-1 text-left text-[13px] text-muted-foreground">
+            get your website or app up and running for funds as low as{" "}
+            <span className="whitespace-nowrap">
               <span className="font-bold text-foreground">₵630</span>–
               <span className="font-bold text-foreground">₵5,000</span>
-            </p>
-          </div>
+            </span>
+          </p>
         </section>
 
         {/* Services card — wrapper is unmasked so the logo below isn't affected by the card's bite mask */}
         <div className="relative w-full max-w-lg lg:ml-auto">
           <section
-            className="pop-in relative flex min-w-0 w-full flex-col rounded-3xl glass-frost p-6 pb-10 shadow-[var(--shadow-float)]"
+            className="pop-in relative flex min-w-0 w-full flex-col rounded-3xl glass-frost p-6 pb-24 shadow-[var(--shadow-float)]"
             style={{
-              maskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 44px, black 54px)`,
-              WebkitMaskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent 44px, black 54px)`,
+              maskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent ${biteCenter - 2}px, black ${biteCenter}px)`,
+              WebkitMaskImage: `radial-gradient(circle at ${biteCenter}px calc(100% - ${biteCenter}px), transparent ${biteCenter - 2}px, black ${biteCenter}px)`,
             }}
           >
             <h2 className="text-left font-sans text-[28px] font-bold text-white">Services</h2>

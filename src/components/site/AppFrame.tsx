@@ -71,13 +71,7 @@ export function AppFrame() {
         <rect width="100%" height="100%" fill="var(--bezel)" mask="url(#bezel-mask)" />
       </svg>
 
-      {/* Frosty blur strip, exactly the notch's height — content scrolls under it blurred */}
-      <div
-        className="pointer-events-none fixed inset-x-0 top-0 z-40 backdrop-blur-md backdrop-saturate-150"
-        style={{ height: B + NH }}
-      />
-
-      {/* Wordmark, moved to the top-left corner — plain text, no pill, sits above the blur strip */}
+      {/* Wordmark, moved to the top-left corner — plain text, no pill */}
       <div
         className="pointer-events-none fixed inset-x-0 z-50 flex items-center px-6 sm:px-12"
         style={{ top: B, height: NH + 12 }}
