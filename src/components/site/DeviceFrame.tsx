@@ -22,8 +22,9 @@ export function DeviceFrame({
     return (
       <div className={cn("relative w-full", className)}>
         <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[2rem] border-[5px] border-[#0b1220] bg-[#0b1220] shadow-[0_25px_50px_-20px_rgba(11,18,32,0.45)]">
-          <div className="absolute left-1/2 top-0 z-10 h-4 w-16 -translate-x-1/2 rounded-b-lg bg-[#0b1220]" />
           <img src={image} alt={alt} className="size-full object-cover object-top" />
+          {/* floating pill notch — sits a touch below the top edge, not fused to the bezel */}
+          <div className="absolute left-1/2 top-[3%] z-10 h-[3.4%] w-[26%] -translate-x-1/2 rounded-full bg-[#0b1220] shadow-[0_1px_3px_rgba(0,0,0,0.5)]" />
         </div>
       </div>
     );

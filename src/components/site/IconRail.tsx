@@ -77,10 +77,16 @@ export function IconRail() {
             }}
             className={cn(
               itemBase,
-              isActive ? "bg-card text-card-foreground shadow-lg" : "glass-soft text-white/90 hover:bg-white/30",
+              isActive
+                ? "bg-card text-card-foreground shadow-lg"
+                : "border border-white/10 bg-[#0b1220]/70 text-white/90 backdrop-blur-md hover:bg-[#0b1220]/85",
             )}
           >
-            <Icon size={15} fill={isActive ? "currentColor" : "none"} strokeWidth={isActive ? 1.5 : 2} />
+            <Icon
+              size={15}
+              fill={isActive ? "currentColor" : "none"}
+              strokeWidth={isActive ? 1.5 : 2}
+            />
             <Tip label={label} />
           </a>
         );
@@ -108,7 +114,9 @@ export function IconRail() {
           }}
           className={cn(
             "bouncy grid size-8 place-items-center rounded-full",
-            active === "contact" ? "bg-foreground text-background" : "text-muted-foreground hover:bg-foreground/5",
+            active === "contact"
+              ? "bg-foreground text-background"
+              : "text-muted-foreground hover:bg-foreground/5",
           )}
         >
           <Send size={14} />

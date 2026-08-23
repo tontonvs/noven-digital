@@ -60,8 +60,9 @@ export function AppFrame() {
 
   return (
     <>
-      {/* Continuous bezel + notch — empty cutout, camera-housing style */}
-      <svg className="pointer-events-none fixed inset-0 z-50 h-full w-full">
+      {/* Continuous bezel + notch — empty cutout, camera-housing style. Desktop only: on
+          mobile this fake device frame just eats into real screen space. */}
+      <svg className="pointer-events-none fixed inset-0 z-50 hidden h-full w-full md:block">
         <defs>
           <mask id="bezel-mask">
             <rect width="100%" height="100%" fill="white" />

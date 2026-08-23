@@ -14,9 +14,9 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AppFrame } from "@/components/site/AppFrame";
 import { IconRail } from "@/components/site/IconRail";
 import { BottomDock } from "@/components/site/BottomDock";
+import { MobileBottomNav } from "@/components/site/MobileBottomNav";
 import { ThemeProvider } from "@/components/site/theme";
 import bgImage from "@/assets/background.jpg";
-
 
 function NotFoundComponent() {
   return (
@@ -133,20 +133,16 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <div className="fixed inset-0 -z-20 overflow-hidden">
-          <img
-            src={bgImage}
-            alt=""
-            className="size-full scale-105 object-cover blur-[3px]"
-          />
+          <img src={bgImage} alt="" className="size-full scale-105 object-cover blur-[3px]" />
         </div>
         <div className="pointer-events-none fixed inset-0 -z-10 bg-slate-950/0 backdrop-blur-[14px] backdrop-saturate-150 dark:bg-slate-950/45" />
         <AppFrame />
         <IconRail />
         <BottomDock />
+        <MobileBottomNav />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
       </ThemeProvider>
     </QueryClientProvider>
   );
 }
-

@@ -18,14 +18,14 @@ export function MobileCarousel({ slides }: { slides: Slide[] }) {
   const advance = () => setIndex((i) => (i + 1) % slides.length);
 
   return (
-    <div className="relative mx-auto w-full max-w-[260px]">
+    <div className="relative mx-auto w-full max-w-[225px]">
       <div className="relative">
         {/* peeking next screen */}
-        <div className="pointer-events-none absolute inset-y-8 -right-8 z-0 w-20 overflow-hidden rounded-[1.6rem]">
+        <div className="pointer-events-none absolute inset-y-6 -right-7 z-0 w-16 overflow-hidden rounded-[1.4rem]">
           <img
             src={next.src}
             alt=""
-            className="h-full w-[260px] max-w-none object-cover object-top"
+            className="h-full w-[225px] max-w-none object-cover object-top"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/60 to-white" />
         </div>
