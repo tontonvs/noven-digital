@@ -4,7 +4,18 @@ import { ArrowUpRight, Bot, Cloud, Palette, WifiOff } from "lucide-react";
 import novenLogo from "@/assets/noven_logo.png";
 import { PageShell } from "@/components/site/PageShell";
 import { GlassCard } from "@/components/site/GlassCard";
-import { ServicesSection } from "@/components/site/ServicesSection";
+import { ThreeUpMockup } from "@/components/site/services/DeviceMockups";
+import { Carousel } from "@/components/site/services/Carousel";
+import { DesignShowcase } from "@/components/site/services/DesignShowcase";
+import { SupportFootnote } from "@/components/site/services/SupportFootnote";
+import { ServerDbIllustration, AutomationIllustration } from "@/components/site/services/illustrations";
+import labiancaHeroBrowser from "@/assets/work/labianca_hero_browser.jpg";
+import labiancaContent from "@/assets/work/labianca_content.jpg";
+import labiancaSolar from "@/assets/work/labianca_solar.png";
+import graceHome from "@/assets/work/grace_home.jpg";
+import graceChat from "@/assets/work/grace_chat.jpg";
+import graceSettings from "@/assets/work/grace_settings.jpg";
+import yoglaitHome from "@/assets/work/yoglait_home.png";
 
 function useAverageColor(src: string) {
   const [color, setColor] = useState("rgba(255,255,255,0.5)");
@@ -21,10 +32,7 @@ function useAverageColor(src: string) {
         if (!ctx) return;
         ctx.drawImage(img, 0, 0, size, size);
         const { data } = ctx.getImageData(0, 0, size, size);
-        let r = 0,
-          g = 0,
-          b = 0,
-          weight = 0;
+        let r = 0, g = 0, b = 0, weight = 0;
         for (let i = 0; i < data.length; i += 4) {
           const a = (data[i + 3] ?? 0) / 255;
           r += (data[i] ?? 0) * a;
@@ -33,9 +41,7 @@ function useAverageColor(src: string) {
           weight += a;
         }
         if (weight === 0) return;
-        setColor(
-          `rgb(${Math.round(r / weight)}, ${Math.round(g / weight)}, ${Math.round(b / weight)})`,
-        );
+        setColor(`rgb(${Math.round(r / weight)}, ${Math.round(g / weight)}, ${Math.round(b / weight)})`);
       } catch {
         // canvas may be tainted if the source isn't same-origin — keep the fallback color
       }
@@ -78,22 +84,20 @@ const homeServices = [
   {
     Icon: Palette,
     label: "Custom in-organisation software",
-    detail:
-      "Tools built around how your team actually operates, replacing manual processes with software that fits.",
+    detail: "Tools built around how your team actually operates, replacing manual processes with software that fits.",
   },
   {
     Icon: Cloud,
     label: "Cloud management services",
-    detail:
-      "We set up and maintain your cloud infrastructure so it stays fast, secure and always available.",
+    detail: "We set up and maintain your cloud infrastructure so it stays fast, secure and always available.",
   },
   {
     Icon: Bot,
     label: "Agentic automation workflows",
-    detail:
-      "AI agents that handle repetitive tasks automatically, freeing your team to focus on real work.",
+    detail: "AI agents that handle repetitive tasks automatically, freeing your team to focus on real work.",
   },
 ];
+
 
 const projects = [
   {
@@ -127,10 +131,7 @@ function Index() {
   return (
     <>
       {/* ===== HOME ===== */}
-      <main
-        id="home"
-        className="relative flex min-h-screen flex-col px-6 pb-10 pt-24 md:pl-28 md:pr-10"
-      >
+      <main id="home" className="relative flex min-h-screen flex-col px-6 pb-10 pt-24 md:pl-28 md:pr-10">
         {/* Centered hero title */}
         <div className="pop-in mx-auto max-w-5xl shrink-0 text-center">
           <h1 className="font-notch font-bold leading-[0.95] text-white [text-shadow:0_10px_40px_rgba(0,0,0,0.35)]">
@@ -203,9 +204,7 @@ function Index() {
                     <Icon size={18} className="mt-0.5 shrink-0 text-white/60" />
                     <div>
                       <p className="text-[16px] font-semibold text-white">{label}</p>
-                      <p className="mt-1 text-[11px] font-medium leading-[1.5] text-white/70">
-                        {detail}
-                      </p>
+                      <p className="mt-1 text-[11px] font-medium leading-[1.5] text-white/70">{detail}</p>
                     </div>
                   </li>
                 ))}
@@ -230,15 +229,132 @@ function Index() {
       </main>
 
       {/* ===== SERVICES ===== */}
-      <ServicesSection />
+      <section id="services" className="relative" style={{ background: "#faf7f1", color: "#1a1a1a" }}>
+        <div className="mx-auto max-w-6xl px-5 pb-28 pt-32 md:pl-28">
+          <p className="pop-in text-xs uppercase tracking-[0.35em] text-neutral-500">What we do</p>
+          <h1 className="pop-in mt-4 max-w-3xl font-display text-5xl font-bold leading-[0.95] text-neutral-900 sm:text-6xl md:text-7xl">
+            Services
+          </h1>
+          <p className="pop-in mt-6 max-w-2xl text-[14px] leading-[1.7] text-neutral-600">
+            End-to-end fullstack development from first sketch to a live, maintained product.
+          </p>
+          <p className="pop-in mt-4 max-w-2xl text-[20px] leading-[1.6] text-neutral-800">
+            We offer the following services and a few more besides. Tell us what you're building
+            and we'll figure out the right approach for your product and budget together.
+          </p>
+
+          {/* 1. Web engineering */}
+          <div className="mt-24 grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">Web engineering</h2>
+              <p className="mt-4 text-[15px] leading-[1.75] text-neutral-600">
+                We build fast, modern websites and web applications using React, TypeScript and
+                Tailwind, engineered for speed, accessibility and a codebase your team can
+                actually maintain.
+              </p>
+              <p className="mt-3 text-[15px] leading-[1.75] text-neutral-600">
+                Every project starts from how real users will move through it, not a template.
+              </p>
+            </div>
+            <img
+              src={labiancaHeroBrowser}
+              alt="Labianca website, built by noven"
+              className="w-full rounded-3xl shadow-[var(--shadow-float)]"
+            />
+          </div>
+
+          <div className="mt-14">
+            <ThreeUpMockup screenshot={labiancaContent} alt="Labianca website across devices" />
+          </div>
+
+          {/* 2. Mobile apps */}
+          <div className="mt-28 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">Mobile apps</h2>
+              <p className="mt-4 text-[15px] leading-[1.75] text-neutral-600">
+                We build offline-first mobile apps that keep working smoothly even when
+                connectivity drops, so your users never feel the gap. For one community app we
+                built, members can chat, share updates and stay connected even with patchy data,
+                syncing the moment a signal returns so nobody misses a conversation.
+              </p>
+              <p className="mt-3 text-[15px] leading-[1.75] text-neutral-600">
+                From onboarding to daily use, we design for the phone in someone's hand, not a
+                desktop screen shrunk down.
+              </p>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <Carousel images={[graceHome, graceChat, graceSettings]} alt="Community app screens" />
+            </div>
+          </div>
+
+          {/* 3. Backend & data */}
+          <div className="mt-28 grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">Backend &amp; data</h2>
+              <p className="mt-4 text-[15px] leading-[1.75] text-neutral-600">
+                We design and maintain backend systems using Supabase and PostgreSQL, with row
+                level security done properly from the start. That means your data stays
+                organized, fast to query and genuinely secure as your product grows, without a
+                rebuild every time you add a new feature. It is the unglamorous part of the
+                stack, and it's where most shortcuts get taken. We don't take them.
+              </p>
+            </div>
+            <div className="flex justify-center text-neutral-800">
+              <ServerDbIllustration />
+            </div>
+          </div>
+
+          {/* 4. Product design */}
+          <div className="mt-28">
+            <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">Product design</h2>
+            <p className="mt-4 max-w-2xl text-[15px] leading-[1.75] text-neutral-600">
+              Good design is not decoration, it is how your product earns trust in the first few
+              seconds. We take every project from rough wireframes to a polished, on brand
+              interface, testing real flows until it feels obvious rather than clever.
+            </p>
+            <div className="mt-8 text-neutral-900">
+              <DesignShowcase
+                images={[
+                  { src: labiancaHeroBrowser, alt: "Labianca" },
+                  { src: yoglaitHome, alt: "Yoglait" },
+                  { src: graceChat, alt: "Community app chat" },
+                  { src: labiancaSolar, alt: "Labianca solar energy page" },
+                ]}
+              />
+            </div>
+          </div>
+
+          {/* 5. AI-assisted development */}
+          <div className="mt-28 grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">
+                AI-assisted development
+              </h2>
+              <p className="mt-4 text-[15px] leading-[1.75] text-neutral-600">
+                We pair with AI coding agents throughout development, directing real feature
+                work, debugging and iterative design, while staying the ones reviewing every diff
+                and deciding what is actually correct. It lets us move through more iteration per
+                session without cutting quality, and we bring that same speed to automation work
+                inside your own business.
+              </p>
+              <p className="mt-3 text-[15px] leading-[1.75] text-neutral-600">
+                Most companies we work with automate customer support replies, data entry between
+                systems and routine reporting first, with AI increasingly handling first drafts
+                of code reviews, content and internal documentation.
+              </p>
+            </div>
+            <div className="flex justify-center text-neutral-800">
+              <AutomationIllustration />
+            </div>
+          </div>
+
+          {/* 6. Support & growth — footnote, not a numbered point */}
+          <SupportFootnote />
+        </div>
+      </section>
 
       {/* ===== WORK ===== */}
-      <PageShell
-        id="work"
-        eyebrow="Selected projects"
-        title="Work"
-        intro="A few things we've shipped recently."
-      >
+      <PageShell id="work" eyebrow="Selected projects" title="Work" intro="A few things we've shipped recently.">
         <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
           {projects.map((p) => (
             <GlassCard key={p.name} shape={p.shape} className={p.tall ? "min-h-72" : "min-h-52"}>

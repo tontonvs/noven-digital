@@ -179,6 +179,40 @@
   animation: float-slow 9s ease-in-out infinite;
 }
 
+@utility spin-slow {
+  animation: spin 6s linear infinite;
+}
+
+@utility spin-slow-reverse {
+  animation: spin 6s linear infinite reverse;
+}
+
+@utility pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@utility dash-flow {
+  animation: dash-flow 1.4s linear infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
 @utility glow-once {
   animation: glow-once 2s ease-out 0.4s 1 both;
 }
@@ -292,33 +326,6 @@
 
 @utility drop-in {
   animation: drop-in 0.7s var(--bounce) both;
-}
-
-@keyframes spin-slow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@utility spin-slow {
-  animation: spin-slow 7s linear infinite;
-}
-
-@keyframes pulse-soft {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.55;
-  }
-}
-
-@utility pulse-soft {
-  animation: pulse-soft 3.2s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
