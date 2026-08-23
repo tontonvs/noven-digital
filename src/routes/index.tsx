@@ -4,6 +4,7 @@ import { ArrowUpRight, Bot, Cloud, Palette, WifiOff } from "lucide-react";
 import novenLogo from "@/assets/noven_logo.png";
 import { PageShell } from "@/components/site/PageShell";
 import { GlassCard } from "@/components/site/GlassCard";
+import { ServicesSection } from "@/components/site/ServicesSection";
 
 function useAverageColor(src: string) {
   const [color, setColor] = useState("rgba(255,255,255,0.5)");
@@ -20,7 +21,10 @@ function useAverageColor(src: string) {
         if (!ctx) return;
         ctx.drawImage(img, 0, 0, size, size);
         const { data } = ctx.getImageData(0, 0, size, size);
-        let r = 0, g = 0, b = 0, weight = 0;
+        let r = 0,
+          g = 0,
+          b = 0,
+          weight = 0;
         for (let i = 0; i < data.length; i += 4) {
           const a = (data[i + 3] ?? 0) / 255;
           r += (data[i] ?? 0) * a;
@@ -29,7 +33,9 @@ function useAverageColor(src: string) {
           weight += a;
         }
         if (weight === 0) return;
-        setColor(`rgb(${Math.round(r / weight)}, ${Math.round(g / weight)}, ${Math.round(b / weight)})`);
+        setColor(
+          `rgb(${Math.round(r / weight)}, ${Math.round(g / weight)}, ${Math.round(b / weight)})`,
+        );
       } catch {
         // canvas may be tainted if the source isn't same-origin — keep the fallback color
       }
@@ -72,44 +78,20 @@ const homeServices = [
   {
     Icon: Palette,
     label: "Custom in-organisation software",
-    detail: "Tools built around how your team actually operates, replacing manual processes with software that fits.",
+    detail:
+      "Tools built around how your team actually operates, replacing manual processes with software that fits.",
   },
   {
     Icon: Cloud,
     label: "Cloud management services",
-    detail: "We set up and maintain your cloud infrastructure so it stays fast, secure and always available.",
+    detail:
+      "We set up and maintain your cloud infrastructure so it stays fast, secure and always available.",
   },
   {
     Icon: Bot,
     label: "Agentic automation workflows",
-    detail: "AI agents that handle repetitive tasks automatically, freeing your team to focus on real work.",
-  },
-];
-
-const fullServices = [
-  {
-    name: "Product design",
-    desc: "Interfaces that feel considered — from wireframes to a polished, on-brand UI.",
-  },
-  {
-    name: "Web engineering",
-    desc: "Fast, modern marketing sites and web apps built with React, TypeScript and Tailwind.",
-  },
-  {
-    name: "Mobile & offline-first apps",
-    desc: "Cross-platform apps with Capacitor that stay usable even with patchy connectivity.",
-  },
-  {
-    name: "Backend & data",
-    desc: "Supabase and PostgreSQL-backed systems with row-level security done right.",
-  },
-  {
-    name: "AI-assisted development",
-    desc: "Agentic workflows that speed up iteration without skipping review or QA.",
-  },
-  {
-    name: "Support & growth",
-    desc: "Ongoing maintenance, fixes and feature work after launch.",
+    detail:
+      "AI agents that handle repetitive tasks automatically, freeing your team to focus on real work.",
   },
 ];
 
@@ -145,7 +127,10 @@ function Index() {
   return (
     <>
       {/* ===== HOME ===== */}
-      <main id="home" className="relative flex min-h-screen flex-col px-6 pb-10 pt-24 md:pl-28 md:pr-10">
+      <main
+        id="home"
+        className="relative flex min-h-screen flex-col px-6 pb-10 pt-24 md:pl-28 md:pr-10"
+      >
         {/* Centered hero title */}
         <div className="pop-in mx-auto max-w-5xl shrink-0 text-center">
           <h1 className="font-notch font-bold leading-[0.95] text-white [text-shadow:0_10px_40px_rgba(0,0,0,0.35)]">
@@ -218,7 +203,9 @@ function Index() {
                     <Icon size={18} className="mt-0.5 shrink-0 text-white/60" />
                     <div>
                       <p className="text-[16px] font-semibold text-white">{label}</p>
-                      <p className="mt-1 text-[11px] font-medium leading-[1.5] text-white/70">{detail}</p>
+                      <p className="mt-1 text-[11px] font-medium leading-[1.5] text-white/70">
+                        {detail}
+                      </p>
                     </div>
                   </li>
                 ))}
@@ -243,29 +230,15 @@ function Index() {
       </main>
 
       {/* ===== SERVICES ===== */}
-      <PageShell
-        id="services"
-        eyebrow="What we do"
-        title="Services"
-        intro="End-to-end fullstack development — from first sketch to a live, maintained product."
-      >
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {fullServices.map((s, i) => (
-            <GlassCard
-              key={s.name}
-              shape={(["a", "b", "c", "pill"] as const)[i % 4]}
-              className="min-h-44"
-            >
-              <p className="text-xs text-muted-foreground">0{i + 1}</p>
-              <h2 className="mt-3 text-xl font-bold">{s.name}</h2>
-              <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
-            </GlassCard>
-          ))}
-        </div>
-      </PageShell>
+      <ServicesSection />
 
       {/* ===== WORK ===== */}
-      <PageShell id="work" eyebrow="Selected projects" title="Work" intro="A few things we've shipped recently.">
+      <PageShell
+        id="work"
+        eyebrow="Selected projects"
+        title="Work"
+        intro="A few things we've shipped recently."
+      >
         <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
           {projects.map((p) => (
             <GlassCard key={p.name} shape={p.shape} className={p.tall ? "min-h-72" : "min-h-52"}>

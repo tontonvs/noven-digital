@@ -294,6 +294,33 @@
   animation: drop-in 0.7s var(--bounce) both;
 }
 
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@utility spin-slow {
+  animation: spin-slow 7s linear infinite;
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@utility pulse-soft {
+  animation: pulse-soft 3.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
