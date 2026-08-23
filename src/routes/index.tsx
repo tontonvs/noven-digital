@@ -1,7 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Bot, Cloud, Palette, WifiOff } from "lucide-react";
 import novenLogo from "@/assets/noven_logo.png";
+import { PageShell } from "@/components/site/PageShell";
+import { GlassCard } from "@/components/site/GlassCard";
 
 function useAverageColor(src: string) {
   const [color, setColor] = useState("rgba(255,255,255,0.5)");
@@ -37,6 +39,10 @@ function useAverageColor(src: string) {
   return color;
 }
 
+function scrollToSection(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -56,7 +62,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const services = [
+const homeServices = [
   {
     Icon: WifiOff,
     label: "Offline-first mobile apps",
@@ -80,107 +86,264 @@ const services = [
   },
 ];
 
+const fullServices = [
+  {
+    name: "Product design",
+    desc: "Interfaces that feel considered — from wireframes to a polished, on-brand UI.",
+  },
+  {
+    name: "Web engineering",
+    desc: "Fast, modern marketing sites and web apps built with React, TypeScript and Tailwind.",
+  },
+  {
+    name: "Mobile & offline-first apps",
+    desc: "Cross-platform apps with Capacitor that stay usable even with patchy connectivity.",
+  },
+  {
+    name: "Backend & data",
+    desc: "Supabase and PostgreSQL-backed systems with row-level security done right.",
+  },
+  {
+    name: "AI-assisted development",
+    desc: "Agentic workflows that speed up iteration without skipping review or QA.",
+  },
+  {
+    name: "Support & growth",
+    desc: "Ongoing maintenance, fixes and feature work after launch.",
+  },
+];
+
+const projects = [
+  {
+    name: "Grace Connect",
+    tag: "Mobile App",
+    desc: "An offline-first community app for churches to chat, share and stay connected.",
+    shape: "b" as const,
+    tall: true,
+  },
+  {
+    name: "Labianca Frost",
+    tag: "Marketing Website",
+    desc: "A modern marketing site for a Ghanaian frozen foods company, built for clarity and a premium feel.",
+    shape: "a" as const,
+    tall: false,
+  },
+  {
+    name: "More on the way",
+    tag: "In progress",
+    desc: "New case studies are being added as they ship — check back soon.",
+    shape: "c" as const,
+    tall: false,
+  },
+];
+
 const LOGO_SIZE = 86.4;
 
 function Index() {
   const logoRingColor = useAverageColor(novenLogo);
 
   return (
-    <main className="relative flex min-h-screen flex-col px-6 pb-10 pt-24 md:pl-28 md:pr-10">
-      {/* Centered hero title */}
-      <div className="pop-in mx-auto max-w-5xl shrink-0 text-center">
-        <h1 className="font-notch font-bold leading-[0.95] text-white [text-shadow:0_10px_40px_rgba(0,0,0,0.35)]">
-          <span className="block text-[clamp(2rem,6vw,80px)]">Discovering innovative</span>
-          <span className="block text-[clamp(1.9rem,5.6vw,75px)]">solutions &lt;/&gt;</span>
-        </h1>
-      </div>
+    <>
+      {/* ===== HOME ===== */}
+      <main id="home" className="relative flex min-h-screen flex-col px-6 pb-10 pt-24 md:pl-28 md:pr-10">
+        {/* Centered hero title */}
+        <div className="pop-in mx-auto max-w-5xl shrink-0 text-center">
+          <h1 className="font-notch font-bold leading-[0.95] text-white [text-shadow:0_10px_40px_rgba(0,0,0,0.35)]">
+            <span className="block text-[clamp(2rem,6vw,80px)]">Discovering innovative</span>
+            <span className="block text-[clamp(1.9rem,5.6vw,75px)]">solutions &lt;/&gt;</span>
+          </h1>
+        </div>
 
-      {/* Left supporting copy */}
-      <p className="pop-in mt-6 max-w-md text-left text-[14px] font-medium leading-[1.7] text-white/90">
-        Building engineering solutions to tackle your digital problems in the most effective and
-        innovative way possible — not only to connect you and your clients (users), but to ensure
-        ease and comfort of use through visually stunning design and interface, so you can focus
-        on what truly matters. — noven
-      </p>
+        {/* Left supporting copy */}
+        <p className="pop-in mt-6 max-w-md text-left text-[14px] font-medium leading-[1.7] text-white/90">
+          Building engineering solutions to tackle your digital problems in the most effective and
+          innovative way possible — not only to connect you and your clients (users), but to ensure
+          ease and comfort of use through visually stunning design and interface, so you can focus
+          on what truly matters. — noven
+        </p>
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-start">
-        {/* Affordability Rule — floating card, separated from the bezel/dock, gently rounded */}
-        <section className="pop-in relative flex min-w-0 w-full max-w-md flex-col rounded-3xl bg-card p-6 shadow-[var(--shadow-float)] backdrop-blur-xl transition-transform duration-300 [transform-style:preserve-3d] hover:[transform:perspective(800px)_rotateX(2deg)_rotateY(-3deg)]">
-          <div className="flex items-start justify-between gap-3">
-            <h2 className="text-left font-sans text-[20px] font-semibold text-card-foreground">
-              # Affordability Rule
-            </h2>
-            <Link
-              to="/work"
-              aria-label="See our work"
-              className="bouncy z-20 grid size-12 shrink-0 place-items-center rounded-full bg-foreground text-background hover:-translate-y-1 hover:scale-110"
-            >
-              <ArrowUpRight size={18} />
-            </Link>
-          </div>
+        <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-start">
+          {/* Affordability Rule — floating card, separated from the bezel/dock, gently rounded */}
+          <section className="pop-in relative flex min-w-0 w-full max-w-md flex-col rounded-3xl bg-card p-6 shadow-[var(--shadow-float)] backdrop-blur-xl transition-transform duration-300 [transform-style:preserve-3d] hover:[transform:perspective(800px)_rotateX(2deg)_rotateY(-3deg)]">
+            <div className="flex items-start justify-between gap-3">
+              <h2 className="text-left font-sans text-[20px] font-semibold text-card-foreground">
+                # Affordability Rule
+              </h2>
+              <button
+                onClick={() => scrollToSection("work")}
+                aria-label="See our work"
+                className="bouncy z-20 grid size-12 shrink-0 place-items-center rounded-full bg-foreground text-background hover:-translate-y-1 hover:scale-110"
+              >
+                <ArrowUpRight size={18} />
+              </button>
+            </div>
 
-          <p className="mt-2.5 text-left text-[14px] leading-[1.7] text-muted-foreground">
-            Putting our clients first is our foremost priority. Alongside connecting all of Africa
-            and beyond, we eliminate digital roadblocks with swiftness and expert craftsmanship,
-            worry-free of financial drawbacks.
-          </p>
-
-          <div className="mt-5 text-left">
-            <p className="font-sans text-[clamp(2.2rem,4vw,55px)] font-bold leading-none text-card-foreground">
-              <span className="glow-once">&lt;</span>₵5,000
+            <p className="mt-2.5 text-left text-[14px] leading-[1.7] text-muted-foreground">
+              Putting our clients first is our foremost priority. Alongside connecting all of Africa
+              and beyond, we eliminate digital roadblocks with swiftness and expert craftsmanship,
+              worry-free of financial drawbacks.
             </p>
-          </div>
 
-          <p className="mt-1 text-left text-[13px] text-muted-foreground">
-            get your website or app up and running for funds as low as{" "}
-            <span className="whitespace-nowrap">
-              <span className="font-bold text-foreground">₵630</span>–
-              <span className="font-bold text-foreground">₵5,000</span>
-            </span>
-          </p>
-        </section>
+            <div className="mt-5 text-left">
+              <p className="font-sans text-[clamp(2.2rem,4vw,55px)] font-bold leading-none text-card-foreground">
+                <span className="glow-once">&lt;</span>₵5,000
+              </p>
+            </div>
 
-        {/* Services card */}
-        <div className="relative w-full max-w-lg lg:ml-auto">
-          <section
-            className="pop-in relative flex min-w-0 w-full flex-col glass-frost p-6 pb-16 shadow-[var(--shadow-float)] transition-transform duration-300 [transform-style:preserve-3d] hover:[transform:perspective(800px)_rotateX(2deg)_rotateY(-3deg)]"
-            style={{
-              borderTopLeftRadius: 24,
-              borderTopRightRadius: 24,
-              borderBottomRightRadius: 24,
-              borderBottomLeftRadius: 96, // large native radius — the "halo" around the logo, no mask needed
-            }}
-          >
-            <h2 className="text-left font-sans text-[28px] font-bold text-white">Services</h2>
-
-            <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-              {services.map(({ Icon, label, detail }) => (
-                <li key={label} className="flex items-start gap-2.5">
-                  <Icon size={18} className="mt-0.5 shrink-0 text-white/60" />
-                  <div>
-                    <p className="text-[16px] font-semibold text-white">{label}</p>
-                    <p className="mt-1 text-[11px] font-medium leading-[1.5] text-white/70">{detail}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <p className="mt-1 text-left text-[13px] text-muted-foreground">
+              get your website or app up and running for funds as low as{" "}
+              <span className="whitespace-nowrap">
+                <span className="font-bold text-foreground">₵630</span>–
+                <span className="font-bold text-foreground">₵5,000</span>
+              </span>
+            </p>
           </section>
 
-          {/* noven logo — sits astride the halo corner above */}
-          <div
-            className="absolute grid place-items-center overflow-hidden rounded-full backdrop-blur-xl"
-            style={{
-              width: `${LOGO_SIZE}px`,
-              height: `${LOGO_SIZE}px`,
-              border: `2px solid ${logoRingColor}`,
-              bottom: "-20px",
-              left: "-20px",
-            }}
-          >
-            <img src={novenLogo} alt="noven" className="size-full object-cover" />
+          {/* Services teaser card */}
+          <div className="relative w-full max-w-lg lg:ml-auto">
+            <section
+              className="pop-in relative flex min-w-0 w-full flex-col glass-frost p-6 pb-16 shadow-[var(--shadow-float)] transition-transform duration-300 [transform-style:preserve-3d] hover:[transform:perspective(800px)_rotateX(2deg)_rotateY(-3deg)]"
+              style={{
+                borderTopLeftRadius: 24,
+                borderTopRightRadius: 24,
+                borderBottomRightRadius: 24,
+                borderBottomLeftRadius: 96,
+              }}
+            >
+              <h2 className="text-left font-sans text-[28px] font-bold text-white">Services</h2>
+
+              <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+                {homeServices.map(({ Icon, label, detail }) => (
+                  <li key={label} className="flex items-start gap-2.5">
+                    <Icon size={18} className="mt-0.5 shrink-0 text-white/60" />
+                    <div>
+                      <p className="text-[16px] font-semibold text-white">{label}</p>
+                      <p className="mt-1 text-[11px] font-medium leading-[1.5] text-white/70">{detail}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* noven logo — sits astride the halo corner above */}
+            <div
+              className="absolute grid place-items-center overflow-hidden rounded-full backdrop-blur-xl"
+              style={{
+                width: `${LOGO_SIZE}px`,
+                height: `${LOGO_SIZE}px`,
+                border: `2px solid ${logoRingColor}`,
+                bottom: "-20px",
+                left: "-20px",
+              }}
+            >
+              <img src={novenLogo} alt="noven" className="size-full object-cover" />
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+
+      {/* ===== SERVICES ===== */}
+      <PageShell
+        id="services"
+        eyebrow="What we do"
+        title="Services"
+        intro="End-to-end fullstack development — from first sketch to a live, maintained product."
+      >
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {fullServices.map((s, i) => (
+            <GlassCard
+              key={s.name}
+              shape={(["a", "b", "c", "pill"] as const)[i % 4]}
+              className="min-h-44"
+            >
+              <p className="text-xs text-muted-foreground">0{i + 1}</p>
+              <h2 className="mt-3 text-xl font-bold">{s.name}</h2>
+              <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
+            </GlassCard>
+          ))}
+        </div>
+      </PageShell>
+
+      {/* ===== WORK ===== */}
+      <PageShell id="work" eyebrow="Selected projects" title="Work" intro="A few things we've shipped recently.">
+        <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
+          {projects.map((p) => (
+            <GlassCard key={p.name} shape={p.shape} className={p.tall ? "min-h-72" : "min-h-52"}>
+              <div className="mb-4 h-24 blob-a bg-glass-strong" />
+              <p className="text-xs text-muted-foreground">{p.tag}</p>
+              <h2 className="mt-1 text-lg font-bold">{p.name}</h2>
+              <p className="mt-1 text-sm text-muted-foreground">{p.desc}</p>
+            </GlassCard>
+          ))}
+        </div>
+      </PageShell>
+
+      {/* ===== ABOUT ===== */}
+      <PageShell
+        id="about"
+        eyebrow="Who we are"
+        title="About the studio"
+        intro="We build software the way we'd want to use it — fast, considered, and built to last past launch day."
+      >
+        <div className="mt-14 grid gap-5 md:grid-cols-[1fr_1fr]">
+          <GlassCard shape="a" strong className="min-h-60">
+            <h2 className="text-2xl font-bold">Our approach</h2>
+            <p className="mt-3 text-sm text-muted-foreground">
+              We work agentically, directing AI coding agents through real feature development,
+              debugging and iterative design — while staying the ones reviewing every diff and
+              deciding what's actually correct. It's a workflow, not a shortcut: it lets us move
+              through more iteration per session without cutting quality.
+            </p>
+          </GlassCard>
+          <div className="grid gap-5">
+            <GlassCard shape="b" float>
+              <h2 className="text-lg font-bold">Based in Accra</h2>
+              <p className="mt-2 text-sm text-muted-foreground">Working worldwide.</p>
+            </GlassCard>
+            <GlassCard shape="c">
+              <h2 className="text-lg font-bold">The stack</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                React, TypeScript, Tailwind, Supabase and Capacitor — for web and mobile alike.
+              </p>
+            </GlassCard>
+          </div>
+        </div>
+      </PageShell>
+
+      {/* ===== CONTACT ===== */}
+      <PageShell
+        id="contact"
+        eyebrow="Say hello"
+        title="Contact"
+        intro="Tell us about your project and we'll get back to you."
+      >
+        <div className="mt-14 grid gap-5 md:grid-cols-[1.2fr_1fr]">
+          <GlassCard shape="a" strong className="min-h-72">
+            <h2 className="text-xl font-bold">Start a conversation</h2>
+            <div className="mt-5 grid gap-3">
+              <div className="h-11 blob-pill bg-glass-strong" />
+              <div className="h-11 blob-pill bg-glass-strong" />
+              <div className="h-28 blob-b bg-glass-strong" />
+              <button className="blob-pill bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">
+                Send (form wiring coming next)
+              </button>
+            </div>
+          </GlassCard>
+          <div className="grid gap-5">
+            <GlassCard shape="c">
+              <h2 className="text-lg font-bold">Studio</h2>
+              <p className="mt-2 text-sm text-muted-foreground">Accra, Ghana</p>
+              <p className="mt-1 text-sm text-muted-foreground">mensahkbiz@gmail.com</p>
+              <p className="mt-1 text-sm text-muted-foreground">+233 548 456 600</p>
+            </GlassCard>
+            <GlassCard shape="b" float>
+              <h2 className="text-lg font-bold">Elsewhere</h2>
+              <p className="mt-2 text-sm text-muted-foreground">github.com/tontonvs</p>
+              <p className="mt-1 text-sm text-muted-foreground">linkedin.com/in/tonton-mensah</p>
+            </GlassCard>
+          </div>
+        </div>
+      </PageShell>
+    </>
   );
 }
