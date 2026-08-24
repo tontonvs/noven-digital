@@ -28,12 +28,12 @@ export function DesignShowcase({
 
   const thumbClass = (i: number) =>
     cn(
-      "group relative overflow-hidden border-4 border-white outline outline-2 -outline-offset-2 transition",
-      active === i ? "outline-[#0b1220]" : "outline-transparent hover:outline-[#0b1220]/30",
+      "group relative overflow-hidden border-4 border-card outline outline-2 -outline-offset-2 transition",
+      active === i ? "outline-foreground" : "outline-transparent hover:outline-foreground/30",
     );
 
   return (
-    <div className="relative rounded-[2.25rem] bg-white p-4 shadow-[0_30px_70px_-30px_rgba(11,18,32,0.2)] ring-1 ring-black/5 sm:p-6">
+    <div className="relative rounded-[2.25rem] bg-card p-4 shadow-[0_30px_70px_-30px_rgba(11,18,32,0.2)] ring-1 ring-black/5 sm:p-6">
       <div className="grid grid-cols-[1fr_1.15fr] gap-3 sm:gap-5">
         {/* left stack: long / two squares / long */}
         <div className="grid grid-rows-[auto_auto_auto] gap-3">
@@ -68,7 +68,7 @@ export function DesignShowcase({
         </div>
 
         {/* right: large active preview */}
-        <div className="relative overflow-hidden rounded-[1.6rem] bg-[#f3f1ec]">
+        <div className="relative overflow-hidden rounded-[1.6rem] bg-muted">
           {images.map((img, i) => (
             <img
               key={img.label}
@@ -105,15 +105,15 @@ export function DesignShowcase({
         <button
           onClick={() => go(-1)}
           aria-label="Previous design"
-          className="bouncy grid size-9 place-items-center rounded-full bg-[#0b1220] text-white hover:scale-110"
+          className="bouncy grid size-9 place-items-center rounded-full bg-foreground text-background hover:scale-110"
         >
           <ChevronLeft size={15} />
         </button>
-        <p className="text-xs font-medium text-[#4b5565]">{images[active]!.label}</p>
+        <p className="text-xs font-medium ink-soft">{images[active]!.label}</p>
         <button
           onClick={() => go(1)}
           aria-label="Next design"
-          className="bouncy grid size-9 place-items-center rounded-full bg-[#0b1220] text-white hover:scale-110"
+          className="bouncy grid size-9 place-items-center rounded-full bg-foreground text-background hover:scale-110"
         >
           <ChevronRight size={15} />
         </button>

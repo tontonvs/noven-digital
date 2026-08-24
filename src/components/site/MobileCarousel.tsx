@@ -27,7 +27,7 @@ export function MobileCarousel({ slides }: { slides: Slide[] }) {
             alt=""
             className="h-full w-[225px] max-w-none object-cover object-top"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/60 to-white" />
+          <div className="absolute inset-0 bg-gradient-to-r from-card/5 via-card/60 to-card" />
         </div>
 
         {/* active screen */}
@@ -45,7 +45,7 @@ export function MobileCarousel({ slides }: { slides: Slide[] }) {
         <button
           onClick={advance}
           aria-label="Next screen"
-          className="bouncy grid size-9 shrink-0 place-items-center rounded-full bg-[#0b1220] text-white hover:scale-110"
+          className="bouncy grid size-9 shrink-0 place-items-center rounded-full bg-foreground text-background hover:scale-110"
         >
           <ChevronRight size={16} />
         </button>
@@ -59,7 +59,7 @@ export function MobileCarousel({ slides }: { slides: Slide[] }) {
             aria-label={`Show ${slide.label}`}
             className={cn(
               "h-1.5 rounded-full transition-all duration-300",
-              i === index ? "w-6 bg-[#0b1220]" : "w-1.5 bg-[#0b1220]/25",
+              i === index ? "w-6 bg-foreground" : "w-1.5 bg-foreground/25",
             )}
           />
         ))}

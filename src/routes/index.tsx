@@ -5,6 +5,7 @@ import novenLogo from "@/assets/noven_logo.png";
 import { PageShell } from "@/components/site/PageShell";
 import { GlassCard } from "@/components/site/GlassCard";
 import { ServicesSection } from "@/components/site/ServicesSection";
+import { WorkSection } from "@/components/site/WorkSection";
 
 function useAverageColor(src: string) {
   const [color, setColor] = useState("rgba(255,255,255,0.5)");
@@ -92,30 +93,6 @@ const homeServices = [
     label: "Agentic automation workflows",
     detail:
       "AI agents that handle repetitive tasks automatically, freeing your team to focus on real work.",
-  },
-];
-
-const projects = [
-  {
-    name: "Grace Connect",
-    tag: "Mobile App",
-    desc: "An offline-first community app for churches to chat, share and stay connected.",
-    shape: "b" as const,
-    tall: true,
-  },
-  {
-    name: "Labianca Frost",
-    tag: "Marketing Website",
-    desc: "A modern marketing site for a Ghanaian frozen foods company, built for clarity and a premium feel.",
-    shape: "a" as const,
-    tall: false,
-  },
-  {
-    name: "More on the way",
-    tag: "In progress",
-    desc: "New case studies are being added as they ship — check back soon.",
-    shape: "c" as const,
-    tall: false,
   },
 ];
 
@@ -233,23 +210,7 @@ function Index() {
       <ServicesSection />
 
       {/* ===== WORK ===== */}
-      <PageShell
-        id="work"
-        eyebrow="Selected projects"
-        title="Work"
-        intro="A few things we've shipped recently."
-      >
-        <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
-          {projects.map((p) => (
-            <GlassCard key={p.name} shape={p.shape} className={p.tall ? "min-h-72" : "min-h-52"}>
-              <div className="mb-4 h-24 blob-a bg-glass-strong" />
-              <p className="text-xs text-muted-foreground">{p.tag}</p>
-              <h2 className="mt-1 text-lg font-bold">{p.name}</h2>
-              <p className="mt-1 text-sm text-muted-foreground">{p.desc}</p>
-            </GlassCard>
-          ))}
-        </div>
-      </PageShell>
+      <WorkSection />
 
       {/* ===== ABOUT ===== */}
       <PageShell

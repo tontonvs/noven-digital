@@ -32,14 +32,14 @@ const designImages = [
 export function ServicesSection() {
   return (
     <section id="services" className="relative">
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-[#faf7f2] sm:mx-4 sm:rounded-[3rem]">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-card sm:mx-4 sm:rounded-[3rem]">
         <div className="mx-auto max-w-6xl px-5 pb-28 pt-28 md:pl-28 md:pr-10">
           {/* header */}
-          <p className="pop-in text-xs uppercase tracking-[0.35em] text-[#4b5565]">What we do</p>
+          <p className="pop-in text-xs uppercase tracking-[0.35em] ink-soft">What we do</p>
           <h2 className="pop-in mt-4 max-w-3xl font-display text-5xl font-bold leading-[0.95] ink sm:text-6xl md:text-7xl">
             Services
           </h2>
-          <p className="pop-in mt-6 max-w-xl text-[14px] leading-[1.7] text-[#4b5565]">
+          <p className="pop-in mt-6 max-w-xl text-[14px] leading-[1.7] ink-soft">
             End-to-end fullstack development from first sketch to a live, maintained product.
           </p>
           <p className="pop-in mt-4 max-w-xl text-[20px] leading-[1.6] font-medium ink">
@@ -51,14 +51,14 @@ export function ServicesSection() {
           <div className="mt-24 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
               <h3 className="font-display text-3xl font-bold ink sm:text-4xl">Web engineering</h3>
-              <p className="mt-5 text-[15px] leading-[1.8] text-[#4b5565]">
+              <p className="mt-5 text-[15px] leading-[1.8] ink-soft">
                 We design and build fast, modern websites and web apps from a marketing site's first
                 sketch to a fully working product. Every layout is planned around real content so
                 pages hold up once you start adding your own products, pricing or case studies. We
                 pay close attention to load speed, accessibility and how a page reads on a small
                 screen, because most visitors will meet your site on mobile screen first.
               </p>
-              <p className="mt-4 text-[15px] leading-[1.8] text-[#4b5565]">
+              <p className="mt-4 text-[15px] leading-[1.8] ink-soft">
                 Everything ships on a fast edge network, so a shopper down the road and a client
                 abroad both get the same snappy load.
               </p>
@@ -81,7 +81,7 @@ export function ServicesSection() {
               className="w-full object-cover"
             />
           </div>
-          <p className="mt-4 text-center text-xs text-[#4b5565]">
+          <p className="mt-4 text-center text-xs ink-soft">
             One build, tuned for every screen it lands on.
           </p>
 
@@ -93,14 +93,14 @@ export function ServicesSection() {
 
             <div className="order-1 lg:order-2">
               <h3 className="font-display text-3xl font-bold ink sm:text-4xl">Mobile apps</h3>
-              <p className="mt-5 text-[15px] leading-[1.8] text-[#4b5565]">
+              <p className="mt-5 text-[15px] leading-[1.8] ink-soft">
                 We build cross-platform apps that keep working when the network doesn't caching what
                 matters locally and syncing the moment signal returns, instead of showing a blank
                 screen. One recent build handles live chat, a content feed and event listings for a
                 community of thousands, all wrapped in a profile people can genuinely make their
                 own, down to their avatar and status.
               </p>
-              <p className="mt-4 text-[15px] leading-[1.8] text-[#4b5565]">
+              <p className="mt-4 text-[15px] leading-[1.8] ink-soft">
                 Under the hood it's one codebase for iOS, Android and the web, so updates ship
                 everywhere at once instead of three separate release cycles.
               </p>
@@ -111,7 +111,7 @@ export function ServicesSection() {
           <div className="mt-28 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
               <h3 className="font-display text-3xl font-bold ink sm:text-4xl">Backend & data</h3>
-              <p className="mt-5 text-[15px] leading-[1.8] text-[#4b5565]">
+              <p className="mt-5 text-[15px] leading-[1.8] ink-soft">
                 Every app needs somewhere solid to keep its data, and that's where we spend real
                 design time not just after the interface is done. We build on Postgres and Supabase,
                 with row-level security enforced at the database itself, so access rules hold even
@@ -135,7 +135,7 @@ export function ServicesSection() {
           <div className="mt-28">
             <div className="mx-auto max-w-2xl text-center">
               <h3 className="font-display text-3xl font-bold ink sm:text-4xl">Product design</h3>
-              <p className="mt-5 text-[15px] leading-[1.8] text-[#4b5565]">
+              <p className="mt-5 text-[15px] leading-[1.8] ink-soft">
                 Good design starts before any code with wireframes, a clear layout hierarchy and a
                 look that fits the brand it's for, not a generic template. We design in a system:
                 consistent spacing, type and colour so new screens feel like they belong, even
@@ -164,7 +164,7 @@ export function ServicesSection() {
               <h3 className="font-display text-3xl font-bold ink sm:text-4xl">
                 AI-assisted development
               </h3>
-              <p className="mt-5 text-[15px] leading-[1.8] text-[#4b5565]">
+              <p className="mt-5 text-[15px] leading-[1.8] ink-soft">
                 We use AI agents to move faster on the repetitive parts of a build scaffolding
                 components, writing first-draft tests, and catching obvious bugs before a human ever
                 reviews the code. That speed never skips review: every AI-assisted change still goes
@@ -172,7 +172,7 @@ export function ServicesSection() {
                 build for clients automating the parts of a business that eat up staff time without
                 needing a human in the loop for every step.
               </p>
-              <p className="mt-4 text-[15px] leading-[1.8] text-[#4b5565]">
+              <p className="mt-4 text-[15px] leading-[1.8] ink-soft">
                 In practice that's things like auto-replying to common support questions,
                 reconciling payments when a provider like Paystack sends a webhook, qualifying leads
                 before they reach a salesperson, or generating a weekly report instead of someone
@@ -192,7 +192,7 @@ export function ServicesSection() {
           {/* ============ 6. SUPPORT & GROWTH (footnote) ============ */}
           <div className="mt-24 flex flex-col items-start gap-5 border-t border-[#0b1220]/10 pt-10 sm:flex-row sm:items-center">
             <UpdateArrows className="spin-slow pulse-soft size-10 shrink-0 text-[#c9871f]" />
-            <p className="text-[13.5px] leading-[1.8] text-[#4b5565]">
+            <p className="text-[13.5px] leading-[1.8] ink-soft">
               <span className="font-semibold ink">Support & growth. </span>
               Every product we ship gets checked over monthly dependencies, performance, small fixes
               and feature requests that piled up since the last pass. If something urgent breaks a
