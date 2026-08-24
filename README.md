@@ -1,6 +1,6 @@
 # Noven
 
-noven — a modern, futuristic agency landing site for a Ghana based fullstack dev studio. 5 pages: Home, Services, Work, About, Contact. Design: subtle glassmorphism, translucent white frosted-glass panels, organic asymmetric rounded shapes, full-bleed photographic hero background, floating vertical icon nav, bold modern headline typography, floating stat/info cards
+noven an agency landing site for a Ghana based fullstack dev studio. 5 pages: Home, Services, Work, About, Contact. Design: subtle glassmorphism, translucent white frosted-glass panels, organic asymmetric rounded shapes, full-bleed photographic hero background, floating vertical icon nav, bold modern headline typography, floating stat/info cards
 
 
 ## Development
