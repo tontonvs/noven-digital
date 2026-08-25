@@ -1,30 +1,31 @@
+import { GlassCard } from "./GlassCard";
 import { cn } from "@/lib/utils";
 
 export type Tool = { name: string; icon: string };
 
 /**
- * 3-column grid of tool/language logos. Greyscale by default, full brand
- * colour + a slight lift on hover.
+ * A single glass card (same component used on the homepage) holding every
+ * tool/language logo for a project. Icons sit greyscale by default and pop
+ * into full brand colour with a slight enlarge on hover.
  */
 export function ToolGrid({ tools, className }: { tools: Tool[]; className?: string }) {
   return (
-    <div className={cn("grid grid-cols-3 gap-3", className)}>
+    <GlassCard
+      shape="a"
+      className={cn("flex flex-wrap items-center justify-center gap-6 sm:gap-8", className)}
+    >
       {tools.map((tool) => (
-        <div
-          key={tool.name}
-          className="group flex aspect-square flex-col items-center justify-center gap-2 rounded-2xl bg-card p-3 shadow-sm ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md"
-          title={tool.name}
-        >
+        <div key={tool.name} className="group flex flex-col items-center gap-2" title={tool.name}>
           <img
             src={tool.icon}
             alt={tool.name}
-            className="h-7 w-7 grayscale transition-all duration-300 group-hover:scale-110 group-hover:grayscale-0 sm:h-8 sm:w-8"
+            className="h-12 w-12 grayscale transition-all duration-300 group-hover:scale-125 group-hover:grayscale-0 sm:h-14 sm:w-14"
           />
-          <span className="text-[10px] font-medium text-muted-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <span className="text-[10px] font-medium ink-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             {tool.name}
           </span>
         </div>
       ))}
-    </div>
+    </GlassCard>
   );
 }

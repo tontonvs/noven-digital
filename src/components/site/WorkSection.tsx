@@ -3,9 +3,7 @@ import { DeviceFrame } from "./DeviceFrame";
 import { ToolGrid, type Tool } from "./ToolGrid";
 import { FeatureSlide } from "./FeatureSlide";
 
-import yoglaitDesktop from "@/assets/work/yoglait-desktop.png";
-import yoglaitTablet from "@/assets/work/yoglait-tablet.png";
-import yoglaitPhone from "@/assets/work/yoglait-phone.jpg";
+import yoglaitDevices from "@/assets/work/yoglait-devices.jpg";
 import yoglaitLocation from "@/assets/work/yoglait-location.png";
 import yoglaitAdmin from "@/assets/work/yoglait-admin.png";
 import yoglaitHistory from "@/assets/work/yoglait-history.png";
@@ -116,26 +114,14 @@ export function WorkSection() {
             hygiene, fewer chances of theft, and no one fumbling for change at the door.
           </p>
 
-          <div className="mt-10 grid grid-cols-5 items-end gap-3 sm:gap-6">
-            <DeviceFrame
-              type="phone"
-              image={yoglaitPhone}
-              alt="Yoglait home, on a phone"
-              className="col-span-1"
-            />
-            <DeviceFrame
-              type="tablet"
-              image={yoglaitTablet}
-              alt="Yoglait home, on a tablet"
-              className="col-span-2"
-            />
-            <DeviceFrame
-              type="desktop"
-              image={yoglaitDesktop}
-              alt="Yoglait home, on a desktop"
-              className="col-span-2"
+          <div className="mt-10 overflow-hidden rounded-[1.75rem] shadow-[0_25px_60px_-25px_rgba(0,0,0,0.5)]">
+            <img
+              src={yoglaitDevices}
+              alt="The Yoglait homepage across desktop, laptop, tablet and phone"
+              className="w-full object-cover"
             />
           </div>
+          <p className="mt-4 text-center text-xs text-white/50">One homepage, four screens.</p>
 
           {/* problem / tools */}
           <div className="mt-14 grid items-center gap-8 sm:grid-cols-2">
