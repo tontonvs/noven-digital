@@ -1,44 +1,33 @@
 import { useState } from "react";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { DeviceFrame } from "./DeviceFrame";
 
 type Slide = { src: string; label: string };
 
 /**
- * Phone-framed carousel used in the "Mobile apps" service block.
- * Shows the active screen large, with a sliver of the next screen peeking
- * out from behind a white fade, plus a button to advance manually.
+ * Carousel used in the "Mobile apps" service block. The source photos
+ * already have a real phone frame baked in (not a CSS mockup), so they're
+ * rendered as-is here, uncropped, with no extra device frame on top.
  */
 export function MobileCarousel({ slides }: { slides: Slide[] }) {
   const [index, setIndex] = useState(0);
   const current = slides[index]!;
-  const next = slides[(index + 1) % slides.length]!;
 
   const advance = () => setIndex((i) => (i + 1) % slides.length);
 
   return (
-    <div className="relative mx-auto w-full max-w-[225px]">
-      <div className="relative">
-        {/* peeking next screen */}
-        <div className="pointer-events-none absolute inset-y-6 -right-7 z-0 w-16 overflow-hidden rounded-[1.4rem]">
-          <img
-            src={next.src}
-            alt=""
-            className="h-full w-[225px] max-w-none object-cover object-top"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-card/5 via-card/60 to-card" />
-        </div>
-
-        {/* active screen */}
-        <button
-          onClick={advance}
-          aria-label={`Currently showing ${current.label}. Tap for next screen.`}
-          className="bouncy relative z-10 block w-full cursor-pointer hover:-translate-y-1"
-        >
-          <DeviceFrame type="phone" image={current.src} alt={current.label} />
-        </button>
-      </div>
+    <div className="relative mx-auto w-full max-w-[158px]">
+      <button
+        onClick={advance}
+        aria-label={`Currently showing ${current.label}. Tap for next screen.`}
+        className="bouncy block w-full cursor-pointer hover:-translate-y-1"
+      >
+        <img
+          src={current.src}
+          alt={current.label}
+          className="w-full object-contain drop-shadow-[0_25px_50px_rgba(11,18,32,0.35)]"
+        />
+      </button>
 
       <div className="mt-5 flex items-center justify-between">
         <p className="text-sm font-semibold ink">{current.label}</p>
