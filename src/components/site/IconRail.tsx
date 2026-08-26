@@ -54,6 +54,8 @@ function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+const LINKEDIN_URL = "https://www.linkedin.com/in/tonton-mensah";
+
 const GMAIL_ADDRESS = "mensahkbiz@gmail.com";
 const GMAIL_SUBJECT = "Let's work together";
 const GMAIL_BODY = "Hi Tonton,\n\nI found Noven online and I'd like to talk about a project.\n\n";
@@ -106,9 +108,11 @@ export function IconRail() {
 
       {/* Capsule with the 2 remaining icons */}
       <div className="mt-2 flex flex-col items-center gap-1 rounded-full bg-card/92 p-1.5 shadow-md backdrop-blur-md">
-        <button
-          aria-label="Email us"
-          onClick={openGmailCompose}
+        <a
+          href={LINKEDIN_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Connect on LinkedIn"
           className="bouncy grid size-8 place-items-center overflow-hidden rounded-full bg-neutral-800 hover:scale-110"
         >
           <img
@@ -116,24 +120,14 @@ export function IconRail() {
             alt="Tonton Mensah"
             className="size-full object-cover grayscale"
           />
-        </button>
-        <a
-          href="#contact"
-          aria-label="Contact"
-          aria-current={active === "contact" ? "true" : undefined}
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection("contact");
-          }}
-          className={cn(
-            "bouncy grid size-8 place-items-center rounded-full",
-            active === "contact"
-              ? "bg-foreground text-background"
-              : "text-muted-foreground hover:bg-foreground/5",
-          )}
+        </a>
+        <button
+          onClick={openGmailCompose}
+          aria-label="Message us by email"
+          className="bouncy grid size-8 place-items-center rounded-full text-muted-foreground hover:bg-foreground/5"
         >
           <Send size={14} />
-        </a>
+        </button>
       </div>
     </nav>
   );
