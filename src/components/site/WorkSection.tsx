@@ -204,7 +204,13 @@ export function WorkSection() {
 
           {/* location / admin / history */}
           <div className="mt-14 grid items-center gap-8 lg:grid-cols-[1.1fr_1fr]">
-            <CardFanCarousel cards={yoglaitCards} hideCaption />
+            <CardFanCarousel
+              cards={yoglaitCards}
+              hideCaption
+              cardClassName="aspect-[6/5] w-[220px] sm:w-[260px]"
+              stackHeightClassName="h-[225px] sm:h-[250px]"
+              stackWidthClassName="max-w-lg"
+            />
             <div>
               <SubHeading>Built for the people running it</SubHeading>
               <p className="mt-3 text-[15px] leading-[1.8] text-white/85">

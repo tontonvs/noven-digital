@@ -16,10 +16,19 @@ export function CardFanCarousel({
   cards,
   hideCaption = false,
   className,
+  cardClassName = "aspect-[9/17] w-[150px] sm:w-[180px]",
+  stackHeightClassName = "h-[330px] sm:h-[400px]",
+  stackWidthClassName = "max-w-md",
 }: {
   cards: Card[];
   hideCaption?: boolean;
   className?: string;
+  /** Aspect ratio + width classes for each card — override for landscape screenshots. */
+  cardClassName?: string;
+  /** Height of the stacking area — should comfortably fit the tallest cascaded card. */
+  stackHeightClassName?: string;
+  /** Max width of the stacking area — widen for landscape cards with more horizontal spread. */
+  stackWidthClassName?: string;
 }) {
   const [active, setActive] = useState(cards.length - 1);
 
@@ -34,7 +43,7 @@ export function CardFanCarousel({
 
   return (
     <div className={className}>
-      <div className="relative mx-auto h-[330px] w-full max-w-md sm:h-[400px]">
+      <div className={cn("relative mx-auto w-full", stackHeightClassName, stackWidthClassName)}>
         {cards.map((card, i) => {
           const isActive = i === active;
           // distance from the active card, wrapped the short way round
@@ -42,9 +51,9 @@ export function CardFanCarousel({
           if (offset > cards.length / 2) offset -= cards.length;
           if (offset < -cards.length / 2) offset += cards.length;
 
-          const dx = offset * 30;
+          const dx = offset * 34;
           const dy = isActive ? 0 : 14 + Math.abs(offset) * 8;
-          const scale = isActive ? 1.08 : 0.92 - Math.abs(offset) * 0.03;
+          const scale = isActive ? 1.06 : 0.92 - Math.abs(offset) * 0.03;
 
           return (
             <button
@@ -52,7 +61,8 @@ export function CardFanCarousel({
               onClick={() => setActive(i)}
               aria-label={`Show ${card.title}`}
               className={cn(
-                "bouncy absolute left-1/2 top-0 aspect-[9/17] w-[150px] overflow-hidden rounded-2xl shadow-[0_20px_45px_-15px_rgba(0,0,0,0.5)] transition-all duration-700 ease-in-out sm:w-[180px]",
+                "bouncy absolute left-1/2 top-0 overflow-hidden rounded-2xl shadow-[0_20px_45px_-15px_rgba(0,0,0,0.5)] transition-all duration-700 ease-in-out",
+                cardClassName,
                 isActive ? "opacity-100" : "opacity-70 hover:opacity-90",
               )}
               style={{
@@ -68,7 +78,7 @@ export function CardFanCarousel({
       </div>
 
       {!hideCaption && (
-        <div className="relative mx-auto mt-8 max-w-md text-center">
+        <div className={cn("relative mx-auto mt-8 text-center", stackWidthClassName)}>
           {cards.map((card, i) => (
             <div
               key={card.title}
