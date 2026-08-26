@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { DeviceFrame } from "./DeviceFrame";
 import { ToolGrid, type Tool } from "./ToolGrid";
 import { FeatureSlide } from "./FeatureSlide";
+import { CardFanCarousel } from "./CardFanCarousel";
 
 import yoglaitDevices from "@/assets/work/yoglait-devices.jpg";
 import yoglaitLocation from "@/assets/work/yoglait-location.png";
@@ -66,6 +66,42 @@ const yoglaitSlides = [
     image: yoglaitHistory,
     title: "A full history log",
     description: "Every confirmed payment and delivery is timestamped and traceable.",
+  },
+];
+
+const graceCards = [
+  {
+    src: graceHome,
+    alt: "Grace Connect home feed",
+    title: "A home feed worth checking",
+    description: "Local and global events, kept in one feed, without any of the noise.",
+  },
+  {
+    src: graceShorts,
+    alt: "Grace Connect shorts feed",
+    title: "Shorts, for the youth",
+    description:
+      "A short-form feature for sharing ideas, ongoing events, and clips, without leaving the app.",
+  },
+  {
+    src: graceLive,
+    alt: "Grace Connect live stream screen",
+    title: "Adaptive live streaming",
+    description:
+      "Stream quality adjusts to connection strength automatically, and a service picks up right where it left off instead of stalling out.",
+  },
+  {
+    src: graceChat,
+    alt: "Grace Connect chat thread",
+    title: "A chat thread",
+    description:
+      "One-on-one conversations that keep members checking in on each other, wherever they are.",
+  },
+  {
+    src: graceChats,
+    alt: "Grace Connect chat list",
+    title: "All conversations, in one place",
+    description: "Groups, DMs and community threads organised in a single inbox.",
   },
 ];
 
@@ -233,80 +269,19 @@ export function WorkSection() {
           <ExhibitLabel n="03" name="Grace Connect" />
 
           <p className="mt-6 max-w-2xl text-[15px] leading-[1.8] text-white/85">
-            Grace Connect started as a fix for something we kept running into ourselves. Online
-            ministration from DCLM, Deeper Life Bible Church, kept buffering during services at
-            church and at home, and the experience was cluttered with the kind of ads and irrelevant
-            content that pull attention away mid-service, the same problem YouTube has always had
-            for this. We built a dedicated app instead, one that adjusts stream quality
-            automatically based on connection strength, so a service keeps playing smoothly instead
-            of stalling out.
+            Grace Connect is a community app built for DCLM, Deeper Life Bible Church, after we kept
+            running into buffering and clutter during online ministration ourselves. It streams at
+            whatever quality the connection can handle, without the ads and distractions that pull
+            attention away mid-service. Beyond streaming, it's grown into a full space for chat,
+            events, and short-form content so members can stay connected wherever they are.
           </p>
 
           <div className="mt-10">
             <ToolGrid tools={graceTools} className="max-w-md" />
           </div>
 
-          <div className="mt-14 grid gap-10 sm:grid-cols-2">
-            <div className="flex flex-col gap-4">
-              <div>
-                <SubHeading>Adaptive live streaming</SubHeading>
-                <p className="mt-2 text-[14px] leading-[1.8] text-white/85">
-                  Stream quality adjusts to connection strength automatically, and a service picks
-                  up right where it left off instead of stalling out.
-                </p>
-              </div>
-              <DeviceFrame
-                type="phone"
-                image={graceLive}
-                alt="Grace Connect live stream screen"
-                className="max-w-[200px]"
-              />
-            </div>
-
-            <div className="flex flex-col gap-4 sm:mt-16">
-              <div>
-                <SubHeading>Global chat</SubHeading>
-                <p className="mt-2 text-[14px] leading-[1.8] text-white/85">
-                  A chat system built to connect members globally, so check-ins and encouragement
-                  don't stop at the church doors.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <DeviceFrame type="phone" image={graceChats} alt="Grace Connect chat list" />
-                <DeviceFrame type="phone" image={graceChat} alt="Grace Connect chat thread" />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <div>
-                <SubHeading>A home feed worth checking</SubHeading>
-                <p className="mt-2 text-[14px] leading-[1.8] text-white/85">
-                  Local and global events, kept in one feed, without any of the noise.
-                </p>
-              </div>
-              <DeviceFrame
-                type="phone"
-                image={graceHome}
-                alt="Grace Connect home feed"
-                className="max-w-[200px]"
-              />
-            </div>
-
-            <div className="flex flex-col gap-4 sm:mt-16">
-              <div>
-                <SubHeading>Shorts, for the youth</SubHeading>
-                <p className="mt-2 text-[14px] leading-[1.8] text-white/85">
-                  A short-form feature for sharing ideas, ongoing events, and clips, without leaving
-                  the app.
-                </p>
-              </div>
-              <DeviceFrame
-                type="phone"
-                image={graceShorts}
-                alt="Grace Connect shorts feed"
-                className="max-w-[200px]"
-              />
-            </div>
+          <div className="mt-14">
+            <CardFanCarousel cards={graceCards} />
           </div>
 
           <p className="mt-14 max-w-2xl text-[15px] leading-[1.8] text-white/85">

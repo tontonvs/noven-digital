@@ -3,7 +3,6 @@ import { DesignShowcase } from "./DesignShowcase";
 import { UpdateArrows } from "./ServiceIllustrations";
 
 import webEngHero from "@/assets/services/web-eng-hero.jpg";
-import webEngLaptop from "@/assets/services/web-eng-laptop.jpg";
 import mobileHome from "@/assets/services/mobile-home.jpg";
 import mobileChat from "@/assets/services/mobile-chat.jpg";
 import mobileSettings from "@/assets/services/mobile-settings.jpg";
@@ -72,18 +71,6 @@ export function ServicesSection() {
               />
             </div>
           </div>
-
-          {/* same site, on the device it'll actually get opened on */}
-          <div className="mt-10 overflow-hidden rounded-[1.5rem] shadow-[0_30px_70px_-30px_rgba(11,18,32,0.25)] lg:mx-auto lg:max-w-xl">
-            <img
-              src={webEngLaptop}
-              alt="The Noven site, open on a laptop"
-              className="w-full object-cover"
-            />
-          </div>
-          <p className="mt-4 text-center text-xs ink-soft">
-            One build, tuned for every screen it lands on.
-          </p>
 
           {/* ============ 2. MOBILE APPS ============ */}
           <div className="mt-28 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
