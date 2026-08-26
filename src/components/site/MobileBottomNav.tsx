@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Home, Layers, FolderOpen, Sparkles, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { WhatsAppButton } from "./WhatsAppButton";
 
 const items = [
   { id: "home", label: "Home", Icon: Home },
@@ -55,7 +56,7 @@ export function MobileBottomNav() {
   return (
     <nav
       aria-label="Primary"
-      className="fixed inset-x-0 bottom-4 z-40 flex justify-center px-4 md:hidden"
+      className="fixed inset-x-0 bottom-4 z-40 flex items-center justify-center gap-3 px-4 md:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <div className="flex items-center gap-1 rounded-full border border-white/10 bg-[#0b1220]/85 p-1.5 shadow-[0_15px_40px_-10px_rgba(0,0,0,0.5)] backdrop-blur-xl">
@@ -85,6 +86,8 @@ export function MobileBottomNav() {
           );
         })}
       </div>
+
+      <WhatsAppButton />
     </nav>
   );
 }

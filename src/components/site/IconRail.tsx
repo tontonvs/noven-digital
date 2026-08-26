@@ -54,6 +54,18 @@ function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+const GMAIL_ADDRESS = "mensahkbiz@gmail.com";
+const GMAIL_SUBJECT = "Let's work together";
+const GMAIL_BODY = "Hi Tonton,\n\nI found Noven online and I'd like to talk about a project.\n\n";
+
+function openGmailCompose() {
+  const url = new URL("https://mail.google.com/mail/?view=cm&fs=1");
+  url.searchParams.set("to", GMAIL_ADDRESS);
+  url.searchParams.set("su", GMAIL_SUBJECT);
+  url.searchParams.set("body", GMAIL_BODY);
+  window.open(url.toString(), "_blank", "noopener,noreferrer");
+}
+
 export function IconRail() {
   const active = useActiveSection(allIds);
 
@@ -95,7 +107,8 @@ export function IconRail() {
       {/* Capsule with the 2 remaining icons */}
       <div className="mt-2 flex flex-col items-center gap-1 rounded-full bg-card/92 p-1.5 shadow-md backdrop-blur-md">
         <button
-          aria-label="Profile picture"
+          aria-label="Email us"
+          onClick={openGmailCompose}
           className="bouncy grid size-8 place-items-center overflow-hidden rounded-full bg-neutral-800 hover:scale-110"
         >
           <img
