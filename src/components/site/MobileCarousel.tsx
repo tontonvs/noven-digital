@@ -41,7 +41,7 @@ export function MobileCarousel({ slides }: { slides: Slide[] }) {
         <button
           onClick={advance}
           aria-label={`Currently showing ${current.label}. Tap for next screen.`}
-          className="bouncy relative z-10 block aspect-[9/18.5] w-full cursor-pointer overflow-hidden rounded-[1.4rem] shadow-[0_25px_50px_-20px_rgba(11,18,32,0.45)] hover:-translate-y-1"
+          className="bouncy relative z-10 block aspect-[9/19.2] w-full cursor-pointer overflow-hidden rounded-[1.4rem] shadow-[0_25px_50px_-20px_rgba(11,18,32,0.45)] hover:-translate-y-1"
         >
           {slides.map((slide, i) => (
             <img
@@ -49,7 +49,7 @@ export function MobileCarousel({ slides }: { slides: Slide[] }) {
               src={slide.src}
               alt={slide.label}
               className={cn(
-                "absolute inset-0 size-full object-cover transition-opacity duration-[1400ms] ease-in-out",
+                "absolute inset-0 size-full object-contain transition-opacity duration-[1400ms] ease-in-out",
                 i === index ? "opacity-100" : "opacity-0",
               )}
             />

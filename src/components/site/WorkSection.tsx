@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { ToolGrid, type Tool } from "./ToolGrid";
-import { FeatureSlide } from "./FeatureSlide";
 import { CardFanCarousel } from "./CardFanCarousel";
 
 import yoglaitDevices from "@/assets/work/yoglait-devices.jpg";
@@ -51,19 +50,22 @@ const graceTools: Tool[] = [
   { name: "Vite", icon: viteIcon },
 ];
 
-const yoglaitSlides = [
+const yoglaitCards = [
   {
-    image: yoglaitLocation,
+    src: yoglaitLocation,
+    alt: "Yoglait live order tracking",
     title: "Live order tracking",
     description: "See exactly where an order is headed and assign the nearest rider in seconds.",
   },
   {
-    image: yoglaitAdmin,
+    src: yoglaitAdmin,
+    alt: "Yoglait admin dashboard",
     title: "Layered admin access",
     description: "The main admin can bring on sub-admins with their own scoped logins.",
   },
   {
-    image: yoglaitHistory,
+    src: yoglaitHistory,
+    alt: "Yoglait staff history log",
     title: "A full history log",
     description: "Every confirmed payment and delivery is timestamped and traceable.",
   },
@@ -202,7 +204,7 @@ export function WorkSection() {
 
           {/* location / admin / history */}
           <div className="mt-14 grid items-center gap-8 lg:grid-cols-[1.1fr_1fr]">
-            <FeatureSlide slides={yoglaitSlides} />
+            <CardFanCarousel cards={yoglaitCards} hideCaption />
             <div>
               <SubHeading>Built for the people running it</SubHeading>
               <p className="mt-3 text-[15px] leading-[1.8] text-white/85">
