@@ -15,6 +15,7 @@ import { AppFrame } from "@/components/site/AppFrame";
 import { IconRail } from "@/components/site/IconRail";
 import { BottomDock } from "@/components/site/BottomDock";
 import { MobileBottomNav } from "@/components/site/MobileBottomNav";
+import { ScrollToTopButton } from "@/components/site/ScrollToTopButton";
 import { ThemeProvider } from "@/components/site/theme";
 import bgImage from "@/assets/background.jpg";
 
@@ -140,6 +141,7 @@ function RootComponent() {
         <IconRail />
         <BottomDock />
         <MobileBottomNav />
+        <ScrollToTopButton />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
       </ThemeProvider>

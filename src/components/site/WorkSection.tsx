@@ -243,6 +243,15 @@ export function WorkSection() {
             actually representing.
           </p>
 
+          <div className="mt-14 overflow-hidden rounded-[1.75rem] shadow-[0_25px_60px_-25px_rgba(0,0,0,0.5)]">
+            <img
+              src={labiancaDevices}
+              alt="The Labianca homepage across desktop, laptop, tablet and phone"
+              className="w-full object-cover"
+            />
+          </div>
+          <p className="mt-4 text-center text-xs text-white/50">One homepage, four screens.</p>
+
           <div className="mt-14 grid items-center gap-8 sm:grid-cols-2">
             <ToolGrid tools={labiancaTools} />
             <div>
@@ -255,15 +264,6 @@ export function WorkSection() {
               </p>
             </div>
           </div>
-
-          <div className="mt-14 overflow-hidden rounded-[1.75rem] shadow-[0_25px_60px_-25px_rgba(0,0,0,0.5)]">
-            <img
-              src={labiancaDevices}
-              alt="The Labianca homepage across desktop, laptop, tablet and phone"
-              className="w-full object-cover"
-            />
-          </div>
-          <p className="mt-4 text-center text-xs text-white/50">One homepage, four screens.</p>
 
           <p className="mt-14 max-w-2xl text-[15px] leading-[1.8] text-white/85">
             The goal with Labianca wasn't to reinvent the brand, it was to let the existing one
@@ -285,11 +285,11 @@ export function WorkSection() {
           </p>
 
           <div className="mt-10">
-            <ToolGrid tools={graceTools} className="max-w-md" />
+            <CardFanCarousel cards={graceCards} />
           </div>
 
           <div className="mt-14">
-            <CardFanCarousel cards={graceCards} />
+            <ToolGrid tools={graceTools} className="max-w-md" />
           </div>
 
           <p className="mt-14 max-w-2xl text-[15px] leading-[1.8] text-white/85">

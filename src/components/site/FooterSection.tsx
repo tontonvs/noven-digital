@@ -2,7 +2,7 @@ export function FooterSection() {
   return (
     <footer id="contact" className="relative">
       <div className="rounded-t-[2.5rem] bg-muted sm:mx-4">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:pl-28 md:pr-10">
+        <div className="mx-auto max-w-6xl px-5 pt-16 pb-[calc(4rem+1cm)] md:pb-16 md:pl-28 md:pr-10">
           <div className="grid gap-10 sm:grid-cols-2">
             <div>
               <p className="text-xs uppercase tracking-[0.35em] ink-soft">Say hello</p>

@@ -61,7 +61,7 @@ export function CardFanCarousel({
               onClick={() => setActive(i)}
               aria-label={`Show ${card.title}`}
               className={cn(
-                "bouncy absolute left-1/2 top-0 overflow-hidden rounded-2xl shadow-[0_20px_45px_-15px_rgba(0,0,0,0.5)] transition-all duration-700 ease-in-out",
+                "bouncy absolute left-1/2 top-0 overflow-hidden rounded-lg shadow-[0_20px_45px_-15px_rgba(0,0,0,0.5)] transition-all duration-700 ease-in-out",
                 cardClassName,
                 isActive ? "opacity-100" : "opacity-70 hover:opacity-90",
               )}
