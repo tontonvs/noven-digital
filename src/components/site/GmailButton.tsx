@@ -22,7 +22,7 @@ export function GmailButton({
     <button
       onClick={() => openGmailCompose(subject, body)}
       className={cn(
-        "bouncy inline-flex items-center gap-2 rounded-xl border-[3px] border-white/80 bg-[linear-gradient(120deg,#4285F4_0%,#EA4335_33%,#FBBC05_66%,#34A853_100%)] px-4 py-2 text-[13px] font-semibold text-white shadow-sm hover:-translate-y-0.5 hover:scale-105 active:scale-95",
+        "bouncy inline-flex items-center justify-center gap-2 rounded-md border-[3px] border-foreground bg-white px-4 py-2 text-[13px] font-semibold text-[#0b1220] hover:-translate-y-0.5 hover:scale-105 active:scale-95 dark:bg-black dark:text-white",
         className,
       )}
     >

@@ -25,11 +25,11 @@ export function WhatsAppButton({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "bouncy inline-flex items-center gap-2 rounded-xl border-[3px] border-white/80 bg-[#25D366] px-4 py-2 text-[13px] font-semibold text-[#06210f] hover:-translate-y-0.5 hover:scale-105 active:scale-95",
+          "bouncy inline-flex items-center justify-center gap-2 rounded-xl border-[3px] border-[#0b1220] bg-[#25D366] px-4 py-2 text-[13px] font-semibold text-[#06210f] hover:-translate-y-0.5 hover:scale-105 active:scale-95",
           className,
         )}
       >
-        <img src={whatsappIcon} alt="" className="size-4" />
+        <img src={whatsappIcon} alt="" className="size-4 shrink-0" />
         WhatsApp
       </a>
     );
