@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Home, Layers, FolderOpen, Sparkles, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { openGmailCompose } from "@/lib/contact";
 import profilePhoto from "@/assets/profile.jpg";
 
 const sections = [
@@ -55,18 +56,8 @@ function scrollToSection(id: string) {
 }
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/tonton-mensah";
-
-const GMAIL_ADDRESS = "mensahkbiz@gmail.com";
 const GMAIL_SUBJECT = "Let's work together";
 const GMAIL_BODY = "Hi Tonton,\n\nI found Noven online and I'd like to talk about a project.\n\n";
-
-function openGmailCompose() {
-  const url = new URL("https://mail.google.com/mail/?view=cm&fs=1");
-  url.searchParams.set("to", GMAIL_ADDRESS);
-  url.searchParams.set("su", GMAIL_SUBJECT);
-  url.searchParams.set("body", GMAIL_BODY);
-  window.open(url.toString(), "_blank", "noopener,noreferrer");
-}
 
 export function IconRail() {
   const active = useActiveSection(allIds);
@@ -122,7 +113,7 @@ export function IconRail() {
           />
         </a>
         <button
-          onClick={openGmailCompose}
+          onClick={() => openGmailCompose(GMAIL_SUBJECT, GMAIL_BODY)}
           aria-label="Message us by email"
           className="bouncy grid size-8 place-items-center rounded-full text-muted-foreground hover:bg-foreground/5"
         >

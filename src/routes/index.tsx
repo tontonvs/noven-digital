@@ -6,6 +6,8 @@ import { ServicesSection } from "@/components/site/ServicesSection";
 import { WorkSection } from "@/components/site/WorkSection";
 import { AboutSection } from "@/components/site/AboutSection";
 import { FooterSection } from "@/components/site/FooterSection";
+import { WhatsAppButton } from "@/components/site/WhatsAppButton";
+import { openGmailCompose } from "@/lib/contact";
 
 function useAverageColor(src: string) {
   const [color, setColor] = useState("rgba(255,255,255,0.5)");
@@ -117,12 +119,46 @@ function Index() {
         </div>
 
         {/* Left supporting copy */}
-        <p className="pop-in mt-6 max-w-md text-left text-[14px] font-medium leading-[1.7] text-white/90">
-          Building engineering solutions to tackle your digital problems in the most effective and
-          innovative way possible — not only to connect you and your clients (users), but to ensure
-          ease and comfort of use through visually stunning design and interface, so you can focus
-          on what truly matters. — noven
-        </p>
+        <div className="pop-in mt-6 max-w-md text-left">
+          <p className="text-[14px] font-semibold leading-[1.7] text-white">At Noven, we build:</p>
+          <ul className="mt-2 space-y-1.5 text-[14px] leading-[1.6] text-white/85">
+            <li className="flex gap-2">
+              <span className="text-white/50">•</span>
+              Info sites for businesses, hotels, and more
+            </li>
+            <li className="flex gap-2">
+              <span className="text-white/50">•</span>
+              E-commerce sites and apps for orders, payments and delivery
+            </li>
+            <li className="flex gap-2">
+              <span className="text-white/50">•</span>
+              School records, admissions and information systems
+            </li>
+            <li className="flex gap-2">
+              <span className="text-white/50">•</span>
+              Portfolios
+            </li>
+          </ul>
+
+          <p className="mt-3 text-[13px] leading-[1.6] text-white/70">
+            Don't see what you need listed? Reach out about your project.
+          </p>
+
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <WhatsAppButton variant="pill" message="Hi! I'd like to talk about a project." />
+            <button
+              onClick={() =>
+                openGmailCompose(
+                  "Project inquiry",
+                  "Hi Tonton,\n\nI'd like to talk about a project.\n\n",
+                )
+              }
+              className="bouncy inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-[13px] font-semibold text-white hover:-translate-y-0.5 hover:scale-105 hover:bg-white/10 active:scale-95"
+            >
+              Email us
+            </button>
+          </div>
+        </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-start">
           {/* Affordability Rule — floating card, separated from the bezel/dock, gently rounded */}
