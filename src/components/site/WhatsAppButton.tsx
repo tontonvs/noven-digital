@@ -6,8 +6,8 @@ const DEFAULT_MESSAGE = "Hi! I found Noven online and I'd like to talk about a p
 
 /**
  * WhatsApp chat link. "icon" is the small circular floating button used
- * next to the mobile bottom nav; "pill" is a labelled rounded-full button
- * for inline use (e.g. in the hero copy).
+ * next to the mobile bottom nav; "pill" is a labelled rounded-square
+ * button (green fill, 3px border) for inline use, e.g. in the hero copy.
  */
 export function WhatsAppButton({
   variant = "icon",
@@ -25,7 +25,7 @@ export function WhatsAppButton({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "bouncy inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-[13px] font-semibold text-[#06210f] hover:-translate-y-0.5 hover:scale-105 active:scale-95",
+          "bouncy inline-flex items-center gap-2 rounded-xl border-[3px] border-white/80 bg-[#25D366] px-4 py-2 text-[13px] font-semibold text-[#06210f] hover:-translate-y-0.5 hover:scale-105 active:scale-95",
           className,
         )}
       >

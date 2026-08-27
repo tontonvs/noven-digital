@@ -7,7 +7,7 @@ import { WorkSection } from "@/components/site/WorkSection";
 import { AboutSection } from "@/components/site/AboutSection";
 import { FooterSection } from "@/components/site/FooterSection";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
-import { openGmailCompose } from "@/lib/contact";
+import { GmailButton } from "@/components/site/GmailButton";
 
 function useAverageColor(src: string) {
   const [color, setColor] = useState("rgba(255,255,255,0.5)");
@@ -146,17 +146,10 @@ function Index() {
 
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <WhatsAppButton variant="pill" message="Hi! I'd like to talk about a project." />
-            <button
-              onClick={() =>
-                openGmailCompose(
-                  "Project inquiry",
-                  "Hi Tonton,\n\nI'd like to talk about a project.\n\n",
-                )
-              }
-              className="bouncy inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-[13px] font-semibold text-white hover:-translate-y-0.5 hover:scale-105 hover:bg-white/10 active:scale-95"
-            >
-              Email us
-            </button>
+            <GmailButton
+              subject="Project inquiry"
+              body={"Hi Tonton,\n\nI'd like to talk about a project.\n\n"}
+            />
           </div>
         </div>
 
