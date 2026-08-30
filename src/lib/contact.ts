@@ -6,9 +6,6 @@ export function whatsappLink(message: string) {
 }
 
 export function openGmailCompose(subject: string, body: string) {
-  const url = new URL("https://mail.google.com/mail/?view=cm&fs=1");
-  url.searchParams.set("to", GMAIL_ADDRESS);
-  url.searchParams.set("su", subject);
-  url.searchParams.set("body", body);
-  window.open(url.toString(), "_blank", "noopener,noreferrer");
+  const params = new URLSearchParams({ subject, body });
+  window.location.href = `mailto:${GMAIL_ADDRESS}?${params.toString()}`;
 }

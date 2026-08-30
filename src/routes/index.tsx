@@ -5,6 +5,7 @@ import novenLogo from "@/assets/noven_logo.png";
 import { ServicesSection } from "@/components/site/ServicesSection";
 import { WorkSection } from "@/components/site/WorkSection";
 import { AboutSection } from "@/components/site/AboutSection";
+import { FaqSection } from "@/components/site/FaqSection";
 import { FooterSection } from "@/components/site/FooterSection";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { GmailButton } from "@/components/site/GmailButton";
@@ -52,6 +53,68 @@ function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+const faqEntries = [
+  {
+    question: "What is Noven?",
+    answer:
+      "Noven is a fullstack development studio based in Accra, Ghana, building websites, mobile apps and custom software for businesses in Ghana and beyond.",
+  },
+  {
+    question: "What services does Noven offer?",
+    answer:
+      "Web engineering, mobile apps, backend and data systems, product design, and AI-assisted development, plus ongoing support and maintenance after launch.",
+  },
+  {
+    question: "How much does a website or app cost with Noven?",
+    answer:
+      "Projects typically start from ₵630 and scale up depending on scope, so most small businesses can get a website or app up and running affordably.",
+  },
+  {
+    question: "Does Noven build mobile apps?",
+    answer:
+      "Yes. Noven builds cross-platform mobile apps with React, TypeScript and Capacitor, including offline-first apps that keep working even with patchy connectivity.",
+  },
+  {
+    question: "Where is Noven based?",
+    answer:
+      "Noven is based in Accra, Ghana, and works with clients across Ghana and internationally.",
+  },
+  {
+    question: "How can I contact Noven?",
+    answer:
+      "By email at mensahkbiz@gmail.com, on WhatsApp, or through the contact section at the bottom of the website.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqEntries.map((entry) => ({
+    "@type": "Question",
+    name: entry.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: entry.answer,
+    },
+  })),
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Noven",
+  description:
+    "Noven is a fullstack development studio based in Accra, Ghana, building websites, mobile apps and custom software.",
+  url: "https://noven-digital.mensahtonton.workers.dev",
+  email: "mensahkbiz@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Accra",
+    addressCountry: "GH",
+  },
+  sameAs: ["https://github.com/tontonvs", "https://www.linkedin.com/in/tonton-mensah"],
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -65,6 +128,18 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content: "Offline-first apps and modern web products, built in Accra.",
+      },
+    ],
+    scripts: [
+      {
+        tag: "script",
+        attrs: { type: "application/ld+json" },
+        children: JSON.stringify(organizationSchema),
+      },
+      {
+        tag: "script",
+        attrs: { type: "application/ld+json" },
+        children: JSON.stringify(faqSchema),
       },
     ],
   }),
@@ -243,6 +318,9 @@ function Index() {
 
       {/* ===== ABOUT ===== */}
       <AboutSection />
+
+      {/* ===== FAQ ===== */}
+      <FaqSection entries={faqEntries} />
 
       {/* ===== CONTACT / FOOTER ===== */}
       <FooterSection />
