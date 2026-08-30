@@ -9,6 +9,7 @@ import { FaqSection } from "@/components/site/FaqSection";
 import { FooterSection } from "@/components/site/FooterSection";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { GmailButton } from "@/components/site/GmailButton";
+import { cn } from "@/lib/utils";
 
 function useAverageColor(src: string) {
   const [color, setColor] = useState("rgba(255,255,255,0.5)");
@@ -177,6 +178,12 @@ const LOGO_SIZE = 86.4;
 
 function Index() {
   const logoRingColor = useAverageColor(novenLogo);
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowWelcome(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -187,9 +194,25 @@ function Index() {
       >
         {/* Centered hero title */}
         <div className="pop-in mx-auto max-w-5xl shrink-0 text-center">
-          <h1 className="font-notch font-bold leading-[0.95] text-white [text-shadow:0_10px_40px_rgba(0,0,0,0.35)]">
-            <span className="block text-[clamp(2rem,6vw,80px)]">Discovering innovative</span>
-            <span className="block text-[clamp(1.9rem,5.6vw,75px)]">solutions &lt;/&gt;</span>
+          <h1 className="relative font-notch font-bold leading-[0.95] text-white [text-shadow:0_10px_40px_rgba(0,0,0,0.35)]">
+            <span
+              className={cn(
+                "block transition-opacity duration-700 ease-in-out",
+                showWelcome ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0",
+              )}
+            >
+              <span className="block text-[clamp(2rem,6vw,80px)]">Welcome!</span>
+              <span className="block text-[clamp(1.9rem,5.6vw,75px)]">to Noven Digital</span>
+            </span>
+            <span
+              className={cn(
+                "block transition-opacity duration-700 ease-in-out",
+                showWelcome ? "pointer-events-none absolute inset-0 opacity-0" : "opacity-100",
+              )}
+            >
+              <span className="block text-[clamp(2rem,6vw,80px)]">Discovering innovative</span>
+              <span className="block text-[clamp(1.9rem,5.6vw,75px)]">solutions &lt;/&gt;</span>
+            </span>
           </h1>
         </div>
 
